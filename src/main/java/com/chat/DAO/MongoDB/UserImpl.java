@@ -1,12 +1,14 @@
 package com.chat.DAO.MongoDB;
 
 import com.chat.DAO.IUserDAO;
+import com.chat.LogManager.LogUtils;
 import com.chat.Models.User;
 import com.chat.PropertyManager.DatabaseSupplier;
 import com.chat.PropertyManager.PropUtils;
 import com.google.gson.Gson;
-import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoDatabase;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,7 +27,9 @@ public class UserImpl implements IUserDAO {
 
     HashMap<String, String> database = PropUtils.GetMongoDBChat();
 
-    MongoClient client = new MongoClient(database.get("connection"));
+    LogUtils.LogInfo(database.get("connection"), null);
+
+    MongoClient client = MongoClients.create(database.get("connection"));
     MongoDatabase dtb = client.getDatabase(database.get("database"));
 
     String objJson = new Gson().toJson(user);
@@ -43,7 +47,7 @@ public class UserImpl implements IUserDAO {
 
     HashMap<String, String> database = PropUtils.GetMongoDBChat();
 
-    MongoClient client = new MongoClient(database.get("connection"));
+    MongoClient client = MongoClients.create(database.get("connection"));
     MongoDatabase dtb = client.getDatabase(database.get("database"));
 
     List<Document> listObjJson = new ArrayList<>();
@@ -59,7 +63,7 @@ public class UserImpl implements IUserDAO {
   public void DeleteUser(UUID id) throws Exception {
     HashMap<String, String> database = PropUtils.GetMongoDBChat();
 
-    MongoClient client = new MongoClient(database.get("connection"));
+    MongoClient client = MongoClients.create(database.get("connection"));
     MongoDatabase dtb = client.getDatabase(database.get("database"));
 
     dtb.getCollection("user").deleteOne(new Document("id", id.toString()));
@@ -69,7 +73,7 @@ public class UserImpl implements IUserDAO {
   public List<User> FindUser(String SearchKey) throws Exception {
     HashMap<String, String> database = PropUtils.GetMongoDBChat();
 
-    MongoClient client = new MongoClient(database.get("connection"));
+    MongoClient client = MongoClients.create(database.get("connection"));
     MongoDatabase dtb = client.getDatabase(database.get("database"));
 
     String search = String.format("/.*%s.*/", SearchKey);
@@ -90,7 +94,7 @@ public class UserImpl implements IUserDAO {
   public User GetUser(String UserName) throws Exception {
     HashMap<String, String> database = PropUtils.GetMongoDBChat();
 
-    MongoClient client = new MongoClient(database.get("connection"));
+    MongoClient client = MongoClients.create(database.get("connection"));
     MongoDatabase dtb = client.getDatabase(database.get("database"));
 
     Document filter = new Document("username", UserName);

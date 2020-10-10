@@ -5,7 +5,8 @@ import com.chat.Models.Message;
 import com.chat.PropertyManager.DatabaseSupplier;
 import com.chat.PropertyManager.PropUtils;
 import com.google.gson.Gson;
-import com.mongodb.MongoClient;
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoDatabase;
 import java.util.HashMap;
 import java.util.Optional;
@@ -22,7 +23,7 @@ public class MessageImpl implements IMessageDAO {
 
     HashMap<String, String> database = PropUtils.GetMongoDBChat();
 
-    MongoClient client = new MongoClient(database.get("connection"));
+    MongoClient client = MongoClients.create(database.get("connection"));
     MongoDatabase dtb = client.getDatabase(database.get("database"));
 
     String objJson = new Gson().toJson(message);

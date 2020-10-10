@@ -1,5 +1,6 @@
 package com.chat.Models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.UUID;
 
 public class Message {
@@ -12,8 +13,16 @@ public class Message {
 
   // getter, setter
 
-  public Message() {
-    
+  public Message() {}
+
+  public Message(
+    @JsonProperty("Sender") String Sender,
+    @JsonProperty("Receiver") String Receiver,
+    @JsonProperty("Content") String Content
+  ) {
+    this.Sender = Sender;
+    this.Receiver = Receiver;
+    this.Content = Content;
   }
 
   public Message(UUID id, String Sender, String Receiver, String Content) {

@@ -30,7 +30,7 @@ public class UserService {
     } catch (Exception e) {
       RuntimeException exception = new RuntimeException(e);
 
-      LogUtils.AddLog("[ERROR]", exception);
+      LogUtils.LogError("[ERROR]", exception);
       throw new RuntimeException(exception);
     }
   }
@@ -41,7 +41,7 @@ public class UserService {
     } catch (Exception e) {
       RuntimeException exception = new RuntimeException(e);
 
-      LogUtils.AddLog("[ERROR]", exception);
+      LogUtils.LogError("[ERROR]", exception);
       throw new RuntimeException(exception);
     }
   }
@@ -55,7 +55,7 @@ public class UserService {
     } catch (Exception e) {
       RuntimeException exception = new RuntimeException(e);
 
-      LogUtils.AddLog("[ERROR]", exception);
+      LogUtils.LogError("[ERROR]", exception);
       throw new RuntimeException(exception);
     }
   }

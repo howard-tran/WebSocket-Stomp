@@ -1,5 +1,6 @@
 package com.chat.Models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.UUID;
 
 public class User {
@@ -11,8 +12,14 @@ public class User {
 
   // getter, setter
 
-  public User() {
-    
+  public User() {}
+
+  public User(
+    @JsonProperty("UserName") String UserName,
+    @JsonProperty("PassWord") String PassWord
+  ) {
+    this.UserName = UserName;
+    this.PassWord = PassWord;
   }
 
   public User(UUID id, String UserName, String PassWord) {

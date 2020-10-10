@@ -1,9 +1,11 @@
 package com.chat.Controllers;
 
 import com.chat.App;
+import com.chat.LogManager.LogUtils;
 import com.chat.Models.User;
 import com.chat.Services.UserService;
 import java.util.List;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,14 +24,15 @@ public class UserController {
     this.userService = userService;
   }
 
-  @PostMapping("/add")
+  @PostMapping(path = "/add")
   public Response<Object> AddUser(@RequestBody User user) {
+    LogUtils.LogInfo(user.getUserName(), null);
     userService.AddUser(user);
 
     return new Response<Object>("", ErrorType.OK);
   }
 
-  @GetMapping("/get")
+  @GetMapping(path = "/get")
   public Response<Object> FindUser(
     @RequestParam(name = "searchKey", required = true) String searchKey
   ) {
@@ -38,7 +41,7 @@ public class UserController {
     return new Response<Object>(res, ErrorType.OK);
   }
 
-  @GetMapping("/getuser")
+  @GetMapping(path = "/getuser")
   public Response<Object> GetUser(
     @RequestParam(name = "userName", required = true) String userName
   ) {
