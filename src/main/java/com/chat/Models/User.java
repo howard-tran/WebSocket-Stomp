@@ -3,7 +3,6 @@ package com.chat.Models;
 import java.util.UUID;
 
 public class User {
-
   // properties
 
   private UUID id;
@@ -11,6 +10,16 @@ public class User {
   private String PassWord;
 
   // getter, setter
+
+  public User() {
+    
+  }
+
+  public User(UUID id, String UserName, String PassWord) {
+    this.id = id;
+    this.UserName = UserName;
+    this.PassWord = PassWord;
+  }
 
   public UUID getId() {
     return this.id;
@@ -35,5 +44,4 @@ public class User {
   public void setPassWord(String PassWord) {
     this.PassWord = PassWord;
   }
-
 }

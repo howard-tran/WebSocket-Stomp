@@ -3,7 +3,6 @@ package com.chat.Models;
 import java.util.UUID;
 
 public class Message {
-
   // properties
 
   private UUID id;
@@ -12,6 +11,17 @@ public class Message {
   private String Content;
 
   // getter, setter
+
+  public Message() {
+    
+  }
+
+  public Message(UUID id, String Sender, String Receiver, String Content) {
+    this.id = id;
+    this.Sender = Sender;
+    this.Receiver = Receiver;
+    this.Content = Content;
+  }
 
   public UUID getId() {
     return this.id;
@@ -44,5 +54,4 @@ public class Message {
   public void setContent(String Content) {
     this.Content = Content;
   }
-
 }

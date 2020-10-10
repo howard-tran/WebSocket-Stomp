@@ -178,7 +178,7 @@
             </execution>
           </executions>
           <configuration>
-            <mainClass>com.demo.App</mainClass>
+            <mainClass>com.chat.App</mainClass>
           </configuration>
         </plugin>
 
@@ -200,7 +200,7 @@
           <configuration>
             <archive>
               <manifest>
-                <mainClass>com.demo.App</mainClass>
+                <mainClass>com.chat.App</mainClass>
               </manifest>
             </archive>
             <descriptorRefs>
@@ -227,7 +227,7 @@
           <version>2.3.4.RELEASE</version>
           <configuration>
             <fork>true</fork>
-            <mainClass>com.demo.App</mainClass>
+            <mainClass>com.chat.App</mainClass>
           </configuration>
           <executions>
             <execution>
