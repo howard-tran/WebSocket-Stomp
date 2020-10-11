@@ -47,7 +47,6 @@ public class UserService {
   }
 
   public List<String> FindUser(String searchKey) {
-    List<String> userNameList = new ArrayList();
     try {
       return (userDao.FindUser(searchKey)).stream()
         .map(user -> user.getUserName())

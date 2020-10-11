@@ -7,29 +7,25 @@ public class Message {
   // properties
 
   private UUID id;
-  private String Sender;
-  private String Receiver;
-  private String Content;
+  private String sender;
+  private String receiver;
+  private String content;
 
   // getter, setter
 
   public Message() {}
 
-  public Message(
-    @JsonProperty("Sender") String Sender,
-    @JsonProperty("Receiver") String Receiver,
-    @JsonProperty("Content") String Content
-  ) {
-    this.Sender = Sender;
-    this.Receiver = Receiver;
-    this.Content = Content;
+  public Message(String sender, String receiver, String content) {
+    this.sender = sender;
+    this.receiver = receiver;
+    this.content = content;
   }
 
-  public Message(UUID id, String Sender, String Receiver, String Content) {
+  public Message(UUID id, String sender, String receiver, String content) {
     this.id = id;
-    this.Sender = Sender;
-    this.Receiver = Receiver;
-    this.Content = Content;
+    this.sender = sender;
+    this.receiver = receiver;
+    this.content = content;
   }
 
   public UUID getId() {
@@ -41,26 +37,26 @@ public class Message {
   }
 
   public String getSender() {
-    return this.Sender;
+    return this.sender;
   }
 
-  public void setSender(String Sender) {
-    this.Sender = Sender;
+  public void setSender(String sender) {
+    this.sender = sender;
   }
 
   public String getReceiver() {
-    return this.Receiver;
+    return this.receiver;
   }
 
-  public void setReceiver(String Receiver) {
-    this.Receiver = Receiver;
+  public void setReceiver(String receiver) {
+    this.receiver = receiver;
   }
 
   public String getContent() {
-    return this.Content;
+    return this.content;
   }
 
-  public void setContent(String Content) {
-    this.Content = Content;
+  public void setContent(String content) {
+    this.content = content;
   }
 }

@@ -32,18 +32,18 @@ public class UserController {
     return new Response<Object>("", ErrorType.OK);
   }
 
-  @GetMapping(path = "/get")
+  @GetMapping(path = "/find")
   public Response<Object> FindUser(
-    @RequestParam(name = "searchKey", required = true) String searchKey
+    @RequestParam(name = "searchkey", required = true) String searchKey
   ) {
     List<String> res = userService.FindUser(searchKey);
 
     return new Response<Object>(res, ErrorType.OK);
   }
 
-  @GetMapping(path = "/getuser")
+  @GetMapping(path = "/get")
   public Response<Object> GetUser(
-    @RequestParam(name = "userName", required = true) String userName
+    @RequestParam(name = "username", required = true) String userName
   ) {
     User res = userService.GetUser(userName);
 

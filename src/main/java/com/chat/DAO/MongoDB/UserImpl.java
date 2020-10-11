@@ -70,18 +70,23 @@ public class UserImpl implements IUserDAO {
   }
 
   @Override
-  public List<User> FindUser(String SearchKey) throws Exception {
+  public List<User> FindUser(String searchKey) throws Exception {
     HashMap<String, String> database = PropUtils.GetMongoDBChat();
 
     MongoClient client = MongoClients.create(database.get("connection"));
     MongoDatabase dtb = client.getDatabase(database.get("database"));
 
-    String search = String.format("/.*%s.*/", SearchKey);
-
     List<User> result = new ArrayList<>();
+    Document filter = Document.parse(
+      String.format(
+        "{%s: {$regex: /^%s/, $options: 'i'}}",
+        "UserName",
+        searchKey
+      )
+    );
     FindIterable<Document> cursor = dtb
       .getCollection("user")
-      .find(new Document("username", search))
+      .find(filter)
       .limit(15);
 
     for (Document doc : cursor) {
@@ -91,13 +96,13 @@ public class UserImpl implements IUserDAO {
   }
 
   @Override
-  public User GetUser(String UserName) throws Exception {
+  public User GetUser(String userName) throws Exception {
     HashMap<String, String> database = PropUtils.GetMongoDBChat();
 
     MongoClient client = MongoClients.create(database.get("connection"));
     MongoDatabase dtb = client.getDatabase(database.get("database"));
 
-    Document filter = new Document("username", UserName);
+    Document filter = new Document("UserName", userName);
     FindIterable<Document> cursor = dtb.getCollection("user").find(filter);
 
     User result = new Gson().fromJson(cursor.first().toJson(), User.class);

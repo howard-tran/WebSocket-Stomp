@@ -7,25 +7,22 @@ public class User {
   // properties
 
   private UUID id;
-  private String UserName;
-  private String PassWord;
+  private String userName;
+  private String passWord;
 
   // getter, setter
 
   public User() {}
 
-  public User(
-    @JsonProperty("UserName") String UserName,
-    @JsonProperty("PassWord") String PassWord
-  ) {
-    this.UserName = UserName;
-    this.PassWord = PassWord;
+  public User(String userName, String passWord) {
+    this.userName = userName;
+    this.passWord = passWord;
   }
 
-  public User(UUID id, String UserName, String PassWord) {
+  public User(UUID id, String userName, String passWord) {
     this.id = id;
-    this.UserName = UserName;
-    this.PassWord = PassWord;
+    this.userName = userName;
+    this.passWord = passWord;
   }
 
   public UUID getId() {
@@ -37,18 +34,18 @@ public class User {
   }
 
   public String getUserName() {
-    return this.UserName;
+    return this.userName;
   }
 
-  public void setUserName(String UserName) {
-    this.UserName = UserName;
+  public void setUserName(String userName) {
+    this.userName = userName;
   }
 
   public String getPassWord() {
-    return this.PassWord;
+    return this.passWord;
   }
 
-  public void setPassWord(String PassWord) {
-    this.PassWord = PassWord;
+  public void setPassWord(String passWord) {
+    this.passWord = passWord;
   }
 }

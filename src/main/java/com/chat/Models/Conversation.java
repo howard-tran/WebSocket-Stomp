@@ -7,41 +7,38 @@ public class Conversation {
   // properties
 
   private UUID id;
-  private String Sender;
-  private String Receiver;
+  private String sender;
+  private String receiver;
 
   // getter, setter
 
   public Conversation() {}
 
-  public Conversation(
-    @JsonProperty("Sender") String Sender,
-    @JsonProperty("Receiver") String Receiver
-  ) {
-    this.Sender = Sender;
-    this.Receiver = Receiver;
+  public Conversation(String sender, String receiver) {
+    this.sender = sender;
+    this.receiver = receiver;
   }
 
-  public Conversation(UUID id, String Sender, String Receiver) {
+  public Conversation(UUID id, String sender, String receiver) {
     this.id = id;
-    this.Sender = Sender;
-    this.Receiver = Receiver;
+    this.sender = sender;
+    this.receiver = receiver;
   }
 
   public String getSender() {
-    return this.Sender;
+    return this.sender;
   }
 
-  public void setSender(String Sender) {
-    this.Sender = Sender;
+  public void setSender(String sender) {
+    this.sender = sender;
   }
 
   public String getReceiver() {
-    return this.Receiver;
+    return this.receiver;
   }
 
-  public void setReceiver(String Receiver) {
-    this.Receiver = Receiver;
+  public void setReceiver(String receiver) {
+    this.receiver = receiver;
   }
 
   public UUID getId() {
