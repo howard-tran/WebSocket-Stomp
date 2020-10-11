@@ -10,6 +10,7 @@ public class Message {
   private String sender;
   private String receiver;
   private String content;
+  private String unixTime;
 
   // getter, setter
 
@@ -58,5 +59,13 @@ public class Message {
 
   public void setContent(String content) {
     this.content = content;
+  }
+
+  public String getUnixTime() {
+    return this.unixTime;
+  }
+
+  public void setUnixTime(String unixTime) {
+    this.unixTime = unixTime;
   }
 }

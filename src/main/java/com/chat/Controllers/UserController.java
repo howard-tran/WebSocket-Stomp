@@ -5,6 +5,7 @@ import com.chat.LogManager.LogUtils;
 import com.chat.Models.User;
 import com.chat.Services.UserService;
 import java.util.List;
+import java.util.Optional;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,27 +27,38 @@ public class UserController {
 
   @PostMapping(path = "/add")
   public Response<Object> AddUser(@RequestBody User user) {
-    LogUtils.LogInfo(user.getUserName(), null);
-    userService.AddUser(user);
+    Optional<Object> res = userService.AddUser(user);
 
-    return new Response<Object>("", ErrorType.OK);
+    if (res.isEmpty()) {
+      return new Response<Object>("", ErrorType.INTERNAL_SERVER_ERROR);
+    } else {
+      return new Response<Object>(res.get(), ErrorType.OK);
+    }
   }
 
   @GetMapping(path = "/find")
   public Response<Object> FindUser(
     @RequestParam(name = "searchkey", required = true) String searchKey
   ) {
-    List<String> res = userService.FindUser(searchKey);
+    Optional<List<String>> res = userService.FindUser(searchKey);
 
-    return new Response<Object>(res, ErrorType.OK);
+    if (res.isEmpty()) {
+      return new Response<Object>("", ErrorType.INTERNAL_SERVER_ERROR);
+    } else {
+      return new Response<Object>(res.get(), ErrorType.OK);
+    }
   }
 
   @GetMapping(path = "/get")
   public Response<Object> GetUser(
     @RequestParam(name = "username", required = true) String userName
   ) {
-    User res = userService.GetUser(userName);
+    Optional<User> res = userService.GetUser(userName);
 
-    return new Response<Object>(res, ErrorType.OK);
+    if (res.isEmpty()) {
+      return new Response<Object>("", ErrorType.INTERNAL_SERVER_ERROR);
+    } else {
+      return new Response<Object>(res.get(), ErrorType.OK);
+    }
   }
 }

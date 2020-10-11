@@ -26,6 +26,14 @@ public class Response<T> {
             "cannot found data in database"
           );
         break;
+      case INTERNAL_SERVER_ERROR:
+        this.setCustomResponse(
+            data,
+            200,
+            "internal server error",
+            "there is an error in backend"
+          );
+        break;
     }
   }
 

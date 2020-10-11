@@ -105,6 +105,7 @@
         <excludes>
           <exclude>**/java/</exclude>
           <exclude>**/*.java</exclude>
+          <exclude>**/*.js</exclude>
         </excludes>
       </resource>
     </resources>

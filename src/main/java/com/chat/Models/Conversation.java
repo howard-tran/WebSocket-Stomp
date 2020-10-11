@@ -9,6 +9,7 @@ public class Conversation {
   private UUID id;
   private String sender;
   private String receiver;
+  private String unixTime;
 
   // getter, setter
 
@@ -47,5 +48,13 @@ public class Conversation {
 
   public void setId(UUID id) {
     this.id = id;
+  }
+
+  public String getUnixTime() {
+    return this.unixTime;
+  }
+
+  public void setUnixTime(String unixTime) {
+    this.unixTime = unixTime;
   }
 }

@@ -23,8 +23,6 @@ public class UserImpl implements IUserDAO {
 
   @Override
   public void InsertUser(User user) throws Exception {
-    user.setId(UUID.randomUUID());
-
     HashMap<String, String> database = PropUtils.GetMongoDBChat();
 
     LogUtils.LogInfo(database.get("connection"), null);
@@ -78,11 +76,7 @@ public class UserImpl implements IUserDAO {
 
     List<User> result = new ArrayList<>();
     Document filter = Document.parse(
-      String.format(
-        "{%s: {$regex: /^%s/, $options: 'i'}}",
-        "UserName",
-        searchKey
-      )
+      String.format("{userName: {$regex: /^%s/, $options: 'i'}}", searchKey)
     );
     FindIterable<Document> cursor = dtb
       .getCollection("user")
@@ -102,7 +96,7 @@ public class UserImpl implements IUserDAO {
     MongoClient client = MongoClients.create(database.get("connection"));
     MongoDatabase dtb = client.getDatabase(database.get("database"));
 
-    Document filter = new Document("UserName", userName);
+    Document filter = new Document("userName", userName);
     FindIterable<Document> cursor = dtb.getCollection("user").find(filter);
 
     User result = new Gson().fromJson(cursor.first().toJson(), User.class);

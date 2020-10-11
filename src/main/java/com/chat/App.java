@@ -16,7 +16,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class App {
   public static final String API = "/api";
   public static final String MESSAGE_SERVICE_PREFIX = "/service";
-  public static final String MESSAGE_SERVICE_SOCKET = "/message-socket";
+  public static final String MESSAGE_SERVICE_SOCKET = "/socket-service";
 
   public static void main(String[] args) {
     PropertyConfigurator.configure(

@@ -8,6 +8,8 @@ import com.mongodb.connection.Stream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -24,38 +26,46 @@ public class UserService {
     this.userDao = userImpl;
   }
 
-  public void AddUser(User user) {
+  public Optional<Object> AddUser(User user) {
     try {
+      user.setId(UUID.randomUUID());
+
       userDao.InsertUser(user);
+
+      return Optional.of(true);
+      //
     } catch (Exception e) {
       RuntimeException exception = new RuntimeException(e);
 
       LogUtils.LogError("[ERROR]", exception);
-      throw new RuntimeException(exception);
+      return Optional.empty();
     }
   }
 
-  public User GetUser(String userName) {
+  public Optional<User> GetUser(String userName) {
     try {
-      return userDao.GetUser(userName);
+      return Optional.of(userDao.GetUser(userName));
+      //
     } catch (Exception e) {
       RuntimeException exception = new RuntimeException(e);
 
       LogUtils.LogError("[ERROR]", exception);
-      throw new RuntimeException(exception);
+      return Optional.empty();
     }
   }
 
-  public List<String> FindUser(String searchKey) {
+  public Optional<List<String>> FindUser(String searchKey) {
     try {
-      return (userDao.FindUser(searchKey)).stream()
-        .map(user -> user.getUserName())
-        .collect(Collectors.toList());
+      return Optional.of(
+        (userDao.FindUser(searchKey)).stream()
+          .map(user -> user.getUserName())
+          .collect(Collectors.toList())
+      );
     } catch (Exception e) {
       RuntimeException exception = new RuntimeException(e);
 
       LogUtils.LogError("[ERROR]", exception);
-      throw new RuntimeException(exception);
+      return Optional.empty();
     }
   }
 }
