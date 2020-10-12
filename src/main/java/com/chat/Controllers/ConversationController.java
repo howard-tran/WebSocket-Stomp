@@ -25,16 +25,51 @@ public class ConversationController {
     this.conversationService = conversationnService;
   }
 
-  @PostMapping("/add")
-  public Response<Object> AddConversation(
-    @RequestBody Conversation conversation
-  ) {
-    Optional<Object> res = conversationService.AddConversation(conversation);
+  private Response<Object> AddConversation(Conversation conversation) {
+    Optional<Boolean> res = conversationService.AddConversation(conversation);
 
     if (res.isEmpty()) {
       return new Response<Object>("", ErrorType.INTERNAL_SERVER_ERROR);
     } else {
       return new Response<Object>(res.get(), ErrorType.OK);
+    }
+  }
+
+  @PostMapping("/add")
+  public Response<Object> SignUpConversation(
+    @RequestBody Conversation conversation
+  ) {
+    Optional<Boolean> res = conversationService.CheckAvailableConversation(
+      conversation
+    );
+
+    if (res.isEmpty()) {
+      return new Response<Object>("", ErrorType.INTERNAL_SERVER_ERROR);
+    } else {
+      if (res.get()) {
+        return AddConversation(conversation);
+      } else {
+        return new Response<Object>("conversation not available", ErrorType.OK);
+      }
+    }
+  }
+
+  @PostMapping("/check")
+  public Response<Object> CheckConversation(
+    @RequestBody Conversation conversation
+  ) {
+    Optional<Boolean> res = conversationService.CheckAvailableConversation(
+      conversation
+    );
+
+    if (res.isEmpty()) {
+      return new Response<Object>("", ErrorType.INTERNAL_SERVER_ERROR);
+    } else {
+      if (res.get()) {
+        return new Response<Object>(res.get(), ErrorType.OK);
+      } else {
+        return new Response<Object>("conversation not available", ErrorType.OK);
+      }
     }
   }
 

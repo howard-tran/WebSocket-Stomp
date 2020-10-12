@@ -1,9 +1,11 @@
-package com.chat.DAO.MySQL;
+package com.chat.Repository.MySQL;
 
-import com.chat.DAO.IUserDAO;
 import com.chat.Models.User;
+import com.chat.Repository.IUserDAO;
+import com.mongodb.client.FindIterable;
 import java.util.List;
 import java.util.UUID;
+import org.bson.Document;
 
 public class UserImpl implements IUserDAO {
 
@@ -26,12 +28,13 @@ public class UserImpl implements IUserDAO {
   }
 
   @Override
-  public List<User> FindUser(String SearchKey) throws Exception {
+  public FindIterable<Document> GetUserMatch(String SearchKey)
+    throws Exception {
     return null;
   }
 
   @Override
-  public User GetUser(String UserName) throws Exception {
+  public FindIterable<Document> GetUser(String UserName) throws Exception {
     return null;
   }
 }

@@ -1,10 +1,10 @@
-package com.chat.DAO.MongoDB;
+package com.chat.Repository.MongoDB;
 
-import com.chat.DAO.IUserDAO;
 import com.chat.LogManager.LogUtils;
 import com.chat.Models.User;
 import com.chat.PropertyManager.DatabaseSupplier;
 import com.chat.PropertyManager.PropUtils;
+import com.chat.Repository.IUserDAO;
 import com.google.gson.Gson;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoClient;
@@ -68,7 +68,8 @@ public class UserImpl implements IUserDAO {
   }
 
   @Override
-  public List<User> FindUser(String searchKey) throws Exception {
+  public FindIterable<Document> GetUserMatch(String searchKey)
+    throws Exception {
     HashMap<String, String> database = PropUtils.GetMongoDBChat();
 
     MongoClient client = MongoClients.create(database.get("connection"));
@@ -78,29 +79,17 @@ public class UserImpl implements IUserDAO {
     Document filter = Document.parse(
       String.format("{userName: {$regex: /^%s/, $options: 'i'}}", searchKey)
     );
-    FindIterable<Document> cursor = dtb
-      .getCollection("user")
-      .find(filter)
-      .limit(15);
-
-    for (Document doc : cursor) {
-      result.add(new Gson().fromJson(doc.toJson(), User.class));
-    }
-    return result;
+    return dtb.getCollection("user").find(filter).limit(15);
   }
 
   @Override
-  public User GetUser(String userName) throws Exception {
+  public FindIterable<Document> GetUser(String userName) throws Exception {
     HashMap<String, String> database = PropUtils.GetMongoDBChat();
 
     MongoClient client = MongoClients.create(database.get("connection"));
     MongoDatabase dtb = client.getDatabase(database.get("database"));
 
     Document filter = new Document("userName", userName);
-    FindIterable<Document> cursor = dtb.getCollection("user").find(filter);
-
-    User result = new Gson().fromJson(cursor.first().toJson(), User.class);
-
-    return result;
+    return dtb.getCollection("user").find(filter);
   }
 }

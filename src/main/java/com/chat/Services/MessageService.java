@@ -1,11 +1,13 @@
 package com.chat.Services;
 
 import com.chat.Controllers.Response;
-import com.chat.DAO.IMessageDAO;
 import com.chat.LogManager.LogUtils;
 import com.chat.Models.Conversation;
 import com.chat.Models.Message;
 import com.chat.PropertyManager.DatabaseSupplier;
+import com.chat.Repository.IMessageDAO;
+import com.google.gson.Gson;
+import com.mongodb.client.FindIterable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -14,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -57,13 +60,18 @@ public class MessageService {
    * @param {int} index (index of a collection, collection start at 0)
    * @return List<Message>
    */
-  public Optional<List<Message>> GetMessage(
+  public Optional<List<Message>> GetMessageByIndex(
     Conversation conversation,
     int index
   ) {
     final int messageCountEach = 15;
     try {
-      List<Message> messages = messageDao.GetMessage(conversation);
+      FindIterable<Document> cursor = messageDao.GetMessage(conversation);
+      List<Message> messages = new ArrayList<>();
+
+      for (Document doc : cursor) {
+        messages.add(new Gson().fromJson(doc.toJson(), Message.class));
+      }
 
       if (index > messages.size()) {
         return Optional.of(new ArrayList<Message>());

@@ -25,14 +25,44 @@ public class UserController {
     this.userService = userService;
   }
 
-  @PostMapping(path = "/add")
-  public Response<Object> AddUser(@RequestBody User user) {
-    Optional<Object> res = userService.AddUser(user);
+  private Response<Object> AddUser(User user) {
+    Optional<Boolean> res = userService.AddUser(user);
 
     if (res.isEmpty()) {
       return new Response<Object>("", ErrorType.INTERNAL_SERVER_ERROR);
     } else {
       return new Response<Object>(res.get(), ErrorType.OK);
+    }
+  }
+
+  @PostMapping(path = "/add")
+  public Response<Object> SignUpUser(@RequestBody User user) {
+    Optional<Boolean> isUserNameAvailable = userService.CheckAvailableUserName(
+      user.getUserName()
+    );
+
+    if (isUserNameAvailable.isEmpty()) {
+      return new Response<Object>("", ErrorType.INTERNAL_SERVER_ERROR);
+      //
+    } else {
+      if (isUserNameAvailable.get()) {
+        return AddUser(user);
+      } else {
+        return new Response<Object>("username-not-available", ErrorType.OK);
+      }
+    }
+  }
+
+  @GetMapping(path = "/checkusername")
+  public Response<Object> CheckUserName(
+    @RequestParam(name = "username", required = true) String userName
+  ) {
+    Optional<Boolean> res = userService.CheckAvailableUserName(userName);
+
+    if (res.isEmpty()) {
+      return new Response<Object>("", ErrorType.INTERNAL_SERVER_ERROR);
+    } else {
+      return new Response<Object>("available", ErrorType.OK);
     }
   }
 
@@ -45,6 +75,20 @@ public class UserController {
     if (res.isEmpty()) {
       return new Response<Object>("", ErrorType.INTERNAL_SERVER_ERROR);
     } else {
+      return new Response<Object>(res.get(), ErrorType.OK);
+    }
+  }
+
+  @PostMapping(path = "/checklogin")
+  public Response<Object> CheckLogin(@RequestBody User user) {
+    Optional<User> res = userService.GetUser(user.getUserName());
+
+    if (res.isEmpty()) {
+      return new Response<Object>("", ErrorType.INTERNAL_SERVER_ERROR);
+    } else {
+      if (!user.getPassWord().equals(res.get().getPassWord())) {
+        return new Response<Object>("login-failed", ErrorType.OK);
+      }
       return new Response<Object>(res.get(), ErrorType.OK);
     }
   }

@@ -1,10 +1,10 @@
-package com.chat.DAO.MongoDB;
+package com.chat.Repository.MongoDB;
 
-import com.chat.DAO.IMessageDAO;
 import com.chat.Models.Conversation;
 import com.chat.Models.Message;
 import com.chat.PropertyManager.DatabaseSupplier;
 import com.chat.PropertyManager.PropUtils;
+import com.chat.Repository.IMessageDAO;
 import com.google.gson.Gson;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoClient;
@@ -35,7 +35,8 @@ public class MessageImpl implements IMessageDAO {
   }
 
   @Override
-  public List<Message> GetMessage(Conversation conversation) throws Exception {
+  public FindIterable<Document> GetMessage(Conversation conversation)
+    throws Exception {
     HashMap<String, String> database = PropUtils.GetMongoDBChat();
 
     MongoClient client = MongoClients.create(database.get("connection"));
@@ -61,16 +62,9 @@ public class MessageImpl implements IMessageDAO {
     Document filter = Document.parse(
       String.format("{$or: [%s, %s]}", condition1.toJson(), condition2.toJson())
     );
-    FindIterable<Document> cursor = dtb
+    return dtb
       .getCollection("conversation")
       .find(filter)
       .sort(new Document("unixTime", "-1"));
-
-    List<Message> res = new ArrayList();
-
-    for (Document doc : cursor) {
-      res.add(new Gson().fromJson(doc.toJson(), Message.class));
-    }
-    return res;
   }
 }
