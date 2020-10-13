@@ -21,7 +21,7 @@ public class Response<T> {
       case NOT_FOUND:
         this.setCustomResponse(
             data,
-            200,
+            400,
             "not found",
             "cannot found data in database"
           );
@@ -29,9 +29,9 @@ public class Response<T> {
       case INTERNAL_SERVER_ERROR:
         this.setCustomResponse(
             data,
-            200,
+            500,
             "internal server error",
-            "there is an error in backend"
+            "there is an error in server"
           );
         break;
     }

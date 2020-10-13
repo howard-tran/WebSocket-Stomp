@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="./resource/message.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="Mesagging app" />
+    <link rel="apple-touch-icon" href="./resource/logo192.png" />
+
+    <link rel="manifest" href="./resource/manifest.json" />
+
+    <link
+      rel="stylesheet"
+      href="./node_modules/bootstrap/dist/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="./CSS/index.css" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+
+    <title>Messenger</title>
+  </head>
+
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root">
+      <!--Signup form-->
+
+      <form class="signup-form">
+        <h1 style="margin-bottom: 50px">Sign Up</h1>
+        <h4>Full Name</h4>
+        <input id="fullname" type="text" required />
+        <h4>Address</h4>
+        <input id="address" type="text" required />
+        <h4>Username</h4>
+        <input id="username" type="text" required />
+        <h4>Password</h4>
+
+        <div
+          style="
+            display: grid;
+            grid-template-columns: repeat(10, 10%);
+            grid-template-rows: auto;
+            width: 85%;
+          "
+        >
+          <div style="grid-column: 1 / span 9; grid-row: 1 / span 1">
+            <input style="width: 100%" id="password" type="password" required />
+          </div>
+          <div
+            style="display: flex; justify-content: center; align-items: center"
+          >
+            <input
+              style="
+                grid-column: 10 / span 1;
+                grid-row: 1 / span 1;
+                width: 15px;
+                height: 15px;
+              "
+              id="showpass"
+              type="checkbox"
+            />
+          </div>
+        </div>
+
+        <button
+          style="margin-top: 50px; font-size: x-large"
+          type="submit"
+          id="submit"
+          class="btn btn-outline-success"
+        >
+          Submit
+        </button>
+
+        <div style="margin-top: 25px">
+          <hr />
+          <a href="./index.html" id="backtologin"> Back to login </a>
+        </div>
+      </form>
+    </div>
+
+    <script> var exports = {}; </script>
+    <script src="./dist/signup.js"></script>
+  </body>
+</html>
