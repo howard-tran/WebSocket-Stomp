@@ -1,0 +1,5 @@
+.settings/
+.vscode/
+target/
+src/main/resources/static/login/node_modules/
+src/main/resources/static/chat/node_modules/
