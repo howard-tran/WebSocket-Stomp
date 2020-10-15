@@ -1,4 +1,4 @@
-import * as foo from "./index"
+import * as foo from "./index";
 
 const showHidePass = () => {
   let passwordbox = $("#password").get(0) as HTMLInputElement;
@@ -11,10 +11,10 @@ const showHidePass = () => {
       passwordbox.type = "password";
     }
   };
-}
+};
 
 const checkData = () => {
-  let listInput = $("input"); 
+  let listInput = $("input");
   for (let i = 0; i < listInput.length; i++) {
     let element = <HTMLInputElement>listInput[i];
 
@@ -23,7 +23,7 @@ const checkData = () => {
     }
   }
   return true;
-}
+};
 
 const sendData = () => {
   let submitBtn = $("#submit").get(0) as HTMLInputElement;
@@ -63,7 +63,7 @@ const sendData = () => {
       backtologin.onclick = undefined;
     },
   });
-}
+};
 
 (function () {
   showHidePass();
@@ -75,11 +75,9 @@ const sendData = () => {
       return false;
     }
     sendData();
-    
+
     return true;
   };
 })();
 
-export {
-  
-};
+export {};

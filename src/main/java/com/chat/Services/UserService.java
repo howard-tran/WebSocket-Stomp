@@ -21,12 +21,18 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService {
   private IUserDAO userDao;
+  private static UserService _instance;
 
   @Autowired
   UserService(
     @Qualifier(DatabaseSupplier.MongoDB.Chat.User) IUserDAO userImpl
   ) {
     this.userDao = userImpl;
+    _instance = this;
+  }
+
+  public static UserService GetInstance() {
+    return _instance;
   }
 
   public Optional<Boolean> AddUser(User user) {

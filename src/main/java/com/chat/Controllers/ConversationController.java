@@ -75,11 +75,11 @@ public class ConversationController {
 
   @GetMapping("/get")
   public Response<Object> GetConversation(
-    @RequestBody User user,
+    @RequestParam(name = "username", required = true) String userName,
     @RequestParam(name = "index", required = true) int index
   ) {
     Optional<List<Conversation>> res = conversationService.GetConversation(
-      user,
+      new User(userName),
       index
     );
 

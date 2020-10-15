@@ -10,9 +10,9 @@ interface APIResponse<T> {
   data: T;
 }
 
-const deployUrlPrefix = "http://larryjason.com:8002"; 
-const localUrlPrefix = "http://localhost:8002"; 
-const mainUrlPrefix = localUrlPrefix; 
+const deployUrlPrefix = "http://larryjason.com:8002";
+const localUrlPrefix = "http://localhost:8002";
+const mainUrlPrefix = localUrlPrefix;
 
 const showHidePass = () => {
   let passwordbox = $("#password").get(0) as HTMLInputElement;
@@ -25,10 +25,10 @@ const showHidePass = () => {
       passwordbox.type = "password";
     }
   };
-}
+};
 
 const checkData = () => {
-  let listInput = $("input"); 
+  let listInput = $("input");
   for (let i = 0; i < listInput.length; i++) {
     let element = <HTMLInputElement>listInput[i];
 
@@ -37,7 +37,7 @@ const checkData = () => {
     }
   }
   return true;
-}
+};
 
 const sendData = () => {
   let submitBtn = $("#submit").get(0) as HTMLInputElement;
@@ -77,7 +77,7 @@ const sendData = () => {
       createAccount.onclick = undefined;
     },
   });
-}
+};
 
 (function () {
   showHidePass();
@@ -89,11 +89,9 @@ const sendData = () => {
       return false;
     }
     sendData();
-    
+
     return true;
   };
 })();
 
-export {
-  User, APIResponse, deployUrlPrefix, localUrlPrefix, mainUrlPrefix
-};
+export { User, APIResponse, deployUrlPrefix, localUrlPrefix, mainUrlPrefix };

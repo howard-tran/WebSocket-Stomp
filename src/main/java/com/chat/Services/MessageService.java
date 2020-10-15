@@ -70,15 +70,16 @@ public class MessageService {
       List<Message> messages = new ArrayList<>();
 
       for (Document doc : cursor) {
+        System.out.println(doc.toJson());
         messages.add(new Gson().fromJson(doc.toJson(), Message.class));
       }
 
-      if (index > messages.size()) {
+      if (index >= messages.size()) {
         return Optional.of(new ArrayList<Message>());
         //
       } else {
         if (index + messageCountEach >= messages.size()) {
-          return Optional.of(messages.subList(index, messages.size() - 1));
+          return Optional.of(messages.subList(index, messages.size()));
           //
         } else {
           return Optional.of(messages.subList(index, index + messageCountEach));

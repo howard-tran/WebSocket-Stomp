@@ -68,6 +68,6 @@ public class ConversationImpl implements IConversationDAO {
     return dtb
       .getCollection("conversation")
       .find(filter)
-      .sort(new Document("unixTime", "-1"));
+      .sort(new Document("unixTime", -1));
   }
 }

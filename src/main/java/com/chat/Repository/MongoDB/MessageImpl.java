@@ -23,8 +23,6 @@ public class MessageImpl implements IMessageDAO {
 
   @Override
   public void InsertMessage(Message message) throws Exception {
-    message.setId(UUID.randomUUID());
-
     HashMap<String, String> database = PropUtils.GetMongoDBChat();
 
     MongoClient client = MongoClients.create(database.get("connection"));
@@ -45,7 +43,7 @@ public class MessageImpl implements IMessageDAO {
     // message from me
     Document condition1 = Document.parse(
       String.format(
-        "{$and: [{sender: %s}, {receiver: %s}]}",
+        "{\"$and\": [{\"sender\": \"%s\"}, {\"receiver\": \"%s\"}]}",
         conversation.getSender(),
         conversation.getReceiver()
       )
@@ -53,18 +51,19 @@ public class MessageImpl implements IMessageDAO {
     // message from other
     Document condition2 = Document.parse(
       String.format(
-        "{$and: [{sender: %s}, {receiver: %s}]}",
+        "{\"$and\": [{\"sender\": \"%s\"}, {\"receiver\": \"%s\"}]}",
         conversation.getReceiver(),
         conversation.getSender()
       )
     );
     // merge 2 condition
     Document filter = Document.parse(
-      String.format("{$or: [%s, %s]}", condition1.toJson(), condition2.toJson())
+      String.format("{\"$or\": [%s, %s]}", condition1.toJson(), condition2.toJson())
     );
+    System.out.println(filter.toJson());
     return dtb
-      .getCollection("conversation")
+      .getCollection("message")
       .find(filter)
-      .sort(new Document("unixTime", "-1"));
+      .sort(new Document("unixTime", -1));
   }
 }

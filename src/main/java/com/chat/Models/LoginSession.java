@@ -1,40 +1,19 @@
 package com.chat.Models;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.UUID;
-
-public class User {
-  // properties
-
-  private UUID id;
+public class LoginSession {
   private String userName;
   private String passWord;
+  private String unixTime;
 
-  // getter, setter
-
-  public User() {}
-
-  public User(String userName) {
-    this.userName = userName;
-  }
-
-  public User(String userName, String passWord) {
+  public LoginSession(String userName, String passWord) {
     this.userName = userName;
     this.passWord = passWord;
   }
 
-  public User(UUID id, String userName, String passWord) {
-    this.id = id;
+  public LoginSession(String userName, String passWord, String unixTime) {
     this.userName = userName;
     this.passWord = passWord;
-  }
-
-  public UUID getId() {
-    return this.id;
-  }
-
-  public void setId(UUID id) {
-    this.id = id;
+    this.unixTime = unixTime;
   }
 
   public String getUserName() {
@@ -51,5 +30,13 @@ public class User {
 
   public void setPassWord(String passWord) {
     this.passWord = passWord;
+  }
+
+  public String getUnixTime() {
+    return this.unixTime;
+  }
+
+  public void setUnixTime(String unixTime) {
+    this.unixTime = unixTime;
   }
 }

@@ -7,6 +7,8 @@ import com.chat.PropertyManager.DatabaseSupplier;
 import com.chat.Repository.IConversationDAO;
 import com.google.gson.Gson;
 import com.mongodb.client.FindIterable;
+
+import java.io.Console;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -57,6 +59,16 @@ public class ConversationService {
     Conversation conversation
   ) {
     try {
+      UserService userServiceIns = UserService.GetInstance();
+
+      if (
+        userServiceIns.CheckAvailableUserName(conversation.getSender()).get() ||
+        userServiceIns.CheckAvailableUserName(conversation.getReceiver()).get() ||
+        conversation.getSender().equals(conversation.getReceiver())
+      ) {
+        return Optional.of(false);
+      }
+
       FindIterable<Document> cursor = conversationDao.GetConversation(
         conversation.getSender(),
         conversation.getReceiver()
@@ -91,13 +103,17 @@ public class ConversationService {
         );
       }
 
-      if (index > conversations.size()) {
+      LogUtils.LogError(String.valueOf(conversations.size()), null);
+      LogUtils.LogError(String.valueOf(index), null);
+
+      if (index >= conversations.size()) {
         return Optional.of(new ArrayList<Conversation>());
         //
       } else {
         if (index + conversationCountEach >= conversations.size()) {
+          
           return Optional.of(
-            conversations.subList(index, conversations.size() - 1)
+            conversations.subList(index, conversations.size())
           );
           //
         } else {
