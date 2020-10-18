@@ -1,0 +1,38 @@
+version: "3.5"
+
+#location on server:  
+# data -> backup database
+#backend -> log file + app jar
+
+services:
+  chat-dtb:
+    image: mongo
+    ports:
+      - 27017
+    volumes:
+      - /app/chat-app/data:/data/db/backup
+    command: bash -c "mongorestore /data/db/backup"
+    networks:
+      chat_net:
+        ipv4_address: 128.0.0.2
+  chat-service:
+    image: mingkhoi/alpine-jre11:latest
+    ports:
+      - 8080
+    volumes:
+      - /app/chat-app/backend:/app
+    command: sh -c "java -jar /app/spring-1.0-SNAPSHOT.jar"
+    networks:
+      chat_net:
+        ipv4_address: 128.0.0.3
+
+volumes:
+  data:
+  backend:
+
+networks:
+  chat_net:
+    ipam:
+      driver: default
+      config: 
+        - subnet: "128.0.0.0/29"

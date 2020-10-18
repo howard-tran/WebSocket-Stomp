@@ -63,6 +63,6 @@ public class MessageImpl implements IMessageDAO {
     return dtb
       .getCollection("message")
       .find(filter)
-      .sort(new Document("orderId", -1));
+      .sort(new Document("_id", -1));
   }
 }
