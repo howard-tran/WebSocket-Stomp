@@ -7,7 +7,6 @@ import com.chat.PropertyManager.DatabaseSupplier;
 import com.chat.Repository.IConversationDAO;
 import com.google.gson.Gson;
 import com.mongodb.client.FindIterable;
-
 import java.io.Console;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -27,9 +26,7 @@ public class ConversationService {
 
   @Autowired
   ConversationService(
-    @Qualifier(
-      DatabaseSupplier.MongoDB.Chat.Conversation
-    ) IConversationDAO conversationDao
+    @Qualifier(DatabaseSupplier.MongoDB.Chat.Conversation) IConversationDAO conversationDao
   ) {
     this.conversationDao = conversationDao;
   }
@@ -39,9 +36,7 @@ public class ConversationService {
       ZoneId zoneId = ZoneId.systemDefault();
 
       conversation.setId(UUID.randomUUID());
-      conversation.setUnixTime(
-        String.valueOf(LocalDateTime.now().atZone(zoneId).toEpochSecond())
-      );
+      conversation.setUnixTime(String.valueOf(LocalDateTime.now().atZone(zoneId).toEpochSecond()));
       conversationDao.InsertConversation(conversation);
 
       return Optional.of(true);
@@ -55,9 +50,7 @@ public class ConversationService {
     }
   }
 
-  public Optional<Boolean> CheckAvailableConversation(
-    Conversation conversation
-  ) {
+  public Optional<Boolean> CheckAvailableConversation(Conversation conversation) {
     try {
       UserService userServiceIns = UserService.GetInstance();
 
@@ -98,28 +91,18 @@ public class ConversationService {
       List<Conversation> conversations = new ArrayList<>();
 
       for (Document doc : cursor) {
-        conversations.add(
-          new Gson().fromJson(doc.toJson(), Conversation.class)
-        );
+        conversations.add(new Gson().fromJson(doc.toJson(), Conversation.class));
       }
-
-      LogUtils.LogError(String.valueOf(conversations.size()), null);
-      LogUtils.LogError(String.valueOf(index), null);
 
       if (index >= conversations.size()) {
         return Optional.of(new ArrayList<Conversation>());
         //
       } else {
         if (index + conversationCountEach >= conversations.size()) {
-          
-          return Optional.of(
-            conversations.subList(index, conversations.size())
-          );
+          return Optional.of(conversations.subList(index, conversations.size()));
           //
         } else {
-          return Optional.of(
-            conversations.subList(index, index + conversationCountEach)
-          );
+          return Optional.of(conversations.subList(index, index + conversationCountEach));
         }
       }
       //

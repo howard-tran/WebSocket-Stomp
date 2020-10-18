@@ -1,11 +1,7 @@
 {
   "indexes": [
-    {
-      "v": { "$numberInt": "2" },
-      "key": { "_id": { "$numberInt": "1" } },
-      "name": "_id_"
-    }
+    { "v": { "$numberInt": "2" }, "key": { "_id": { "$numberInt": "1" } }, "name": "_id_" }
   ],
-  "uuid": "06ae999e767c4ad5bc2d5220c2c293a6",
+  "uuid": "3f0f6373821a4b0299d5b546efb3b16e",
   "collectionName": "conversation"
 }

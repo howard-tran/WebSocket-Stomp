@@ -11,6 +11,5 @@ public interface IConversationDAO {
 
   FindIterable<Document> GetUserConversation(User user) throws Exception;
 
-  FindIterable<Document> GetConversation(String sender, String receiver)
-    throws Exception;
+  FindIterable<Document> GetConversation(String sender, String receiver) throws Exception;
 }

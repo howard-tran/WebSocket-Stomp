@@ -13,8 +13,7 @@ public class PropUtils {
   public static Optional<String> GetProperty(String property) throws Exception {
     Properties propGet = new Properties();
 
-    InputStream inputStream =
-      PropUtils.class.getResourceAsStream("project.properties");
+    InputStream inputStream = PropUtils.class.getResourceAsStream("project.properties");
 
     propGet.load(inputStream);
 

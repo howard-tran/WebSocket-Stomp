@@ -28,7 +28,7 @@ public class ConversationImpl implements IConversationDAO {
 
     HashMap<String, String> database = PropUtils.GetMongoDBChat();
 
-    MongoClient client = MongoClients.create(database.get("connection"));
+    MongoClient client = MongoClientIns.GetMongoClient();
     MongoDatabase dtb = client.getDatabase(database.get("database"));
 
     String objJson = new Gson().toJson(conversation);
@@ -36,35 +36,30 @@ public class ConversationImpl implements IConversationDAO {
   }
 
   @Override
-  public FindIterable<Document> GetConversation(String sender, String receiver)
-    throws Exception {
+  public FindIterable<Document> GetConversation(String sender, String receiver) throws Exception {
     HashMap<String, String> database = PropUtils.GetMongoDBChat();
 
-    MongoClient client = MongoClients.create(database.get("connection"));
+    MongoClient client = MongoClientIns.GetMongoClient();
     MongoDatabase dtb = client.getDatabase(database.get("database"));
 
     Document condition1 = new Document("sender", sender);
     Document condition2 = new Document("receiver", receiver);
     Document filter = Document.parse(
-      String.format(
-        "{$and: [%s, %s]}",
-        condition1.toJson(),
-        condition2.toJson()
-      )
+      String.format("{$and: [%s, %s]}", condition1.toJson(), condition2.toJson())
     );
 
     return dtb.getCollection("conversation").find(filter);
   }
 
   @Override
-  public FindIterable<Document> GetUserConversation(User user)
-    throws Exception {
+  public FindIterable<Document> GetUserConversation(User user) throws Exception {
     HashMap<String, String> database = PropUtils.GetMongoDBChat();
 
-    MongoClient client = MongoClients.create(database.get("connection"));
+    MongoClient client = MongoClientIns.GetMongoClient();
     MongoDatabase dtb = client.getDatabase(database.get("database"));
 
     Document filter = new Document("sender", user.getUserName());
+
     return dtb
       .getCollection("conversation")
       .find(filter)

@@ -37,9 +37,7 @@ public class UserController {
 
   @PostMapping(path = "/add")
   public Response<Object> SignUpUser(@RequestBody User user) {
-    Optional<Boolean> isUserNameAvailable = userService.CheckAvailableUserName(
-      user.getUserName()
-    );
+    Optional<Boolean> isUserNameAvailable = userService.CheckAvailableUserName(user.getUserName());
 
     if (isUserNameAvailable.isEmpty()) {
       return new Response<Object>("", ErrorType.INTERNAL_SERVER_ERROR);

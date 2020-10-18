@@ -12,6 +12,7 @@ public class DatabaseSupplier {
       public static final String User = prefix + "User";
       public static final String Message = prefix + "Message";
       public static final String Conversation = prefix + "Conversation";
+      public static final String MessageCounter = prefix + "MessageCounter";
     }
   }
 
@@ -23,6 +24,7 @@ public class DatabaseSupplier {
       public static final String User = prefix + "User";
       public static final String Message = prefix + "Message";
       public static final String Conversation = prefix + "Conversation";
+      public static final String MessageCounter = prefix + "MessageCounter";
     }
   }
 }

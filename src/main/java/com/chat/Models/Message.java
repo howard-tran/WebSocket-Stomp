@@ -10,6 +10,7 @@ public class Message {
   private String sender;
   private String receiver;
   private String content;
+  private String orderId;
   private String unixTime;
 
   // getter, setter
@@ -17,6 +18,14 @@ public class Message {
   public Message() {}
 
   public Message(String sender, String receiver, String content) {
+    this.sender = sender;
+    this.receiver = receiver;
+    this.content = content;
+  }
+
+  public Message(UUID id, String orderId, String sender, String receiver, String content) {
+    this.id = id;
+    this.orderId = orderId;
     this.sender = sender;
     this.receiver = receiver;
     this.content = content;
@@ -35,6 +44,14 @@ public class Message {
 
   public void setId(UUID id) {
     this.id = id;
+  }
+
+  public String getOrderId() {
+    return this.orderId;
+  }
+
+  public void setOrderId(String orderId) {
+    this.orderId = orderId;
   }
 
   public String getSender() {

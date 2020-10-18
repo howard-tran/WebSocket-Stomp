@@ -102,7 +102,7 @@
       <resource>
         <filtering>false</filtering>
         <directory>${basedir}/src/main</directory>
-        <excludes>
+        <excludes> 
           <exclude>**/java/</exclude>
           <exclude>**/*.java</exclude>
           <exclude>**/*.js</exclude>
@@ -211,7 +211,7 @@
           <executions>
             <execution>
               <id>assemble-all</id>
-              <phase>assemble</phase>
+              <phase>install</phase>
               <goals>
                 <goal>single</goal>
               </goals>

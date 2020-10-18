@@ -26,33 +26,7 @@ public class App {
   public static final String MESSAGE_SERVICE_SOCKET = "/socket-service";
 
   public static void main(String[] args) {
-    PropertyConfigurator.configure(
-      LogUtils.class.getResource("Log4J.properties").getFile()
-    );
-
-    TimerTask task = new TimerTask() {
-
-      public String GetCurrentUnix() {
-        ZoneId zoneId = ZoneId.systemDefault();
-
-        return String.valueOf(
-          LocalDateTime.now().atZone(zoneId).toEpochSecond()
-        );
-      }
-
-      @Override
-      public void run() {
-        LoginSessionDAO loginSessions = new LoginSessionDAO();
-        List<LoginSession> sessions = loginSessions.GetSessions();
-
-        for (int i = 0; i < sessions.size(); i++) {
-          long currentUnix = Long.parseLong(GetCurrentUnix());
-          long sessionUnix = Long.parseLong(sessions.get(i).getUnixTime());
-
-          if (currentUnix >= sessionUnix) {}
-        }
-      }
-    };
+    PropertyConfigurator.configure(LogUtils.class.getResource("Log4J.properties").getFile());
 
     SpringApplication.run(App.class, args);
   }

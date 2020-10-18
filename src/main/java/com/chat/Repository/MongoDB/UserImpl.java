@@ -27,7 +27,7 @@ public class UserImpl implements IUserDAO {
 
     LogUtils.LogInfo(database.get("connection"), null);
 
-    MongoClient client = MongoClients.create(database.get("connection"));
+    MongoClient client = MongoClientIns.GetMongoClient();
     MongoDatabase dtb = client.getDatabase(database.get("database"));
 
     String objJson = new Gson().toJson(user);
@@ -45,7 +45,7 @@ public class UserImpl implements IUserDAO {
 
     HashMap<String, String> database = PropUtils.GetMongoDBChat();
 
-    MongoClient client = MongoClients.create(database.get("connection"));
+    MongoClient client = MongoClientIns.GetMongoClient();
     MongoDatabase dtb = client.getDatabase(database.get("database"));
 
     List<Document> listObjJson = new ArrayList<>();
@@ -61,24 +61,24 @@ public class UserImpl implements IUserDAO {
   public void DeleteUser(UUID id) throws Exception {
     HashMap<String, String> database = PropUtils.GetMongoDBChat();
 
-    MongoClient client = MongoClients.create(database.get("connection"));
+    MongoClient client = MongoClientIns.GetMongoClient();
     MongoDatabase dtb = client.getDatabase(database.get("database"));
 
     dtb.getCollection("user").deleteOne(new Document("id", id.toString()));
   }
 
   @Override
-  public FindIterable<Document> GetUserMatch(String searchKey)
-    throws Exception {
+  public FindIterable<Document> GetUserMatch(String searchKey) throws Exception {
     HashMap<String, String> database = PropUtils.GetMongoDBChat();
 
-    MongoClient client = MongoClients.create(database.get("connection"));
+    MongoClient client = MongoClientIns.GetMongoClient();
     MongoDatabase dtb = client.getDatabase(database.get("database"));
 
     List<User> result = new ArrayList<>();
     Document filter = Document.parse(
       String.format("{userName: {$regex: /^%s/, $options: 'i'}}", searchKey)
     );
+
     return dtb.getCollection("user").find(filter).limit(15);
   }
 
@@ -86,10 +86,11 @@ public class UserImpl implements IUserDAO {
   public FindIterable<Document> GetUser(String userName) throws Exception {
     HashMap<String, String> database = PropUtils.GetMongoDBChat();
 
-    MongoClient client = MongoClients.create(database.get("connection"));
+    MongoClient client = MongoClientIns.GetMongoClient();
     MongoDatabase dtb = client.getDatabase(database.get("database"));
 
     Document filter = new Document("userName", userName);
+
     return dtb.getCollection("user").find(filter);
   }
 }

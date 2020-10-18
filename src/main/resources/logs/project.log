@@ -2162,3 +2162,313 @@ Caused by: org.bson.json.JsonParseException: JSON reader was expecting a value b
 [2020-10-16 03:35:57] [http-nio-8002-exec-8] ERROR com.chat.LogManager.LogUtils  - 0
 [2020-10-16 03:35:57] [http-nio-8002-exec-6] ERROR com.chat.LogManager.LogUtils  - 2
 [2020-10-16 03:35:57] [http-nio-8002-exec-6] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 03:54:16] [http-nio-8002-exec-2] ERROR com.chat.LogManager.LogUtils  - 2
+[2020-10-16 03:54:16] [http-nio-8002-exec-2] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 03:54:20] [http-nio-8002-exec-1] ERROR com.chat.LogManager.LogUtils  - 2
+[2020-10-16 03:54:20] [http-nio-8002-exec-1] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 03:58:50] [http-nio-8002-exec-6] ERROR com.chat.LogManager.LogUtils  - 5
+[2020-10-16 03:58:50] [http-nio-8002-exec-6] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 03:59:25] [http-nio-8002-exec-2] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 03:59:25] [http-nio-8002-exec-2] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 04:02:00] [http-nio-8002-exec-5] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 04:02:00] [http-nio-8002-exec-5] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 04:02:05] [http-nio-8002-exec-3] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 04:02:05] [http-nio-8002-exec-3] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 04:02:40] [http-nio-8002-exec-3] ERROR com.chat.LogManager.LogUtils  - 5
+[2020-10-16 04:02:40] [http-nio-8002-exec-3] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 04:02:45] [http-nio-8002-exec-6] ERROR com.chat.LogManager.LogUtils  - 5
+[2020-10-16 04:02:45] [http-nio-8002-exec-6] ERROR com.chat.LogManager.LogUtils  - 5
+[2020-10-16 04:02:46] [http-nio-8002-exec-8] ERROR com.chat.LogManager.LogUtils  - 5
+[2020-10-16 04:02:46] [http-nio-8002-exec-8] ERROR com.chat.LogManager.LogUtils  - 5
+[2020-10-16 04:02:47] [http-nio-8002-exec-9] ERROR com.chat.LogManager.LogUtils  - 5
+[2020-10-16 04:02:47] [http-nio-8002-exec-9] ERROR com.chat.LogManager.LogUtils  - 5
+[2020-10-16 04:02:47] [http-nio-8002-exec-10] ERROR com.chat.LogManager.LogUtils  - 5
+[2020-10-16 04:02:47] [http-nio-8002-exec-10] ERROR com.chat.LogManager.LogUtils  - 5
+[2020-10-16 04:27:28] [http-nio-8002-exec-2] ERROR com.chat.LogManager.LogUtils  - 2
+[2020-10-16 04:27:28] [http-nio-8002-exec-2] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 04:28:27] [http-nio-8002-exec-4] ERROR com.chat.LogManager.LogUtils  - 5
+[2020-10-16 04:28:27] [http-nio-8002-exec-4] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 04:28:34] [http-nio-8002-exec-9] ERROR com.chat.LogManager.LogUtils  - 5
+[2020-10-16 04:28:34] [http-nio-8002-exec-9] ERROR com.chat.LogManager.LogUtils  - 5
+[2020-10-16 04:30:34] [http-nio-8002-exec-10] ERROR com.chat.LogManager.LogUtils  - 5
+[2020-10-16 04:30:34] [http-nio-8002-exec-10] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 04:30:55] [http-nio-8002-exec-7] ERROR com.chat.LogManager.LogUtils  - 5
+[2020-10-16 04:30:55] [http-nio-8002-exec-7] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 04:31:02] [http-nio-8002-exec-4] ERROR com.chat.LogManager.LogUtils  - 5
+[2020-10-16 04:31:02] [http-nio-8002-exec-4] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 04:31:06] [http-nio-8002-exec-1] ERROR com.chat.LogManager.LogUtils  - 5
+[2020-10-16 04:31:06] [http-nio-8002-exec-1] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 04:31:51] [http-nio-8002-exec-7] ERROR com.chat.LogManager.LogUtils  - [ERROR]
+java.lang.RuntimeException: java.lang.NullPointerException
+	at com.chat.Services.UserService.GetUser(UserService.java:76)
+	at com.chat.Controllers.UserController.CheckLogin(UserController.java:84)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:105)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:878)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:792)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:652)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:733)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:143)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:374)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1590)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: java.lang.NullPointerException
+	at com.chat.Services.UserService.GetUser(UserService.java:71)
+	... 43 more
+[2020-10-16 04:38:07] [http-nio-8002-exec-2] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 04:38:07] [http-nio-8002-exec-2] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 04:40:50] [http-nio-8002-exec-7] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 04:40:50] [http-nio-8002-exec-7] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 04:40:50] [http-nio-8002-exec-9] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 04:40:50] [http-nio-8002-exec-9] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 04:40:52] [http-nio-8002-exec-3] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 04:40:52] [http-nio-8002-exec-3] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 04:40:52] [http-nio-8002-exec-6] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 04:40:52] [http-nio-8002-exec-6] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 04:41:08] [http-nio-8002-exec-5] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 04:41:08] [http-nio-8002-exec-5] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 04:41:10] [http-nio-8002-exec-9] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 04:41:10] [http-nio-8002-exec-9] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 04:41:10] [http-nio-8002-exec-5] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 04:41:10] [http-nio-8002-exec-5] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 04:41:10] [http-nio-8002-exec-8] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 04:41:10] [http-nio-8002-exec-8] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 04:41:11] [http-nio-8002-exec-7] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 04:41:11] [http-nio-8002-exec-7] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 04:41:11] [http-nio-8002-exec-10] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 04:41:11] [http-nio-8002-exec-10] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 04:41:13] [http-nio-8002-exec-8] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 04:41:13] [http-nio-8002-exec-8] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 04:41:15] [http-nio-8002-exec-3] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 04:41:15] [http-nio-8002-exec-3] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 04:41:21] [http-nio-8002-exec-4] ERROR com.chat.LogManager.LogUtils  - 5
+[2020-10-16 04:41:21] [http-nio-8002-exec-4] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 04:41:39] [http-nio-8002-exec-6] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 04:41:39] [http-nio-8002-exec-6] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 04:42:13] [http-nio-8002-exec-7] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 04:42:13] [http-nio-8002-exec-7] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 04:42:14] [http-nio-8002-exec-10] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 04:42:14] [http-nio-8002-exec-10] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 04:42:15] [http-nio-8002-exec-1] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 04:42:15] [http-nio-8002-exec-1] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 04:42:15] [http-nio-8002-exec-6] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 04:42:15] [http-nio-8002-exec-6] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 04:43:23] [http-nio-8002-exec-8] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 04:43:23] [http-nio-8002-exec-8] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 04:44:01] [http-nio-8002-exec-7] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 04:44:01] [http-nio-8002-exec-7] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 04:44:19] [http-nio-8002-exec-2] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 04:44:19] [http-nio-8002-exec-2] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 04:49:13] [http-nio-8002-exec-9] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 04:49:13] [http-nio-8002-exec-9] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 04:49:13] [http-nio-8002-exec-7] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 04:49:13] [http-nio-8002-exec-7] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 04:49:14] [http-nio-8002-exec-9] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 04:49:14] [http-nio-8002-exec-9] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 04:50:11] [http-nio-8002-exec-2] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 04:50:11] [http-nio-8002-exec-2] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 04:50:11] [http-nio-8002-exec-5] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 04:50:11] [http-nio-8002-exec-5] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 04:50:11] [http-nio-8002-exec-2] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 04:50:11] [http-nio-8002-exec-2] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 04:50:22] [http-nio-8002-exec-3] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 04:50:22] [http-nio-8002-exec-3] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 04:50:22] [http-nio-8002-exec-5] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 04:50:22] [http-nio-8002-exec-5] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 04:50:22] [http-nio-8002-exec-3] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 04:50:22] [http-nio-8002-exec-3] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 04:50:40] [http-nio-8002-exec-2] ERROR com.chat.LogManager.LogUtils  - 5
+[2020-10-16 04:50:40] [http-nio-8002-exec-2] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 06:05:07] [http-nio-8002-exec-2] ERROR com.chat.LogManager.LogUtils  - 5
+[2020-10-16 06:05:07] [http-nio-8002-exec-2] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 06:10:03] [http-nio-8002-exec-10] INFO  com.chat.LogManager.LogUtils  - mongodb://127.0.0.1:27017
+[2020-10-16 06:10:10] [http-nio-8002-exec-4] ERROR com.chat.LogManager.LogUtils  - 5
+[2020-10-16 06:10:10] [http-nio-8002-exec-4] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 06:10:30] [http-nio-8002-exec-1] ERROR com.chat.LogManager.LogUtils  - 5
+[2020-10-16 06:10:30] [http-nio-8002-exec-1] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 06:11:26] [http-nio-8002-exec-8] ERROR com.chat.LogManager.LogUtils  - 5
+[2020-10-16 06:11:26] [http-nio-8002-exec-8] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 06:12:28] [http-nio-8002-exec-7] ERROR com.chat.LogManager.LogUtils  - 5
+[2020-10-16 06:12:28] [http-nio-8002-exec-7] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 06:13:08] [http-nio-8002-exec-5] ERROR com.chat.LogManager.LogUtils  - 5
+[2020-10-16 06:13:08] [http-nio-8002-exec-5] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 06:13:22] [http-nio-8002-exec-1] ERROR com.chat.LogManager.LogUtils  - 5
+[2020-10-16 06:13:22] [http-nio-8002-exec-1] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 06:14:18] [http-nio-8002-exec-8] ERROR com.chat.LogManager.LogUtils  - 5
+[2020-10-16 06:14:18] [http-nio-8002-exec-8] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 06:16:25] [http-nio-8002-exec-9] ERROR com.chat.LogManager.LogUtils  - 5
+[2020-10-16 06:16:25] [http-nio-8002-exec-9] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 06:18:11] [http-nio-8002-exec-7] ERROR com.chat.LogManager.LogUtils  - 2
+[2020-10-16 06:18:11] [http-nio-8002-exec-7] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 06:20:52] [http-nio-8002-exec-10] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 06:20:52] [http-nio-8002-exec-10] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 06:21:04] [http-nio-8002-exec-9] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 06:21:04] [http-nio-8002-exec-9] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 06:21:24] [http-nio-8002-exec-1] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 06:21:24] [http-nio-8002-exec-1] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 06:28:37] [http-nio-8002-exec-9] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 06:28:37] [http-nio-8002-exec-9] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 06:28:37] [http-nio-8002-exec-2] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 06:28:37] [http-nio-8002-exec-2] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 06:29:21] [http-nio-8002-exec-2] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 06:29:21] [http-nio-8002-exec-2] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 06:29:23] [http-nio-8002-exec-10] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 06:29:23] [http-nio-8002-exec-10] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 06:29:29] [http-nio-8002-exec-9] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 06:29:29] [http-nio-8002-exec-9] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 06:43:15] [http-nio-8002-exec-7] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 06:43:15] [http-nio-8002-exec-7] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 06:43:15] [http-nio-8002-exec-8] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 06:43:15] [http-nio-8002-exec-8] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 06:43:15] [http-nio-8002-exec-9] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 06:43:15] [http-nio-8002-exec-9] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 06:47:45] [http-nio-8002-exec-6] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 06:47:45] [http-nio-8002-exec-6] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 06:47:45] [http-nio-8002-exec-10] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 06:47:45] [http-nio-8002-exec-10] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 06:50:17] [http-nio-8002-exec-2] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 06:50:17] [http-nio-8002-exec-2] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 06:50:18] [http-nio-8002-exec-7] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 06:50:18] [http-nio-8002-exec-7] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 06:50:29] [http-nio-8002-exec-5] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 06:50:29] [http-nio-8002-exec-5] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 06:50:30] [http-nio-8002-exec-3] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 06:50:30] [http-nio-8002-exec-3] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 06:51:42] [http-nio-8002-exec-2] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 06:51:42] [http-nio-8002-exec-2] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 06:51:43] [http-nio-8002-exec-7] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 06:51:43] [http-nio-8002-exec-7] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 06:52:48] [http-nio-8002-exec-8] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 06:52:48] [http-nio-8002-exec-8] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 06:52:49] [http-nio-8002-exec-4] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 06:52:49] [http-nio-8002-exec-4] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 06:53:08] [http-nio-8002-exec-2] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 06:53:08] [http-nio-8002-exec-2] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 06:53:08] [http-nio-8002-exec-7] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 06:53:08] [http-nio-8002-exec-7] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 06:54:06] [http-nio-8002-exec-5] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 06:54:06] [http-nio-8002-exec-5] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 06:54:07] [http-nio-8002-exec-1] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 06:54:07] [http-nio-8002-exec-1] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 06:54:07] [http-nio-8002-exec-9] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 06:54:07] [http-nio-8002-exec-9] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 06:54:53] [http-nio-8002-exec-8] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 06:54:53] [http-nio-8002-exec-8] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 06:54:54] [http-nio-8002-exec-4] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 06:54:54] [http-nio-8002-exec-4] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 06:54:56] [http-nio-8002-exec-2] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 06:54:56] [http-nio-8002-exec-2] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 06:54:57] [http-nio-8002-exec-7] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 06:54:57] [http-nio-8002-exec-7] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 06:55:07] [http-nio-8002-exec-5] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 06:55:07] [http-nio-8002-exec-5] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 06:55:08] [http-nio-8002-exec-3] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 06:55:08] [http-nio-8002-exec-3] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 06:55:10] [http-nio-8002-exec-10] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 06:55:10] [http-nio-8002-exec-10] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 06:55:10] [http-nio-8002-exec-6] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 06:55:10] [http-nio-8002-exec-6] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 06:55:15] [http-nio-8002-exec-1] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 06:55:15] [http-nio-8002-exec-1] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 06:55:15] [http-nio-8002-exec-9] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 06:55:15] [http-nio-8002-exec-9] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 06:55:34] [http-nio-8002-exec-4] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 06:55:34] [http-nio-8002-exec-4] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 06:56:17] [http-nio-8002-exec-2] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 06:56:17] [http-nio-8002-exec-2] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 06:56:17] [http-nio-8002-exec-1] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 06:56:17] [http-nio-8002-exec-1] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 06:57:11] [http-nio-8002-exec-6] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 06:57:11] [http-nio-8002-exec-6] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 06:57:28] [http-nio-8002-exec-7] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 06:57:28] [http-nio-8002-exec-7] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 06:58:04] [http-nio-8002-exec-3] ERROR com.chat.LogManager.LogUtils  - 2
+[2020-10-16 06:58:04] [http-nio-8002-exec-3] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 06:59:05] [http-nio-8002-exec-9] ERROR com.chat.LogManager.LogUtils  - 2
+[2020-10-16 06:59:05] [http-nio-8002-exec-9] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 07:00:00] [http-nio-8002-exec-4] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 07:00:00] [http-nio-8002-exec-4] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 07:40:18] [http-nio-8002-exec-2] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 07:40:18] [http-nio-8002-exec-2] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 07:40:33] [http-nio-8002-exec-4] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 07:40:33] [http-nio-8002-exec-4] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 07:41:06] [http-nio-8002-exec-1] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 07:41:06] [http-nio-8002-exec-1] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 07:41:41] [http-nio-8002-exec-10] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 07:41:41] [http-nio-8002-exec-10] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 07:47:50] [http-nio-8002-exec-1] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 07:47:50] [http-nio-8002-exec-1] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 07:47:55] [http-nio-8002-exec-6] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 07:47:55] [http-nio-8002-exec-6] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 07:49:36] [http-nio-8002-exec-2] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 07:49:36] [http-nio-8002-exec-2] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 07:49:36] [http-nio-8002-exec-7] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 07:49:36] [http-nio-8002-exec-7] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 07:49:42] [http-nio-8002-exec-3] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 07:49:42] [http-nio-8002-exec-3] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 07:50:01] [http-nio-8002-exec-7] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 07:50:01] [http-nio-8002-exec-7] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 07:50:01] [http-nio-8002-exec-10] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 07:50:01] [http-nio-8002-exec-10] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 07:50:03] [http-nio-8002-exec-10] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 07:50:03] [http-nio-8002-exec-10] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 07:50:11] [http-nio-8002-exec-10] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 07:50:11] [http-nio-8002-exec-10] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 07:50:13] [http-nio-8002-exec-8] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 07:50:13] [http-nio-8002-exec-8] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 07:50:42] [http-nio-8002-exec-7] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 07:50:42] [http-nio-8002-exec-7] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 07:50:45] [http-nio-8002-exec-3] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 07:50:45] [http-nio-8002-exec-3] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 07:50:49] [http-nio-8002-exec-5] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 07:50:49] [http-nio-8002-exec-5] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 07:51:50] [http-nio-8002-exec-2] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 07:51:50] [http-nio-8002-exec-2] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 08:15:04] [http-nio-8002-exec-3] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 08:15:04] [http-nio-8002-exec-3] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 08:20:33] [http-nio-8002-exec-8] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 08:20:33] [http-nio-8002-exec-8] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-16 08:20:51] [http-nio-8002-exec-9] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-16 08:20:51] [http-nio-8002-exec-9] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-17 05:54:33] [http-nio-8002-exec-2] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-17 05:54:33] [http-nio-8002-exec-2] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-17 05:54:42] [http-nio-8002-exec-10] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-17 05:54:42] [http-nio-8002-exec-10] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-17 05:54:54] [http-nio-8002-exec-8] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-17 05:54:54] [http-nio-8002-exec-8] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-17 06:02:10] [http-nio-8002-exec-9] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-17 06:02:10] [http-nio-8002-exec-9] ERROR com.chat.LogManager.LogUtils  - 0
+[2020-10-17 06:02:19] [http-nio-8002-exec-6] ERROR com.chat.LogManager.LogUtils  - 1
+[2020-10-17 06:02:19] [http-nio-8002-exec-6] ERROR com.chat.LogManager.LogUtils  - 0
