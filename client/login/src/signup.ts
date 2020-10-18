@@ -1,4 +1,22 @@
-import * as foo from "./index";
+interface User {
+  userName: String;
+  passWord: String;
+}
+
+interface APIResponse<T> {
+  status: number;
+  error: string;
+  message: string;
+  data: T;
+}
+
+const deployUrlPrefix = "http://larryjason.com:8002/api/"; 
+const localUrlPrefix = "http://localhost:8002/api/"; 
+const mainUrlPrefix = localUrlPrefix; 
+
+const chatUrlLocal = "http://localhost:3000"; 
+const chatUrlDeploy = "http://larryjason:3000"; 
+const mainChatUrl = chatUrlLocal; 
 
 const showHidePass = () => {
   let passwordbox = $("#password").get(0) as HTMLInputElement;
@@ -11,10 +29,10 @@ const showHidePass = () => {
       passwordbox.type = "password";
     }
   };
-};
+}
 
 const checkData = () => {
-  let listInput = $("input");
+  let listInput = $("input"); 
   for (let i = 0; i < listInput.length; i++) {
     let element = <HTMLInputElement>listInput[i];
 
@@ -23,13 +41,13 @@ const checkData = () => {
     }
   }
   return true;
-};
+}
 
 const sendData = () => {
   let submitBtn = $("#submit").get(0) as HTMLInputElement;
   let backtologin = $("#backtologin").get(0) as HTMLElement;
 
-  const dataSubmit: foo.User = {
+  const dataSubmit: User = {
     userName: ($("#username").get(0) as HTMLInputElement).value,
     passWord: ($("#password").get(0) as HTMLInputElement).value,
   };
@@ -40,30 +58,27 @@ const sendData = () => {
   };
 
   $.ajax({
-    url: `${foo.mainUrlPrefix}/api/user/checklogin`,
+    url: `${mainUrlPrefix}/user/add`,
     method: "POST",
     timeout: 0,
     headers: {
       "Content-Type": "application/json",
     },
     data: JSON.stringify(dataSubmit),
-    success: (data: foo.APIResponse<String>) => {
+    success: (data: APIResponse<String>) => {
       //
-      if (data.data == "login-failed") {
-        alert("invalid username/password");
-        //
-      } else if (data.status != 200) {
+      if (data.status != 200) {
         alert(`${data.status}: ${data.error}`);
         //
       } else {
         alert("ok");
-        window.location.replace("./index.html");
+        window.location.replace("../index.html");
       }
       submitBtn.disabled = false;
       backtologin.onclick = undefined;
     },
   });
-};
+}
 
 (function () {
   showHidePass();
@@ -75,9 +90,11 @@ const sendData = () => {
       return false;
     }
     sendData();
-
+    
     return true;
   };
 })();
 
-export {};
+export {
+  
+};

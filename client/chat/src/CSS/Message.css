@@ -1,0 +1,74 @@
+.message-main {
+  margin: 15px;
+  max-height: 95%;
+  height: 95%;
+  border: 1px solid black;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: repeat(10, 10%);
+}
+
+.message-receiver-area {
+  padding: 0px 10px 0px 10px;
+  grid-row: 1 / span 1;
+  grid-column: auto;
+}
+
+.message-mess-area {
+  padding: 0px 10px 0px 10px;
+  grid-row: 2 / span 8;
+  grid-column: auto;
+
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+  max-height: 60vh;
+}
+
+.message-chat-area {
+  grid-row: 10 / span 1;
+  grid-column: auto;
+
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.message-chat-area textarea {
+  font-size: medium;
+  resize: none;
+  width: 80%;
+}
+
+.message-chat-area button {
+  margin-left: 10px;
+}
+
+.message-mess-MyMessage {
+  display: flex;
+  flex-flow: row-reverse;
+}
+
+.message-mess-MyMessage div {
+  background-color: #AED6F1;
+  padding: 15px;
+  border-radius: 15px;
+  word-wrap: break-word;
+  margin-bottom: 10px;
+  max-width: 70%; 
+}
+
+.message-mess-OtherMessage {
+  display: flex;
+  flex-flow: row;
+}
+
+.message-mess-OtherMessage div {
+  background-color: #E5E7E9;
+  padding: 15px;
+  border-radius: 15px;
+  word-wrap: break-word;
+  margin-bottom: 10px;
+  max-width: 70%; 
+}

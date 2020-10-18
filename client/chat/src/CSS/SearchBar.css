@@ -1,0 +1,52 @@
+.search-bar-main {
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+}
+
+.search-bar-container {
+  width: 100%;
+
+  display: -webkit-flex;
+  flex-flow: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-bar-text-container {
+  margin-left: 10px;
+  width: 60%;
+}
+
+.search-bar-container input {
+  font-size: x-large;
+  width: 100%;
+}
+
+.search-bar-container i {
+  margin-left: 10px;
+}
+
+.fa-check-circle {
+  color: darkgreen;
+}
+
+.fa-spinner {
+  color: blue;
+}
+
+.search-bar-loading {
+  animation: cog-logo-spin infinite 2s linear;
+}
+
+@keyframes cog-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

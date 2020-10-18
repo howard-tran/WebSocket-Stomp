@@ -1,0 +1,23 @@
+.conversation-main {
+  margin: 15px;
+  max-height: 70vh;
+  height: 95%;
+  border: 1px solid black;
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.conversation-main button {
+  margin: 5px 5px 0px 5px;
+}
+
+.conversation-main a {
+  text-decoration: underline;
+  padding-top: '10px';
+  width: fit-content;
+
+  margin: 0 auto;
+}

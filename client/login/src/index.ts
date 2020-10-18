@@ -10,9 +10,14 @@ interface APIResponse<T> {
   data: T;
 }
 
-const deployUrlPrefix = "http://larryjason.com:8002";
-const localUrlPrefix = "http://localhost:8002";
-const mainUrlPrefix = localUrlPrefix;
+const deployUrlPrefix = "http://larryjason.com:8002/api/"; 
+const localUrlPrefix = "http://localhost:8002/api/"; 
+const mainUrlPrefix = localUrlPrefix; 
+
+const chatUrlLocal = "http://localhost:3000"; 
+const chatUrlDeploy = "http://larryjason:3000"; 
+const mainChatUrl = chatUrlLocal; 
+
 
 const showHidePass = () => {
   let passwordbox = $("#password").get(0) as HTMLInputElement;
@@ -25,10 +30,10 @@ const showHidePass = () => {
       passwordbox.type = "password";
     }
   };
-};
+}
 
 const checkData = () => {
-  let listInput = $("input");
+  let listInput = $("input"); 
   for (let i = 0; i < listInput.length; i++) {
     let element = <HTMLInputElement>listInput[i];
 
@@ -37,6 +42,32 @@ const checkData = () => {
     }
   }
   return true;
+}
+
+const setCookie = (name,value) => {
+  let expires = "";
+
+  var date = new Date();
+
+  date.setTime(date.getTime() + (5*60*1000));
+  expires = "; expires=" + date.toUTCString();
+
+  document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+}
+
+const getCookie = (name: String) => {
+  var nameEQ = name + "=";
+  var ca = document.cookie.split(";");
+
+  for (var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == " ") c = c.substring(1, c.length);
+
+    if (c.indexOf(nameEQ) == 0) {
+      return c.substring(nameEQ.length, c.length);
+    }
+  }
+  return null;
 };
 
 const sendData = () => {
@@ -54,7 +85,7 @@ const sendData = () => {
   };
 
   $.ajax({
-    url: "http://localhost:8002/api/user/checklogin",
+    url: `${mainUrlPrefix}user/checklogin`,
     method: "POST",
     timeout: 0,
     headers: {
@@ -70,14 +101,18 @@ const sendData = () => {
         alert(`${data.status}: ${data.error}`);
         //
       } else {
+        setCookie("userName", dataSubmit.userName); 
+        
+        console.log(getCookie("userName"))
+
         alert("ok");
-        window.location.replace("../chat/build/index.html");
+        window.location.href = mainChatUrl;
       }
       submitBtn.disabled = false;
       createAccount.onclick = undefined;
     },
   });
-};
+}
 
 (function () {
   showHidePass();
@@ -89,9 +124,10 @@ const sendData = () => {
       return false;
     }
     sendData();
-
+    
     return true;
   };
 })();
 
-export { User, APIResponse, deployUrlPrefix, localUrlPrefix, mainUrlPrefix };
+export {
+}
