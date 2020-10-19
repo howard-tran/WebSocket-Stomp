@@ -10,14 +10,8 @@ interface APIResponse<T> {
   data: T;
 }
 
-const deployUrlPrefix = "http://larryjason.com:8002/api/"; 
-const localUrlPrefix = "http://localhost:8002/api/"; 
-const mainUrlPrefix = localUrlPrefix; 
-
-const chatUrlLocal = "http://localhost:3000"; 
-const chatUrlDeploy = "http://larryjason:3000"; 
-const mainChatUrl = chatUrlLocal; 
-
+const mainUrlPrefix = "http://larryjason.com:8081/api/"; 
+const mainChatUrl = "http://larryjason.com/chat-app/chat"; 
 
 const showHidePass = () => {
   let passwordbox = $("#password").get(0) as HTMLInputElement;

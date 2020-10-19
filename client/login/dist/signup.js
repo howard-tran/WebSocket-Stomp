@@ -1,11 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var deployUrlPrefix = "http://larryjason.com:8002/api/";
-var localUrlPrefix = "http://localhost:8002/api/";
-var mainUrlPrefix = localUrlPrefix;
-var chatUrlLocal = "http://localhost:3000";
-var chatUrlDeploy = "http://larryjason:3000";
-var mainChatUrl = chatUrlLocal;
+var mainUrlPrefix = "http://larryjason.com:8081/api/";
 var showHidePass = function () {
     var passwordbox = $("#password").get(0);
     $("#showpass").get(0).onclick = function (e) {

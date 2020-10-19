@@ -56,10 +56,10 @@ export class User extends Component<{}, IUser> {
   private loadUserData = async () => {
     let userName = this.getCookie("userName");
 
-    console.log(userName); 
+    console.log(userName);
 
     if (userName == null) {
-      window.location.replace("http://localhost:3001/");
+      window.location.href = "http://larryjason.com/chat-app/login";
     } else {
       const response = await axios.get<APIResponse<IUser>>(
         `${mainUrlPrefix}user/get?username=${userName}`

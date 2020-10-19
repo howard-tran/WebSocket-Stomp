@@ -1,6 +1,6 @@
 import { timeStamp } from "console";
 import React, { Component } from "react";
-import { ConversationInstance, mainUrlPrefix, MessageInstance, UserInstance } from "./App";
+import { ConversationInstance, mainUrlPrefix, MessageInstance, messageSocketPrefix, UserInstance } from "./App";
 import ReactDOM from "react-dom";
 import axios from "axios";
 
@@ -9,6 +9,10 @@ import "../node_modules/font-awesome/css/font-awesome.min.css";
 import "./CSS/Conversation.css";
 import { JsxElement, JsxEmit } from "typescript";
 import { resolveSoa } from "dns";
+import { Button } from "bootstrap";
+import { CompatClient, Frame, IFrame, IMessage, Stomp } from "@stomp/stompjs";
+import SockJS from "sockjs-client";
+import { frame } from "websocket";
 
 interface IConversation {
   id: String;
@@ -32,16 +36,50 @@ export class Conversation extends Component<{}, ConversationState> {
   private conversationMain: HTMLDivElement;
   private intervalId: NodeJS.Timeout;
 
+  private stompClient : CompatClient; 
+
   state: ConversationState = {
     conversationIndex: 0,
   };
 
-  constructor(props : any) {
-    super(props); 
+  constructor(props: any) {
+    super(props);
   }
 
   componentDidMount() {
     this.intervalId = setInterval(this.loadConversation, 500);
+  }
+
+  connectAndSubscribe = () => {
+    let userData = UserInstance.getUserData();
+
+    let socket = new SockJS(`${messageSocketPrefix}socket-service`); 
+    this.stompClient = Stomp.over(socket); 
+
+    this.stompClient.connect({}, (frame: IFrame) => {
+      this.stompClient.subscribe(`/conversation/${userData.userName}`, this.receiveNewConversation);
+    })
+  }
+
+  receiveNewConversation = (message: IMessage) => {
+    let messageBody = JSON.parse(message.body) as APIResponse<any>;
+
+    console.log(messageBody); 
+
+    if (messageBody.status != 200) {
+      return;
+    }
+    this.addNewConversation((messageBody.data as IConversation).receiver);  
+  }
+
+  notifyNewConveresation = (username: String) => {
+    let conversation: IConversation = {
+      id: "",
+      sender: UserInstance.getUserData().userName,
+      receiver: username,
+      unixTime: "",
+    };
+    this.stompClient.send("/service/notify-conversation", {}, JSON.stringify(conversation)); 
   }
 
   loadConversation = () => {
@@ -51,73 +89,100 @@ export class Conversation extends Component<{}, ConversationState> {
     else {
       clearInterval(this.intervalId);
     }
+    this.connectAndSubscribe(); 
 
     let promise = this.getConversation(user.userName);
 
     promise.then((res) => {
       let _res = res as APIResponse<any>;
 
-      let conversationList: String = "";  
+      let conversationList: String = "";
       let countConversation: number = 0;
 
       if (_res.status != 200) {
         alert(`${_res.status}: ${_res.message}`);
       } else {
         let arr = res as APIResponse<IConversation[]>;
+        let aTagChild = this.conversationMain.querySelector("a");
 
         arr.data.map((x) => {
           countConversation += 1;
 
-          this.conversationMain.insertBefore(
-            this.generateConversationUI(x.receiver),
-            this.conversationMain.querySelector("a")
-          );
+          this.conversationMain.insertBefore(this.generateConversationUI(x.receiver), aTagChild);
         });
       }
-
+      if (this.conversationMain.childNodes.length > 1) {
+        (this.conversationMain.firstChild as HTMLButtonElement).click();
+      }
       this.setState({
         conversationIndex: this.state.conversationIndex + countConversation,
       });
     });
   };
 
-  
-  loadMoreConversation = (e : React.MouseEvent) => {
+  loadMoreConversation = (e: React.MouseEvent) => {
     console.log(this);
     this.loadConversation();
 
     return false;
-  }
+  };
 
-  public addNewConversation(username: String) {
+  private addNewConversation(username: String) {
     if (this.conversationMain.firstChild) {
       this.conversationMain.insertBefore(
         this.generateConversationUI(username),
-        this.conversationMain.firstChild);
-    } else {
-      this.conversationMain.appendChild(
-        this.generateConversationUI(username)
+        this.conversationMain.firstChild
       );
+    } else {
+      this.conversationMain.appendChild(this.generateConversationUI(username));
     }
     this.setState({
       conversationIndex: this.state.conversationIndex + 1,
-    })
+    });
   }
 
-  public addNewConversationWithDB(username: String) {
+  private addThisConversation(username: String) {
     let conversation: IConversation = {
       id: "",
       sender: UserInstance.getUserData().userName,
       receiver: username,
-      unixTime: ""
+      unixTime: "",
     };
-    let response = axios.post<APIResponse<any>>(
-      `${mainUrlPrefix}conversation/add`,
-      conversation
-    );
-    response.then(res => {
-      this.addNewConversation(username);
+    let response = axios.post<APIResponse<any>>(`${mainUrlPrefix}conversation/add`, conversation);
+    response.then((res) => {
+      let _res = res.data as APIResponse<any>;
+
+      if (_res.status != 200) {
+        alert(`${_res.status}: ${_res.message}`);
+      } else if ((_res.data as String) == "conversation not available") {
+        alert(`${_res.status}: ${_res.data}`);
+      } else {
+        this.addNewConversation(username);
+        alert("ok");
+      }
     });
+  }
+
+  public addThisConversationNoAlert(username: String) {
+    let conversation: IConversation = {
+      id: "",
+      sender: UserInstance.getUserData().userName,
+      receiver: username,
+      unixTime: "",
+    };
+    let response = axios.post<APIResponse<any>>(`${mainUrlPrefix}conversation/add`, conversation);
+    response.then((res) => {
+      let _res = res.data as APIResponse<any>;
+
+      if (_res.status == 200 && (_res.data as String) != "conversation not available") {
+        this.addNewConversation(username);
+      }
+    });
+  }
+
+  public postNewConversation(username: String) {
+    this.addThisConversation(username);
+    this.notifyNewConveresation(username);
   }
 
   getConversation = async (username: String) => {
@@ -127,21 +192,10 @@ export class Conversation extends Component<{}, ConversationState> {
     return response.data;
   };
 
-  conversationClick = (e : MouseEvent) => {
+  conversationClick = (e: MouseEvent) => {
     // connecto to message
-    MessageInstance.loadFromConversation((e.target as HTMLButtonElement).value); 
-  }
-
-  public checkAvailableConversation(receiver: String) {
-    for (let i = 0; i < this.conversationMain.children.length - 1; i++) {
-      let child = this.conversationMain.children[i] as HTMLButtonElement;
-
-      if (child.value == receiver) {
-        return false;
-      }
-    }
-    return true;
-  }
+    MessageInstance.loadFromConversation((e.target as HTMLButtonElement).value);
+  };
 
   generateConversationUI = (username: String): Node => {
     let res = document.createElement("button");
@@ -162,7 +216,9 @@ export class Conversation extends Component<{}, ConversationState> {
           this.conversationMain = ins;
         }}
       >
-        <a href="#" onClick={this.loadMoreConversation}>load more</a>
+        <a href="#" onClick={this.loadMoreConversation}>
+          load more
+        </a>
       </div>
     );
   }

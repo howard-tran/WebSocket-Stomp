@@ -51,12 +51,12 @@
 }
 
 .message-mess-MyMessage div {
-  background-color: #AED6F1;
+  background-color: #aed6f1;
   padding: 15px;
   border-radius: 15px;
   word-wrap: break-word;
   margin-bottom: 10px;
-  max-width: 70%; 
+  max-width: 70%;
 }
 
 .message-mess-OtherMessage {
@@ -65,10 +65,10 @@
 }
 
 .message-mess-OtherMessage div {
-  background-color: #E5E7E9;
+  background-color: #e5e7e9;
   padding: 15px;
   border-radius: 15px;
   word-wrap: break-word;
   margin-bottom: 10px;
-  max-width: 70%; 
+  max-width: 70%;
 }

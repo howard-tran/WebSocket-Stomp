@@ -40,9 +40,7 @@ export class SearchBar extends Component<{}, SearchBarState> {
 
   selectIcon() {
     if (this.state.waittingForDropDown) {
-      return (
-        <i className="search-bar-statusIcon search-bar-loading fa fa-2x fa-spinner"></i>
-      );
+      return <i className="search-bar-statusIcon search-bar-loading fa fa-2x fa-spinner"></i>;
     } else {
       return <i className="search-bar-statusIcon fa fa-2x fa-check-circle"></i>;
     }
@@ -95,31 +93,10 @@ export class SearchBar extends Component<{}, SearchBarState> {
       waittingForDropDown: true,
     });
 
-    let _conversation: IConversation = {
-      id: "",
-      sender: UserInstance.getUserData().userName,
-      receiver: (this.inputIns as HTMLInputElement).value,
-      unixTime: "",
-    };
-    let promise = this.postConversation(_conversation);
+    ConversationInstance.postNewConversation(this.inputIns.value);
 
-    promise.then((res) => {
-      let _res = res as APIResponse<any>;
-
-      console.log(_res);
-
-      if (_res.status != 200) {
-        alert(`${_res.status}: ${_res.message}`);
-      } else if ((_res.data as String) == "conversation not available") {
-        alert(`${_res.status}: ${_res.data}`);
-      } else {
-        ConversationInstance.addNewConversation(_conversation.receiver);
-        alert("ok");
-      }
-
-      this.setState({
-        waittingForDropDown: false,
-      });
+    this.setState({
+      waittingForDropDown: false,
     });
   };
 
