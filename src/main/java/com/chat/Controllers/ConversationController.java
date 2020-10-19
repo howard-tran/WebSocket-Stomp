@@ -8,6 +8,9 @@ import com.jayway.jsonpath.Option;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.Payload;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,6 +27,9 @@ public class ConversationController {
   ConversationController(ConversationService conversationnService) {
     this.conversationService = conversationnService;
   }
+
+  @Autowired
+  private SimpMessagingTemplate simpMessagingTemplate;
 
   private Response<Object> AddConversation(Conversation conversation) {
     Optional<Boolean> res = conversationService.AddConversation(conversation);
@@ -46,6 +52,21 @@ public class ConversationController {
         return AddConversation(conversation);
       } else {
         return new Response<Object>("conversation not available", ErrorType.OK);
+      }
+    }
+  }
+
+  @MessageMapping("/notify-conversation")
+  public void SendNotifications(@Payload Conversation conversation) {
+    Optional<Boolean> res = conversationService.CheckAvailableConversation(conversation);
+
+    if (res.isEmpty()) {
+      this.simpMessagingTemplate.convertAndSend(String.format("/conversation/%s", conversation.getSender()),
+        new Response<Object>("", ErrorType.INTERNAL_SERVER_ERROR));
+    } else {
+      if (res.get()) {
+        this.simpMessagingTemplate.convertAndSend(String.format("/conversation/%s", conversation.getReceiver()),
+          new Response<Object>(conversation, ErrorType.OK));
       }
     }
   }
