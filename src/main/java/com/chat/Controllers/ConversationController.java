@@ -58,15 +58,22 @@ public class ConversationController {
 
   @MessageMapping("/notify-conversation")
   public void SendNotifications(@Payload Conversation conversation) {
-    Optional<Boolean> res = conversationService.CheckAvailableConversation(conversation);
+
+    Conversation checkConversation = new Conversation();
+    checkConversation.setId(conversation.getId());
+    checkConversation.setReceiver(conversation.getSender());
+    checkConversation.setSender(conversation.getReceiver());
+
+    Optional<Boolean> res = conversationService.CheckAvailableConversation(checkConversation);
 
     if (res.isEmpty()) {
       this.simpMessagingTemplate.convertAndSend(String.format("/conversation/%s", conversation.getSender()),
         new Response<Object>("", ErrorType.INTERNAL_SERVER_ERROR));
     } else {
       if (res.get()) {
-        this.simpMessagingTemplate.convertAndSend(String.format("/conversation/%s", conversation.getReceiver()),
-          new Response<Object>(conversation, ErrorType.OK));
+        this.AddConversation(checkConversation); 
+        this.simpMessagingTemplate.convertAndSend(String.format("/conversation/%s", checkConversation.getSender()),
+          new Response<Object>(checkConversation, ErrorType.OK));
       }
     }
   }
