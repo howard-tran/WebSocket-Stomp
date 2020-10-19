@@ -66,7 +66,7 @@ const sendData = () => {
         //
       } else {
         alert("ok");
-        window.location.replace("../index.html");
+        window.location.replace("http://larryjason.com/chat-app/login");
       }
       submitBtn.disabled = false;
       backtologin.onclick = undefined;
