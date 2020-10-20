@@ -51,9 +51,7 @@ public class UserService {
 
   public Optional<Boolean> CheckAvailableUserName(String userName) {
     try {
-      FindIterable<Document> cursor = userDao.GetUser(userName);
-
-      return Optional.of((cursor.first() == null));
+      return Optional.of((userDao.GetUser(userName).get(0) == null));
       //
     } catch (Exception e) {
       RuntimeException exception = new RuntimeException(e);
@@ -65,10 +63,7 @@ public class UserService {
 
   public Optional<User> GetUser(String userName) {
     try {
-      FindIterable<Document> cursor = userDao.GetUser(userName);
-      User user = new Gson().fromJson(cursor.first().toJson(), User.class);
-
-      return Optional.of(user);
+      return Optional.of(userDao.GetUser(userName).get(0));
       //
     } catch (Exception e) {
       RuntimeException exception = new RuntimeException(e);
@@ -80,11 +75,11 @@ public class UserService {
 
   public Optional<List<String>> FindUser(String searchKey) {
     try {
-      FindIterable<Document> cursor = userDao.GetUserMatch(searchKey);
+      List<User> list = userDao.GetUserMatch(searchKey);
       List<String> res = new ArrayList<>();
 
-      for (Document doc : cursor) {
-        res.add((new Gson().fromJson(doc.toJson(), User.class)).getUserName());
+      for (User user : list) {
+        res.add(user.getUserName());
       }
       return Optional.of(res);
       //

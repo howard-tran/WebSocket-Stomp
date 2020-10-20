@@ -14,7 +14,7 @@ public interface IUserDAO {
 
   void DeleteUser(UUID id) throws Exception;
 
-  FindIterable<Document> GetUser(String userName) throws Exception;
+  List<User> GetUser(String userName) throws Exception;
 
-  FindIterable<Document> GetUserMatch(String searchKey) throws Exception;
+  List<User> GetUserMatch(String searchKey) throws Exception;
 }

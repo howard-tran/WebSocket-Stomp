@@ -5,7 +5,6 @@ import com.chat.LogManager.LogUtils;
 import com.chat.Models.Conversation;
 import com.chat.Models.Message;
 import com.chat.PropertyManager.DatabaseSupplier;
-import com.chat.Repository.IMessageCounterDAO;
 import com.chat.Repository.IMessageDAO;
 import com.google.gson.Gson;
 import com.jayway.jsonpath.Option;
@@ -29,23 +28,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 @Service
 public class MessageService {
   private IMessageDAO messageDao;
-  private IMessageCounterDAO messageCounterDao;
 
   @Autowired
   MessageService(
-    @Qualifier(DatabaseSupplier.MongoDB.Chat.Message) IMessageDAO messageIml,
-    @Qualifier(DatabaseSupplier.MongoDB.Chat.MessageCounter) IMessageCounterDAO messageCounterIml
+    @Qualifier(DatabaseSupplier.MongoDB.Chat.Message) IMessageDAO messageIml
   ) {
     this.messageDao = messageIml;
-    this.messageCounterDao = messageCounterIml;
-  }
-
-  private Optional<String> GetNextMessageId() throws Exception {
-    AggregateIterable<Document> cursor = this.messageCounterDao.GetNextIndex();
-
-    System.out.print(cursor.first().toJson());
-
-    return Optional.of(String.valueOf(cursor.first().get("seq", Double.class)));
   }
 
   public Optional<Boolean> AddMessage(Message message) {
@@ -54,10 +42,7 @@ public class MessageService {
 
       message.setId(UUID.randomUUID());
       message.setUnixTime(String.valueOf(LocalDateTime.now().atZone(zoneId).toEpochSecond()));
-      message.setOrderId(this.GetNextMessageId().get());
       messageDao.InsertMessage(message);
-
-      messageCounterDao.IncreaseIndex();
 
       return Optional.of(true);
       //
@@ -78,12 +63,7 @@ public class MessageService {
   public Optional<List<Message>> GetMessageByIndex(Conversation conversation, int index) {
     final int messageCountEach = 15;
     try {
-      FindIterable<Document> cursor = messageDao.GetMessage(conversation);
-      List<Message> messages = new ArrayList<>();
-
-      for (Document doc : cursor) {
-        messages.add(new Gson().fromJson(doc.toJson(), Message.class));
-      }
+      List<Message> messages = messageDao.GetMessage(conversation);
 
       if (index >= messages.size()) {
         return Optional.of(new ArrayList<Message>());

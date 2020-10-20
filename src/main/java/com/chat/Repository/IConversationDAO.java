@@ -9,7 +9,7 @@ import org.bson.Document;
 public interface IConversationDAO {
   void InsertConversation(Conversation conversation) throws Exception;
 
-  FindIterable<Document> GetUserConversation(User user) throws Exception;
+  List<Conversation> GetUserConversation(User user) throws Exception;
 
-  FindIterable<Document> GetConversation(String sender, String receiver) throws Exception;
+  List<Conversation> GetConversation(String sender, String receiver) throws Exception;
 }

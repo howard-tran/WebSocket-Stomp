@@ -16,13 +16,13 @@ public class ConversationImpl implements IConversationDAO {
   }
 
   @Override
-  public FindIterable<Document> GetUserConversation(User user) throws Exception {
+  public List<Conversation> GetUserConversation(User user) throws Exception {
     // TODO Auto-generated method stub
     return null;
   }
 
   @Override
-  public FindIterable<Document> GetConversation(String sender, String receiver) throws Exception {
+  public List<Conversation> GetConversation(String sender, String receiver) throws Exception {
     // TODO Auto-generated method stub
     return null;
   }

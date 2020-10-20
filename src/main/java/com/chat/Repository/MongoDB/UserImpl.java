@@ -68,22 +68,27 @@ public class UserImpl implements IUserDAO {
   }
 
   @Override
-  public FindIterable<Document> GetUserMatch(String searchKey) throws Exception {
+  public List<User> GetUserMatch(String searchKey) throws Exception {
     HashMap<String, String> database = PropUtils.GetMongoDBChat();
 
     MongoClient client = MongoClientIns.GetMongoClient();
     MongoDatabase dtb = client.getDatabase(database.get("database"));
 
-    List<User> result = new ArrayList<>();
     Document filter = Document.parse(
       String.format("{userName: {$regex: /^%s/, $options: 'i'}}", searchKey)
     );
 
-    return dtb.getCollection("user").find(filter).limit(15);
+    FindIterable<Document> cursor= dtb.getCollection("user").find(filter).limit(15);
+
+    List<User> result = new ArrayList<>();
+    for (Document doc : cursor) {
+      result.add(new Gson().fromJson(doc.toJson(), User.class)); 
+    }
+    return result;
   }
 
   @Override
-  public FindIterable<Document> GetUser(String userName) throws Exception {
+  public List<User> GetUser(String userName) throws Exception {
     HashMap<String, String> database = PropUtils.GetMongoDBChat();
 
     MongoClient client = MongoClientIns.GetMongoClient();
@@ -91,6 +96,12 @@ public class UserImpl implements IUserDAO {
 
     Document filter = new Document("userName", userName);
 
-    return dtb.getCollection("user").find(filter);
+    FindIterable<Document> cursor= dtb.getCollection("user").find(filter);
+
+    List<User> result = new ArrayList<>();
+    for (Document doc : cursor) {
+      result.add(new Gson().fromJson(doc.toJson(), User.class)); 
+    }
+    return result;
   }
 }

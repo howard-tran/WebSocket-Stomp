@@ -15,7 +15,7 @@ public class MessageImpl implements IMessageDAO {
   }
 
   @Override
-  public FindIterable<Document> GetMessage(Conversation conversation) throws Exception {
+  public List<Message> GetMessage(Conversation conversation) throws Exception {
     // TODO Auto-generated method stub
     return null;
   }

@@ -28,12 +28,12 @@ public class UserImpl implements IUserDAO {
   }
 
   @Override
-  public FindIterable<Document> GetUserMatch(String SearchKey) throws Exception {
+  public List<User> GetUserMatch(String SearchKey) throws Exception {
     return null;
   }
 
   @Override
-  public FindIterable<Document> GetUser(String UserName) throws Exception {
+  public List<User> GetUser(String UserName) throws Exception {
     return null;
   }
 }

@@ -36,7 +36,7 @@ public class ConversationImpl implements IConversationDAO {
   }
 
   @Override
-  public FindIterable<Document> GetConversation(String sender, String receiver) throws Exception {
+  public List<Conversation> GetConversation(String sender, String receiver) throws Exception {
     HashMap<String, String> database = PropUtils.GetMongoDBChat();
 
     MongoClient client = MongoClientIns.GetMongoClient();
@@ -48,11 +48,17 @@ public class ConversationImpl implements IConversationDAO {
       String.format("{$and: [%s, %s]}", condition1.toJson(), condition2.toJson())
     );
 
-    return dtb.getCollection("conversation").find(filter);
+    FindIterable<Document> cursor = dtb.getCollection("conversation").find(filter);
+
+    List<Conversation> result = new ArrayList<>(); 
+    for (Document doc : cursor) {
+      result.add(new Gson().fromJson(doc.toJson(), Conversation.class)); 
+    }
+    return result;
   }
 
   @Override
-  public FindIterable<Document> GetUserConversation(User user) throws Exception {
+  public List<Conversation> GetUserConversation(User user) throws Exception {
     HashMap<String, String> database = PropUtils.GetMongoDBChat();
 
     MongoClient client = MongoClientIns.GetMongoClient();
@@ -60,9 +66,15 @@ public class ConversationImpl implements IConversationDAO {
 
     Document filter = new Document("sender", user.getUserName());
 
-    return dtb
+    FindIterable<Document> cursor= dtb
       .getCollection("conversation")
       .find(filter)
       .sort(new Document("unixTime", -1));
+
+    List<Conversation> result = new ArrayList<>(); 
+    for (Document doc : cursor) {
+      result.add(new Gson().fromJson(doc.toJson(), Conversation.class)); 
+    }
+    return result;
   }
 }

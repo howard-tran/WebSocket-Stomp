@@ -62,12 +62,12 @@ public class ConversationService {
         return Optional.of(false);
       }
 
-      FindIterable<Document> cursor = conversationDao.GetConversation(
+      List<Conversation> list = conversationDao.GetConversation(
         conversation.getSender(),
         conversation.getReceiver()
       );
 
-      return Optional.of((cursor.first() == null));
+      return Optional.of((list.get(0) == null));
       //
     } catch (Exception e) {
       RuntimeException exception = new RuntimeException(e);
@@ -87,12 +87,7 @@ public class ConversationService {
   public Optional<List<Conversation>> GetConversation(User user, int index) {
     final int conversationCountEach = 15;
     try {
-      FindIterable<Document> cursor = conversationDao.GetUserConversation(user);
-      List<Conversation> conversations = new ArrayList<>();
-
-      for (Document doc : cursor) {
-        conversations.add(new Gson().fromJson(doc.toJson(), Conversation.class));
-      }
+      List<Conversation> conversations = conversationDao.GetUserConversation(user);
 
       if (index >= conversations.size()) {
         return Optional.of(new ArrayList<Conversation>());

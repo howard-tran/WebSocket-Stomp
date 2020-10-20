@@ -33,7 +33,7 @@ public class MessageImpl implements IMessageDAO {
   }
 
   @Override
-  public FindIterable<Document> GetMessage(Conversation conversation) throws Exception {
+  public List<Message> GetMessage(Conversation conversation) throws Exception {
     HashMap<String, String> database = PropUtils.GetMongoDBChat();
 
     MongoClient client = MongoClientIns.GetMongoClient();
@@ -60,9 +60,15 @@ public class MessageImpl implements IMessageDAO {
       String.format("{$or: [%s, %s]}", condition1.toJson(), condition2.toJson())
     );
 
-    return dtb
+    FindIterable<Document> cursor = dtb
       .getCollection("message")
       .find(filter)
       .sort(new Document("_id", -1));
+    
+      List<Message> result = new ArrayList<>(); 
+      for (Document doc : cursor) {
+        result.add(new Gson().fromJson(doc.toJson(), Message.class)); 
+      }
+      return result; 
   }
 }
