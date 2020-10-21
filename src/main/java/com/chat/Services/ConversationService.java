@@ -67,8 +67,8 @@ public class ConversationService {
         conversation.getReceiver()
       );
 
-      return Optional.of((list.get(0) == null));
-      //
+      return Optional.of((list.size() == 0));
+      //x
     } catch (Exception e) {
       RuntimeException exception = new RuntimeException(e);
 

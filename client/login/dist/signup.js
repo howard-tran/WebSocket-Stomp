@@ -1,6 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var mainUrlPrefix = "http://larryjason.com:8081/api/";
+exports.mainUrlPrefix = void 0;
+// server http://larryjason.com:8081/api/
+// local http://localhost:8002/api/
+exports.mainUrlPrefix = "http://larryjason.com:8081/api/";
+// server http://larryjason.com/chat-app/login/
+// local ../index.html
+var signInUrl = "http://larryjason.com/chat-app/login/";
 var showHidePass = function () {
     var passwordbox = $("#password").get(0);
     $("#showpass").get(0).onclick = function (e) {
@@ -35,7 +41,7 @@ var sendData = function () {
         return false;
     };
     $.ajax({
-        url: mainUrlPrefix + "/user/add",
+        url: exports.mainUrlPrefix + "/user/add",
         method: "POST",
         timeout: 0,
         headers: {
@@ -50,7 +56,7 @@ var sendData = function () {
             }
             else {
                 alert("ok");
-                window.location.replace("../index.html");
+                window.location.replace(signInUrl);
             }
             submitBtn.disabled = false;
             backtologin.onclick = undefined;

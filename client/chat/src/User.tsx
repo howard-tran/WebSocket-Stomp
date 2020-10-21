@@ -1,6 +1,6 @@
 import { timeStamp } from "console";
 import React, { Component } from "react";
-import { mainUrlPrefix } from "./App";
+import { loginPageUrl, mainUrlPrefix } from "./App";
 import ReactDOM from "react-dom";
 import axios from "axios";
 import "./CSS/User.css";
@@ -25,21 +25,6 @@ export class User extends Component<{}, IUser> {
     this.loadUserData();
   }
 
-  private getCookie = (name: String) => {
-    var nameEQ = name + "=";
-    var ca = document.cookie.split(";");
-
-    for (var i = 0; i < ca.length; i++) {
-      var c = ca[i];
-      while (c.charAt(0) == " ") c = c.substring(1, c.length);
-
-      if (c.indexOf(nameEQ) == 0) {
-        return c.substring(nameEQ.length, c.length);
-      }
-    }
-    return null;
-  };
-
   public getUserData() {
     if (this.state == null) {
       return null;
@@ -53,18 +38,29 @@ export class User extends Component<{}, IUser> {
     return obj;
   }
 
+  private readCookie = (name: String) => {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(";");
+    for (var i = 0; i < ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == " ") c = c.substring(1, c.length);
+      if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+  };
+
   private loadUserData = async () => {
-    let userName = this.getCookie("userName");
+    let userName = this.readCookie("userName");
 
     console.log(userName);
 
     if (userName == null) {
-      window.location.href = "http://larryjason.com/chat-app/login";
+      window.location.href = loginPageUrl;
     } else {
       const response = await axios.get<APIResponse<IUser>>(
         `${mainUrlPrefix}user/get?username=${userName}`
       );
-
+      console.log(response);
       this.setState({
         id: response.data.data.id,
         userName: response.data.data.userName,

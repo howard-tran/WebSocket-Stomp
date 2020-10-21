@@ -42,6 +42,11 @@ public class MessageController {
       );
     } else {
       simpMessagingTemplate.convertAndSend(
+        String.format("/room/%s", message.getSender()),
+        new Response<Object>(message, ErrorType.OK)
+      );
+
+      simpMessagingTemplate.convertAndSend(
         String.format("/room/%s", message.getReceiver()),
         new Response<Object>(message, ErrorType.OK)
       );

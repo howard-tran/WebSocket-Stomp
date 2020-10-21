@@ -81,8 +81,12 @@ public class UserController {
   @PostMapping(path = "/checklogin")
   public Response<Object> CheckLogin(@RequestBody User user) {
     Optional<User> res = userService.GetUser(user.getUserName());
+    Optional<Boolean> check = userService.CheckAvailableUserName(user.getUserName());
 
     if (res.isEmpty()) {
+      if (check.get()) {
+        return new Response<Object>("login-failed", ErrorType.OK);
+      }
       return new Response<Object>("", ErrorType.INTERNAL_SERVER_ERROR);
     } else {
       if (!user.getPassWord().equals(res.get().getPassWord())) {

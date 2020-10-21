@@ -51,7 +51,7 @@ public class UserService {
 
   public Optional<Boolean> CheckAvailableUserName(String userName) {
     try {
-      return Optional.of((userDao.GetUser(userName).get(0) == null));
+      return Optional.of((userDao.GetUser(userName).size() == 0));
       //
     } catch (Exception e) {
       RuntimeException exception = new RuntimeException(e);

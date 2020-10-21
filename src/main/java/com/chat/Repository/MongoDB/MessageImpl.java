@@ -64,11 +64,11 @@ public class MessageImpl implements IMessageDAO {
       .getCollection("message")
       .find(filter)
       .sort(new Document("_id", -1));
-    
-      List<Message> result = new ArrayList<>(); 
-      for (Document doc : cursor) {
-        result.add(new Gson().fromJson(doc.toJson(), Message.class)); 
-      }
-      return result; 
+
+    List<Message> result = new ArrayList<>();
+    for (Document doc : cursor) {
+      result.add(new Gson().fromJson(doc.toJson(), Message.class));
+    }
+    return result;
   }
 }

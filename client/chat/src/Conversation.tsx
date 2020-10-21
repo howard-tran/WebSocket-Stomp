@@ -1,6 +1,12 @@
 import { timeStamp } from "console";
 import React, { Component } from "react";
-import { ConversationInstance, mainUrlPrefix, MessageInstance, messageSocketPrefix, UserInstance } from "./App";
+import {
+  ConversationInstance,
+  mainUrlPrefix,
+  MessageInstance,
+  messageSocketPrefix,
+  UserInstance,
+} from "./App";
 import ReactDOM from "react-dom";
 import axios from "axios";
 
@@ -13,6 +19,7 @@ import { Button } from "bootstrap";
 import { CompatClient, Frame, IFrame, IMessage, Stomp } from "@stomp/stompjs";
 import SockJS from "sockjs-client";
 import { frame } from "websocket";
+import userEvent from "@testing-library/user-event";
 
 interface IConversation {
   id: String;
@@ -36,7 +43,7 @@ export class Conversation extends Component<{}, ConversationState> {
   private conversationMain: HTMLDivElement;
   private intervalId: NodeJS.Timeout;
 
-  private stompClient : CompatClient; 
+  private stompClient: CompatClient;
 
   state: ConversationState = {
     conversationIndex: 0,
@@ -53,34 +60,43 @@ export class Conversation extends Component<{}, ConversationState> {
   connectAndSubscribe = () => {
     let userData = UserInstance.getUserData();
 
-    let socket = new SockJS(`${messageSocketPrefix}socket-service`); 
-    this.stompClient = Stomp.over(socket); 
+    let socket = new SockJS(`${messageSocketPrefix}socket-service`);
+    this.stompClient = Stomp.over(socket);
 
     this.stompClient.connect({}, (frame: IFrame) => {
       this.stompClient.subscribe(`/conversation/${userData.userName}`, this.receiveNewConversation);
-    })
-  }
+    });
+  };
 
   receiveNewConversation = (message: IMessage) => {
     let messageBody = JSON.parse(message.body) as APIResponse<any>;
 
-    console.log(messageBody); 
+    console.log(messageBody);
 
     if (messageBody.status != 200) {
       return;
     }
-    this.addNewConversation((messageBody.data as IConversation).receiver);  
-  }
+    if ((messageBody.data as IConversation).sender == UserInstance.getUserData().userName) {
+      this.addNewConversationUI((messageBody.data as IConversation).receiver);
+    }
+  };
 
-  notifyNewConveresation = (username: String) => {
+  public notifyNewConveresation = (username: String) => {
     let conversation: IConversation = {
       id: "",
       sender: UserInstance.getUserData().userName,
       receiver: username,
       unixTime: "",
     };
-    this.stompClient.send("/service/notify-conversation", {}, JSON.stringify(conversation)); 
-  }
+    this.stompClient.send("/service/notify-conversation", {}, JSON.stringify(conversation));
+  };
+
+  getConversation = async (username: String) => {
+    let response = await axios.get(
+      `${mainUrlPrefix}conversation/get?username=${username}&index=${this.state.conversationIndex}`
+    );
+    return response.data;
+  };
 
   loadConversation = () => {
     let user = UserInstance.getUserData();
@@ -89,7 +105,7 @@ export class Conversation extends Component<{}, ConversationState> {
     else {
       clearInterval(this.intervalId);
     }
-    this.connectAndSubscribe(); 
+    this.connectAndSubscribe();
 
     let promise = this.getConversation(user.userName);
 
@@ -127,7 +143,7 @@ export class Conversation extends Component<{}, ConversationState> {
     return false;
   };
 
-  private addNewConversation(username: String) {
+  private addNewConversationUI(username: String) {
     if (this.conversationMain.firstChild) {
       this.conversationMain.insertBefore(
         this.generateConversationUI(username),
@@ -141,14 +157,15 @@ export class Conversation extends Component<{}, ConversationState> {
     });
   }
 
-  private addThisConversation(username: String) {
+  private addConversation(username: String) {
     let conversation: IConversation = {
       id: "",
       sender: UserInstance.getUserData().userName,
       receiver: username,
       unixTime: "",
     };
-    let response = axios.post<APIResponse<any>>(`${mainUrlPrefix}conversation/add`, conversation);
+    let response = axios.post<APIResponse<any>>(`${mainUrlPrefix}conversation/check`, conversation);
+
     response.then((res) => {
       let _res = res.data as APIResponse<any>;
 
@@ -157,40 +174,16 @@ export class Conversation extends Component<{}, ConversationState> {
       } else if ((_res.data as String) == "conversation not available") {
         alert(`${_res.status}: ${_res.data}`);
       } else {
-        this.addNewConversation(username);
         alert("ok");
-      }
-    });
-  }
 
-  public addThisConversationNoAlert(username: String) {
-    let conversation: IConversation = {
-      id: "",
-      sender: UserInstance.getUserData().userName,
-      receiver: username,
-      unixTime: "",
-    };
-    let response = axios.post<APIResponse<any>>(`${mainUrlPrefix}conversation/add`, conversation);
-    response.then((res) => {
-      let _res = res.data as APIResponse<any>;
-
-      if (_res.status == 200 && (_res.data as String) != "conversation not available") {
-        this.addNewConversation(username);
+        this.notifyNewConveresation(username);
       }
     });
   }
 
   public postNewConversation(username: String) {
-    this.addThisConversation(username);
-    this.notifyNewConveresation(username);
+    this.addConversation(username);
   }
-
-  getConversation = async (username: String) => {
-    let response = await axios.get(
-      `${mainUrlPrefix}conversation/get?username=${username}&index=${this.state.conversationIndex}`
-    );
-    return response.data;
-  };
 
   conversationClick = (e: MouseEvent) => {
     // connecto to message

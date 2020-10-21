@@ -50,9 +50,9 @@ public class ConversationImpl implements IConversationDAO {
 
     FindIterable<Document> cursor = dtb.getCollection("conversation").find(filter);
 
-    List<Conversation> result = new ArrayList<>(); 
+    List<Conversation> result = new ArrayList<>();
     for (Document doc : cursor) {
-      result.add(new Gson().fromJson(doc.toJson(), Conversation.class)); 
+      result.add(new Gson().fromJson(doc.toJson(), Conversation.class));
     }
     return result;
   }
@@ -66,14 +66,14 @@ public class ConversationImpl implements IConversationDAO {
 
     Document filter = new Document("sender", user.getUserName());
 
-    FindIterable<Document> cursor= dtb
+    FindIterable<Document> cursor = dtb
       .getCollection("conversation")
       .find(filter)
       .sort(new Document("unixTime", -1));
 
-    List<Conversation> result = new ArrayList<>(); 
+    List<Conversation> result = new ArrayList<>();
     for (Document doc : cursor) {
-      result.add(new Gson().fromJson(doc.toJson(), Conversation.class)); 
+      result.add(new Gson().fromJson(doc.toJson(), Conversation.class));
     }
     return result;
   }

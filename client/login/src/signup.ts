@@ -10,7 +10,13 @@ interface APIResponse<T> {
   data: T;
 }
 
-const mainUrlPrefix = "http://larryjason.com:8081/api/"; 
+// server http://larryjason.com:8081/api/
+// local http://localhost:8002/api/
+export const mainUrlPrefix = "http://larryjason.com:8081/api/";
+
+// server http://larryjason.com/chat-app/login/
+// local ../index.html
+const signInUrl = "http://larryjason.com/chat-app/login/"
 
 const showHidePass = () => {
   let passwordbox = $("#password").get(0) as HTMLInputElement;
@@ -23,10 +29,10 @@ const showHidePass = () => {
       passwordbox.type = "password";
     }
   };
-}
+};
 
 const checkData = () => {
-  let listInput = $("input"); 
+  let listInput = $("input");
   for (let i = 0; i < listInput.length; i++) {
     let element = <HTMLInputElement>listInput[i];
 
@@ -35,7 +41,7 @@ const checkData = () => {
     }
   }
   return true;
-}
+};
 
 const sendData = () => {
   let submitBtn = $("#submit").get(0) as HTMLInputElement;
@@ -66,13 +72,13 @@ const sendData = () => {
         //
       } else {
         alert("ok");
-        window.location.replace("http://larryjason.com/chat-app/login");
+        window.location.replace(signInUrl);
       }
       submitBtn.disabled = false;
       backtologin.onclick = undefined;
     },
   });
-}
+};
 
 (function () {
   showHidePass();
@@ -84,11 +90,9 @@ const sendData = () => {
       return false;
     }
     sendData();
-    
+
     return true;
   };
 })();
 
-export {
-  
-};
+export {};

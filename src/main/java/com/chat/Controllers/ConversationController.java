@@ -7,6 +7,7 @@ import com.chat.Services.ConversationService;
 import com.jayway.jsonpath.Option;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
@@ -59,21 +60,32 @@ public class ConversationController {
   @MessageMapping("/notify-conversation")
   public void SendNotifications(@Payload Conversation conversation) {
 
-    Conversation checkConversation = new Conversation();
-    checkConversation.setId(conversation.getId());
-    checkConversation.setReceiver(conversation.getSender());
-    checkConversation.setSender(conversation.getReceiver());
+    Conversation otherConversation = new Conversation();
+    otherConversation.setId(UUID.randomUUID());
+    otherConversation.setReceiver(conversation.getSender());
+    otherConversation.setSender(conversation.getReceiver());
 
-    Optional<Boolean> res = conversationService.CheckAvailableConversation(checkConversation);
+    Optional<Boolean> condition1 = conversationService.CheckAvailableConversation(conversation);
+    Optional<Boolean> condition2 = conversationService.CheckAvailableConversation(otherConversation);
 
-    if (res.isEmpty()) {
-      this.simpMessagingTemplate.convertAndSend(String.format("/conversation/%s", conversation.getSender()),
-        new Response<Object>("", ErrorType.INTERNAL_SERVER_ERROR));
+    if (condition1.isEmpty() || condition2.isEmpty()) {
+      this.simpMessagingTemplate.convertAndSend(
+          String.format("/conversation/%s", conversation.getSender()),
+          new Response<Object>("", ErrorType.INTERNAL_SERVER_ERROR)
+        );
     } else {
-      if (res.get()) {
-        this.AddConversation(checkConversation); 
-        this.simpMessagingTemplate.convertAndSend(String.format("/conversation/%s", checkConversation.getSender()),
-          new Response<Object>(checkConversation, ErrorType.OK));
+      if (condition1.get() && condition2.get()) {
+        this.AddConversation(conversation);
+        this.AddConversation(otherConversation);
+
+        this.simpMessagingTemplate.convertAndSend(
+            String.format("/conversation/%s", conversation.getSender()),
+            new Response<Object>(conversation, ErrorType.OK)
+          );
+        this.simpMessagingTemplate.convertAndSend(
+            String.format("/conversation/%s", otherConversation.getSender()),
+            new Response<Object>(otherConversation, ErrorType.OK)
+          );
       }
     }
   }

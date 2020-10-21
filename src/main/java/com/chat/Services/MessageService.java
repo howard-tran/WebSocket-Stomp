@@ -30,9 +30,7 @@ public class MessageService {
   private IMessageDAO messageDao;
 
   @Autowired
-  MessageService(
-    @Qualifier(DatabaseSupplier.MongoDB.Chat.Message) IMessageDAO messageIml
-  ) {
+  MessageService(@Qualifier(DatabaseSupplier.MongoDB.Chat.Message) IMessageDAO messageIml) {
     this.messageDao = messageIml;
   }
 
@@ -81,7 +79,6 @@ public class MessageService {
       RuntimeException exception = new RuntimeException(e);
 
       LogUtils.LogError("[ERROR]", exception);
-
       return Optional.empty();
     }
   }

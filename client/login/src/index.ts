@@ -10,8 +10,13 @@ interface APIResponse<T> {
   data: T;
 }
 
-const mainUrlPrefix = "http://larryjason.com:8081/api/"; 
-const mainChatUrl = "http://larryjason.com/chat-app/chat"; 
+// server http://larryjason.com:8081/api/s
+// local http://localhost:8002/api/
+export const mainUrlPrefix = "http://larryjason.com:8081/api/";
+
+// server http://larryjason.com/chat-app/chat
+// local http://localhost:3000/
+export const mainChatUrl = "http://larryjason.com/chat-app/chat/";
 
 const showHidePass = () => {
   let passwordbox = $("#password").get(0) as HTMLInputElement;
@@ -24,10 +29,10 @@ const showHidePass = () => {
       passwordbox.type = "password";
     }
   };
-}
+};
 
 const checkData = () => {
-  let listInput = $("input"); 
+  let listInput = $("input");
   for (let i = 0; i < listInput.length; i++) {
     let element = <HTMLInputElement>listInput[i];
 
@@ -36,33 +41,15 @@ const checkData = () => {
     }
   }
   return true;
-}
-
-const setCookie = (name,value) => {
-  let expires = "";
-
-  var date = new Date();
-
-  date.setTime(date.getTime() + (5*60*1000));
-  expires = "; expires=" + date.toUTCString();
-
-  document.cookie = name + "=" + (value || "")  + expires + "; path=/";
-}
-
-const getCookie = (name: String) => {
-  var nameEQ = name + "=";
-  var ca = document.cookie.split(";");
-
-  for (var i = 0; i < ca.length; i++) {
-    var c = ca[i];
-    while (c.charAt(0) == " ") c = c.substring(1, c.length);
-
-    if (c.indexOf(nameEQ) == 0) {
-      return c.substring(nameEQ.length, c.length);
-    }
-  }
-  return null;
 };
+
+function setCookie(name, value) {
+  let expires = "";
+  let date = new Date();
+  date.setTime(date.getTime() + 15 * 60 * 1000);
+  expires = "; expires=" + date.toUTCString();
+  document.cookie = name + "=" + (value || "") + expires + "; path=/";
+}
 
 const sendData = () => {
   let submitBtn = $("#submit").get(0) as HTMLInputElement;
@@ -95,9 +82,7 @@ const sendData = () => {
         alert(`${data.status}: ${data.error}`);
         //
       } else {
-        setCookie("userName", dataSubmit.userName); 
-        
-        console.log(getCookie("userName"))
+        setCookie("userName", dataSubmit.userName.valueOf());
 
         alert("ok");
         window.location.href = mainChatUrl;
@@ -106,7 +91,7 @@ const sendData = () => {
       createAccount.onclick = undefined;
     },
   });
-}
+};
 
 (function () {
   showHidePass();
@@ -118,10 +103,9 @@ const sendData = () => {
       return false;
     }
     sendData();
-    
+
     return true;
   };
 })();
 
-export {
-}
+export {};

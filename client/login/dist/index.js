@@ -1,7 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var mainUrlPrefix = "http://larryjason.com:8081/api/";
-var mainChatUrl = "http://larryjason.com/chat-app/chat";
+exports.mainChatUrl = exports.mainUrlPrefix = void 0;
+// server http://larryjason.com:8081/api/s
+// local http://localhost:8002/api/
+exports.mainUrlPrefix = "http://larryjason.com:8081/api/";
+// server http://larryjason.com/chat-app/chat
+// local http://localhost:3000/
+exports.mainChatUrl = "http://larryjason.com/chat-app/chat/";
 var showHidePass = function () {
     var passwordbox = $("#password").get(0);
     $("#showpass").get(0).onclick = function (e) {
@@ -24,26 +29,13 @@ var checkData = function () {
     }
     return true;
 };
-var setCookie = function (name, value) {
+function setCookie(name, value) {
     var expires = "";
     var date = new Date();
-    date.setTime(date.getTime() + (5 * 60 * 1000));
+    date.setTime(date.getTime() + 15 * 60 * 1000);
     expires = "; expires=" + date.toUTCString();
     document.cookie = name + "=" + (value || "") + expires + "; path=/";
-};
-var getCookie = function (name) {
-    var nameEQ = name + "=";
-    var ca = document.cookie.split(";");
-    for (var i = 0; i < ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == " ")
-            c = c.substring(1, c.length);
-        if (c.indexOf(nameEQ) == 0) {
-            return c.substring(nameEQ.length, c.length);
-        }
-    }
-    return null;
-};
+}
 var sendData = function () {
     var submitBtn = $("#submit").get(0);
     var createAccount = $("#createaccount").get(0);
@@ -56,7 +48,7 @@ var sendData = function () {
         return false;
     };
     $.ajax({
-        url: mainUrlPrefix + "user/checklogin",
+        url: exports.mainUrlPrefix + "user/checklogin",
         method: "POST",
         timeout: 0,
         headers: {
@@ -74,10 +66,9 @@ var sendData = function () {
                 //
             }
             else {
-                setCookie("userName", dataSubmit.userName);
-                console.log(getCookie("userName"));
+                setCookie("userName", dataSubmit.userName.valueOf());
                 alert("ok");
-                window.location.href = mainChatUrl;
+                window.location.href = exports.mainChatUrl;
             }
             submitBtn.disabled = false;
             createAccount.onclick = undefined;

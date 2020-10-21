@@ -243,15 +243,7 @@ export class Message extends Component<{}, MessageState> {
     let messageContent = this.messageTxtIns.value;
 
     this.sendMessageHandler(messageContent);
-    this.messageAreaIns.appendChild(this.generateMyMessage(messageContent));
     this.messageTxtIns.value = "";
-
-    this.messageAreaIns.scrollTop = this.messageAreaIns.scrollHeight;
-
-    this.setState({
-      messageIndex: this.state.messageIndex + 1,
-      messageCount: this.state.messageCount + 1,
-    });
   };
 
   receiveMessageHandler = (message: IMessage) => {
@@ -271,8 +263,21 @@ export class Message extends Component<{}, MessageState> {
         messageIndex: this.state.messageIndex + 1,
         messageCount: this.state.messageCount + 1,
       });
+    } else if (
+      (messageBody.data as IMessage_t).sender == UserInstance.getUserData().userName &&
+      (messageBody.data as IMessage_t).receiver == this.state.messageReciever
+    ) {
+      this.messageAreaIns.appendChild(
+        this.generateMyMessage((messageBody.data as IMessage_t).content)
+      );
+      this.messageAreaIns.scrollTop = this.messageAreaIns.scrollHeight;
+
+      this.setState({
+        messageIndex: this.state.messageIndex + 1,
+        messageCount: this.state.messageCount + 1,
+      });
     } else {
-      ConversationInstance.addThisConversationNoAlert((messageBody.data as IMessage_t).sender);
+      ConversationInstance.notifyNewConveresation((messageBody.data as IMessage_t).sender);
     }
   };
 
@@ -282,6 +287,7 @@ export class Message extends Component<{}, MessageState> {
       e.preventDefault();
     }
   };
+
   render() {
     return (
       <div className="message-main">

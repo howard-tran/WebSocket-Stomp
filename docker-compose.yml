@@ -1,6 +1,6 @@
 version: "3.5"
 
-#location on server:  
+#location on server:
 # data -> backup database
 # backend -> log file + app jar
 
@@ -36,5 +36,5 @@ networks:
   chat_net:
     ipam:
       driver: default
-      config: 
+      config:
         - subnet: "128.0.0.0/29"
