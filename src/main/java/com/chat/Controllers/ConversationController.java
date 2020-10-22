@@ -4,7 +4,6 @@ import com.chat.App;
 import com.chat.Models.Conversation;
 import com.chat.Models.User;
 import com.chat.Services.ConversationService;
-import com.jayway.jsonpath.Option;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;

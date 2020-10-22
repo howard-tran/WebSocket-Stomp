@@ -1,13 +1,10 @@
 package com.chat.Controllers;
 
 import com.chat.App;
-import com.chat.LogManager.LogUtils;
-import com.chat.Models.Conversation;
 import com.chat.Models.User;
 import com.chat.Services.UserService;
 import java.util.List;
 import java.util.Optional;
-import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

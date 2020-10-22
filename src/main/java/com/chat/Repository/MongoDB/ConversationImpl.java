@@ -8,16 +8,13 @@ import com.chat.Repository.IConversationDAO;
 import com.google.gson.Gson;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoDatabase;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 import org.bson.Document;
 import org.springframework.stereotype.Repository;
-import org.yaml.snakeyaml.events.DocumentEndEvent;
 
 @Repository(DatabaseSupplier.MongoDB.Chat.Conversation)
 public class ConversationImpl implements IConversationDAO {
