@@ -58,14 +58,15 @@ public class ConversationController {
 
   @MessageMapping("/notify-conversation")
   public void SendNotifications(@Payload Conversation conversation) {
-
     Conversation otherConversation = new Conversation();
     otherConversation.setId(UUID.randomUUID());
     otherConversation.setReceiver(conversation.getSender());
     otherConversation.setSender(conversation.getReceiver());
 
     Optional<Boolean> condition1 = conversationService.CheckAvailableConversation(conversation);
-    Optional<Boolean> condition2 = conversationService.CheckAvailableConversation(otherConversation);
+    Optional<Boolean> condition2 = conversationService.CheckAvailableConversation(
+      otherConversation
+    );
 
     if (condition1.isEmpty() || condition2.isEmpty()) {
       this.simpMessagingTemplate.convertAndSend(

@@ -1,5 +1,8 @@
 #!/bin/bash
 # command to run before turn on server
+ssh -t root@larryjason.com rm -rf /app/chat-app/data/chat/*; 
+ssh -t root@larryjason.com rm -rf /app/chat-app/backend/logs/*; 
+
 scp -r data/chat/* root@larryjason.com:/app/chat-app/data/chat;
 scp -r logs/* root@larryjason.com:/app/chat-app/backend/logs;
 scp target/spring-1.0-SNAPSHOT.jar root@larryjason.com:/app/chat-app/backend;

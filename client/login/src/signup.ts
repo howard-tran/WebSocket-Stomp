@@ -1,22 +1,9 @@
-interface User {
-  userName: String;
-  passWord: String;
-}
-
-interface APIResponse<T> {
-  status: number;
-  error: string;
-  message: string;
-  data: T;
-}
-
-// server http://larryjason.com:8081/api/
-// local http://localhost:8002/api/
-export const mainUrlPrefix = "http://larryjason.com:8081/api/";
+import {User, APIResponse, mainUrlPrefix} from "./index"
 
 // server http://larryjason.com/chat-app/login/
 // local ../index.html
-const signInUrl = "http://larryjason.com/chat-app/login/"
+const signInUrl = "http://larryjason.com/chat-app/login/";
+
 
 const showHidePass = () => {
   let passwordbox = $("#password").get(0) as HTMLInputElement;

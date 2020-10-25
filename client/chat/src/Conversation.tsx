@@ -63,9 +63,10 @@ export class Conversation extends Component<{}, ConversationState> {
     let socket = new SockJS(`${messageSocketPrefix}socket-service`);
     this.stompClient = Stomp.over(socket);
 
-    this.stompClient.connect({}, (frame: IFrame) => {
+    this.stompClient.onConnect = (frame: IFrame) => {
       this.stompClient.subscribe(`/conversation/${userData.userName}`, this.receiveNewConversation);
-    });
+    }; 
+    this.stompClient.activate(); 
   };
 
   receiveNewConversation = (message: IMessage) => {
@@ -88,7 +89,8 @@ export class Conversation extends Component<{}, ConversationState> {
       receiver: username,
       unixTime: "",
     };
-    this.stompClient.send("/service/notify-conversation", {}, JSON.stringify(conversation));
+    this.stompClient.publish({destination: "/service/notify-conversation", headers: {}, 
+      body: JSON.stringify(conversation)})
   };
 
   getConversation = async (username: String) => {

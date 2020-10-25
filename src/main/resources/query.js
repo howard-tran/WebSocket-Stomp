@@ -1,4 +1,4 @@
-DBQuery.shellBatchSize = 100;
+DBQuery.shellBatchSize = 10000;
 
 db.user.find();
 db.user.deleteOne({ id: "8da225ed-1f14-42cc-bb40-f0abb7d0e348" });

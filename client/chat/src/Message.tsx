@@ -8,7 +8,7 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/font-awesome/css/font-awesome.min.css";
 import "./CSS/Message.css";
 import { JsxElement, JsxEmit, textChangeRangeIsUnchanged } from "typescript";
-import { CompatClient, Frame, IMessage, Stomp } from "@stomp/stompjs";
+import { CompatClient, Frame, IFrame, IMessage, Stomp } from "@stomp/stompjs";
 import SockJS from "sockjs-client";
 
 interface IMessage_t {
@@ -70,9 +70,10 @@ export class Message extends Component<{}, MessageState> {
     let socket = new SockJS(`${messageSocketPrefix}socket-service`);
     this.stompClient = Stomp.over(socket);
 
-    this.stompClient.connect({}, (frame: Frame) => {
+    this.stompClient.onConnect = (frame: IFrame) => {
       this.stompClient.subscribe(`/room/${userData.userName}`, this.receiveMessageHandler);
-    });
+    }
+    this.stompClient.activate();
   };
 
   sendMessageHandler(content: String) {
@@ -87,7 +88,8 @@ export class Message extends Component<{}, MessageState> {
       content: content,
       unixTime: "",
     };
-    this.stompClient.send("/service/chat", {}, JSON.stringify(message));
+    this.stompClient.publish({destination: "/service/chat", headers: {}, 
+      body: JSON.stringify(message)})
   }
 
   loadMessasgeFromConversation = (receiver: String) => {

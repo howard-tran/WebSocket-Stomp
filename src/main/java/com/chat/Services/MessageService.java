@@ -7,7 +7,6 @@ import com.chat.Models.Message;
 import com.chat.PropertyManager.DatabaseSupplier;
 import com.chat.Repository.IMessageDAO;
 import com.google.gson.Gson;
-import com.jayway.jsonpath.Option;
 import com.mongodb.client.AggregateIterable;
 import com.mongodb.client.FindIterable;
 import java.time.LocalDate;

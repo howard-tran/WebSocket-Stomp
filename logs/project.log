@@ -3609,3 +3609,28 @@ Caused by: java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length
 	at com.chat.Services.ConversationService.CheckAvailableConversation(ConversationService.java:70)
 	... 43 more
 [2020-10-21 11:19:26] [http-nio-8002-exec-8] INFO  com.chat.LogManager.LogUtils  - mongodb://127.0.0.1:27017
+[2020-10-23 01:45:45] [com.chat.App.main()] INFO  com.chat.LogManager.LogUtils  - 
+==========
+App is started
+==========
+
+[2020-10-23 01:47:19] [com.chat.App.main()] INFO  com.chat.LogManager.LogUtils  - 
+==========
+App is started
+==========
+
+[2020-10-23 03:06:45] [com.chat.App.main()] INFO  com.chat.LogManager.LogUtils  - 
+==========
+App is started
+==========
+
+[2020-10-23 03:11:33] [com.chat.App.main()] INFO  com.chat.LogManager.LogUtils  - 
+==========
+App is started
+==========
+
+[2020-10-23 04:16:28] [com.chat.App.main()] INFO  com.chat.LogManager.LogUtils  - 
+==========
+App is started
+==========
+

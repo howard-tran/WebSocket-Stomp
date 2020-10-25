@@ -58,7 +58,11 @@ public class UserController {
     if (res.isEmpty()) {
       return new Response<Object>("", ErrorType.INTERNAL_SERVER_ERROR);
     } else {
-      return new Response<Object>("available", ErrorType.OK);
+      if (res.get()) {
+        return new Response<Object>("available", ErrorType.OK);
+      } else {
+        return new Response<Object>("username-not-available", ErrorType.OK);
+      }
     }
   }
 
@@ -80,16 +84,18 @@ public class UserController {
     Optional<User> res = userService.GetUser(user.getUserName());
     Optional<Boolean> check = userService.CheckAvailableUserName(user.getUserName());
 
-    if (res.isEmpty()) {
-      if (check.get()) {
-        return new Response<Object>("login-failed", ErrorType.OK);
-      }
+    if (check.isEmpty()) {
       return new Response<Object>("", ErrorType.INTERNAL_SERVER_ERROR);
     } else {
-      if (!user.getPassWord().equals(res.get().getPassWord())) {
+      if (!check.get()) {
+        if (!user.getPassWord().equals(res.get().getPassWord())) {
+          return new Response<Object>("login-failed", ErrorType.OK);
+          //
+        } else return new Response<Object>(res.get(), ErrorType.OK);
+        //
+      } else {
         return new Response<Object>("login-failed", ErrorType.OK);
       }
-      return new Response<Object>(res.get(), ErrorType.OK);
     }
   }
 

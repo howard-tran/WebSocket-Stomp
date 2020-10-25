@@ -1,7 +1,6 @@
 package com.chat.PropertyManager;
 
 import com.chat.LogManager.LogUtils;
-import com.jayway.jsonpath.Option;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;

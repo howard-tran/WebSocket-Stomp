@@ -29,5 +29,7 @@ public class App {
     PropertyConfigurator.configure(LogUtils.class.getResource("Log4J.properties").getFile());
 
     SpringApplication.run(App.class, args);
+
+    LogUtils.LogInfo(String.format("\n==========\n%s\n==========\n", "App is started"), null);
   }
 }

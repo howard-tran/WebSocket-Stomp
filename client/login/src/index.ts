@@ -1,9 +1,9 @@
-interface User {
+export interface User {
   userName: String;
   passWord: String;
 }
 
-interface APIResponse<T> {
+export interface APIResponse<T> {
   status: number;
   error: string;
   message: string;
