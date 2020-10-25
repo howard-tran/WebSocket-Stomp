@@ -1,9 +1,9 @@
-const path = require('path');
+const path = require("path");
 
 module.exports = {
   entry: {
-    index: './src/index.ts',
-    signup: './src/signup.ts',
+    // index: './src/index.ts',
+    signup: "./src/signup.ts",
   },
   module: {
     rules: [
@@ -11,16 +11,16 @@ module.exports = {
 
       {
         test: /\.tsx?$/,
-        use: 'ts-loader',
+        use: "ts-loader",
         exclude: /node_modules/,
       },
     ],
   },
   resolve: {
-    extensions: [ '.tsx', '.ts', '.js'],
+    extensions: [".tsx", ".ts", ".js"],
   },
   output: {
-    filename: '[name].js',
-    path: path.resolve(__dirname, 'dist'),
+    filename: "[name].js",
+    path: path.resolve(__dirname, "dist"),
   },
 };

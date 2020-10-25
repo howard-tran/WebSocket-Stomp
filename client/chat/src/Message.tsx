@@ -41,7 +41,7 @@ export class Message extends Component<{}, MessageState> {
     isLoading: false,
   };
 
-  private stompClient: CompatClient;
+  private stompClient: CompatClient = null;
 
   private messageTxtIns: HTMLTextAreaElement;
   private messageAreaIns: HTMLDivElement;

@@ -43,7 +43,7 @@ export class Conversation extends Component<{}, ConversationState> {
   private conversationMain: HTMLDivElement;
   private intervalId: NodeJS.Timeout;
 
-  private stompClient: CompatClient;
+  private stompClient: CompatClient = null;
 
   state: ConversationState = {
     conversationIndex: 0,
@@ -107,7 +107,10 @@ export class Conversation extends Component<{}, ConversationState> {
     else {
       clearInterval(this.intervalId);
     }
-    this.connectAndSubscribe();
+    
+    if (this.stompClient == null) {
+      this.connectAndSubscribe();
+    }
 
     let promise = this.getConversation(user.userName);
 

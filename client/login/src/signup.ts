@@ -1,9 +1,8 @@
-import {User, APIResponse, mainUrlPrefix} from "./index"
+import { User, APIResponse, mainUrlPrefix } from "./index";
 
 // server http://larryjason.com/chat-app/login/
 // local ../index.html
 const signInUrl = "http://larryjason.com/chat-app/login/";
-
 
 const showHidePass = () => {
   let passwordbox = $("#password").get(0) as HTMLInputElement;

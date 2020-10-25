@@ -10,7 +10,7 @@ export interface APIResponse<T> {
   data: T;
 }
 
-// server http://larryjason.com:8081/api/s
+// server http://larryjason.com:8081/api/
 // local http://localhost:8002/api/
 export const mainUrlPrefix = "http://larryjason.com:8081/api/";
 
@@ -83,8 +83,10 @@ const sendData = () => {
         //
       } else {
         setCookie("userName", dataSubmit.userName.valueOf());
+        setCookie("userName", dataSubmit.userName.valueOf());
 
         alert("ok");
+
         window.location.href = mainChatUrl;
       }
       submitBtn.disabled = false;

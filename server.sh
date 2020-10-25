@@ -12,7 +12,7 @@ scp docker-compose.yml root@larryjason.com:/app/chat-app;
 ssh -t root@larryjason.com rm -rf /var/www/public_html/chat-app/*; 
 scp -r client/chat/build root@larryjason.com:/var/www/public_html/chat-app; 
 ssh -t root@larryjason.com mv /var/www/public_html/chat-app/build /var/www/public_html/chat-app/chat; 
-scp -r client/login root@larryjason.com:/var/www/public_html/chat-app;
+rsync -av -e ssh --exclude='node_modules/*' client/login root@larryjason.com:/var/www/public_html/chat-app;
 
 # turn off server 
 ssh -t root@larryjason.com docker-compose -f /app/chat-app/docker-compose.yml down
