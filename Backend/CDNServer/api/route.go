@@ -22,7 +22,13 @@ func RouteDownload(app *gin.Engine) {
 
 func RouteTest(app *gin.Engine) {
 	//
-	app.Static("/control", "./public")
+	app.LoadHTMLGlob("public/*")
+	app.GET(
+		"/",
+		func(ctx *gin.Context) {
+			ctx.HTML(200, "index.html", "")
+		})
+	//app.Static("/control", "./public")
 	// app.GET(
 	// 	"/",
 	// 	func(ctx *gin.Context) {
