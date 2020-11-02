@@ -1,0 +1,29 @@
+FROM golang:alpine AS build-env
+WORKDIR /GoBackend
+ADD . /GoBackend
+RUN cd /GoBackend && go build && go get github.com/codegangsta/gin
+ENV PATH=$PATH:/root/go/bin/
+ENV GIN_MODE=release
+
+# RUN apt-get update \
+#     && apt-get install -y --no-install-recommends mysql-client \
+#     && rm -rf /var/lib/apt/lists/*
+
+
+FROM alpine
+RUN apk update && \
+   apk add ca-certificates && \
+   update-ca-certificates && \
+   rm -rf /var/cache/apk/*
+WORKDIR /GoBackend
+COPY --from=build-env /GoBackend/GoBackend .
+#COPY . .
+
+# RUN wget https://golang.org/dl/go1.15.3.linux-amd64.tar.gz
+# RUN tar -C /usr/local -xzf go1.15.3.linux-amd64.tar.gz
+# RUN rm go1.15.3.linux-amd64.tar.gz
+# RUN ls /usr/local/go/bin
+# ENV PATH=$PATH:/usr/local/go/bin
+
+EXPOSE 8080
+ENTRYPOINT ["./GoBackend"]

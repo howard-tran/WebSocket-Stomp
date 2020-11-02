@@ -1,0 +1,471 @@
+
+--------- GoServer Start at 2020/10/29 23:02:32 ---------
+[GIN-debug] Listening and serving HTTP on :8080
+
+--------- GoServer Start at 2020/10/29 23:12:38 ---------
+[GIN-debug] Listening and serving HTTP on :8080
+
+--------- GoServer Start at 2020/10/29 23:16:25 ---------
+[GIN-debug] Listening and serving HTTP on :8080
+
+--------- GoServer Start at 2020/10/29 23:16:53 ---------
+[GIN-debug] Environment variable PORT="3001"
+[GIN-debug] Listening and serving HTTP on :3001
+
+--------- GoServer Start at 2020/10/29 23:29:15 ---------
+[GIN-debug] POST   /api/account/login        --> GoBackend/controller.LoginHandle (3 handlers)
+[GIN-debug] POST   /api/account/signup       --> GoBackend/controller.SignupHandle (3 handlers)
+[GIN-debug] GET    /                         --> GoBackend/route.RouteTest.func1 (3 handlers)
+[GIN-debug] Environment variable PORT="3001"
+[GIN-debug] Listening and serving HTTP on :3001
+2020/10/29 - 23:29:15 |200|  114.813µs |        ::1 |GET    "/"
+2020/10/29 - 23:29:33 |200| 30.917811ms |        ::1 |POST   "/api/account/signup"
+2020/10/29 - 23:29:55 |200| 1.766014ms |        ::1 |POST   "/api/account/login"
+2020/10/29 - 23:30:08 |200| 1.570568ms |        ::1 |POST   "/api/account/signup"
+2020/10/29 - 23:30:35 |200| 1.728543ms |        ::1 |POST   "/api/account/login"
+2020/10/29 - 23:37:06 |404|      191ns |        ::1 |GET    "/api/account/login"
+2020/10/29 - 23:37:11 |200| 1.540059ms |        ::1 |POST   "/api/account/login"
+2020/10/29 - 23:37:17 |401| 2.098379ms |        ::1 |POST   "/api/account/login"
+2020/10/29 - 23:37:27 |200| 1.805661ms |        ::1 |POST   "/api/account/signup"
+2020/10/29 - 23:37:28 |200| 1.373935ms |        ::1 |POST   "/api/account/signup"
+2020/10/29 - 23:37:29 |200| 1.522191ms |        ::1 |POST   "/api/account/signup"
+2020/10/29 - 23:37:29 |200| 1.433328ms |        ::1 |POST   "/api/account/signup"
+2020/10/29 - 23:44:42 |200| 1.766838ms |        ::1 |POST   "/api/account/signup"
+2020/10/29 - 23:44:43 |200| 1.453899ms |        ::1 |POST   "/api/account/signup"
+2020/10/29 - 23:44:43 |200|  1.44954ms |        ::1 |POST   "/api/account/signup"
+2020/10/29 - 23:52:41 |200| 1.549128ms |        ::1 |POST   "/api/account/signup"
+2020/10/29 - 23:52:42 |200| 1.462505ms |        ::1 |POST   "/api/account/signup"
+2020/10/29 - 23:59:52 |200| 1.583222ms |        ::1 |POST   "/api/account/signup"
+2020/10/29 - 23:59:53 |400| 1.388545ms |        ::1 |POST   "/api/account/signup"
+2020/10/29 - 23:59:54 |400| 1.669967ms |        ::1 |POST   "/api/account/signup"
+2020/10/29 - 23:59:54 |400| 1.277051ms |        ::1 |POST   "/api/account/signup"
+2020/10/29 - 23:59:55 |400| 1.867944ms |        ::1 |POST   "/api/account/signup"
+2020/10/29 - 23:59:57 |400| 1.999561ms |        ::1 |POST   "/api/account/signup"
+2020/10/30 - 00:00:00 |400| 1.642247ms |        ::1 |POST   "/api/account/signup"
+2020/10/30 - 00:00:01 |400| 1.601831ms |        ::1 |POST   "/api/account/signup"
+2020/10/30 - 00:00:03 |400| 1.459521ms |        ::1 |POST   "/api/account/signup"
+2020/10/30 - 00:00:04 |400| 1.719968ms |        ::1 |POST   "/api/account/signup"
+2020/10/30 - 00:00:04 |400| 1.693917ms |        ::1 |POST   "/api/account/signup"
+2020/10/30 - 00:00:05 |400| 1.450556ms |        ::1 |POST   "/api/account/signup"
+2020/10/30 - 00:00:05 |400| 1.495498ms |        ::1 |POST   "/api/account/signup"
+2020/10/30 - 00:00:06 |400| 1.681031ms |        ::1 |POST   "/api/account/signup"
+2020/10/30 - 00:00:06 |400| 1.621735ms |        ::1 |POST   "/api/account/signup"
+2020/10/30 - 00:00:06 |400| 1.526214ms |        ::1 |POST   "/api/account/signup"
+2020/10/30 - 00:00:07 |400| 1.510463ms |        ::1 |POST   "/api/account/signup"
+2020/10/30 - 00:00:07 |400| 1.727995ms |        ::1 |POST   "/api/account/signup"
+2020/10/30 - 00:00:09 |400| 1.414894ms |        ::1 |POST   "/api/account/signup"
+2020/10/30 - 00:00:09 |400| 1.619989ms |        ::1 |POST   "/api/account/signup"
+
+--------- GoServer Start at 2020/10/30 03:17:17 ---------
+[GIN-debug] POST   /api/account/login        --> GoBackend/controller.LoginHandle (3 handlers)
+[GIN-debug] POST   /api/account/signup       --> GoBackend/controller.SignupHandle (3 handlers)
+[GIN-debug] POST   /api/account/sendsms      --> GoBackend/controller.ConfirmTelbySMS (3 handlers)
+[GIN-debug] GET    /                         --> GoBackend/route.RouteTest.func1 (3 handlers)
+[GIN-debug] Environment variable PORT="3001"
+[GIN-debug] Listening and serving HTTP on :3001
+2020/10/30 - 03:17:19 |400| 1.549374655s |        ::1 |POST   "/api/account/sendsms"
+
+--------- GoServer Start at 2020/10/30 03:18:32 ---------
+[GIN-debug] POST   /api/account/login        --> GoBackend/controller.LoginHandle (3 handlers)
+[GIN-debug] POST   /api/account/signup       --> GoBackend/controller.SignupHandle (3 handlers)
+[GIN-debug] POST   /api/account/sendsms      --> GoBackend/controller.ConfirmTelbySMS (3 handlers)
+[GIN-debug] GET    /                         --> GoBackend/route.RouteTest.func1 (3 handlers)
+[GIN-debug] Environment variable PORT="3001"
+[GIN-debug] Listening and serving HTTP on :3001
+2020/10/30 - 03:18:34 |400| 1.527503649s |        ::1 |POST   "/api/account/sendsms"
+
+--------- GoServer Start at 2020/10/30 03:20:04 ---------
+[GIN-debug] POST   /api/account/login        --> GoBackend/controller.LoginHandle (3 handlers)
+[GIN-debug] POST   /api/account/signup       --> GoBackend/controller.SignupHandle (3 handlers)
+[GIN-debug] POST   /api/account/sendsms      --> GoBackend/controller.ConfirmTelbySMS (3 handlers)
+[GIN-debug] GET    /                         --> GoBackend/route.RouteTest.func1 (3 handlers)
+[GIN-debug] Environment variable PORT="3001"
+[GIN-debug] Listening and serving HTTP on :3001
+2020/10/30 - 03:20:05 |400| 55.504759ms |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 03:20:14 |400| 37.701983ms |        ::1 |POST   "/api/account/sendsms"
+
+--------- GoServer Start at 2020/10/30 03:20:33 ---------
+[GIN-debug] POST   /api/account/login        --> GoBackend/controller.LoginHandle (3 handlers)
+[GIN-debug] POST   /api/account/signup       --> GoBackend/controller.SignupHandle (3 handlers)
+[GIN-debug] POST   /api/account/sendsms      --> GoBackend/controller.ConfirmTelbySMS (3 handlers)
+[GIN-debug] GET    /                         --> GoBackend/route.RouteTest.func1 (3 handlers)
+[GIN-debug] Environment variable PORT="3001"
+[GIN-debug] Listening and serving HTTP on :3001
+2020/10/30 - 03:20:33 |200| 77.528212ms |        ::1 |POST   "/api/account/sendsms"
+
+--------- GoServer Start at 2020/10/30 03:22:13 ---------
+[GIN-debug] POST   /api/account/login        --> GoBackend/controller.LoginHandle (3 handlers)
+[GIN-debug] POST   /api/account/signup       --> GoBackend/controller.SignupHandle (3 handlers)
+[GIN-debug] POST   /api/account/sendsms      --> GoBackend/controller.ConfirmTelbySMS (3 handlers)
+[GIN-debug] GET    /                         --> GoBackend/route.RouteTest.func1 (3 handlers)
+[GIN-debug] Environment variable PORT="3001"
+[GIN-debug] Listening and serving HTTP on :3001
+2020/10/30 - 03:22:13 |200| 44.072763ms |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 03:22:23 |400| 1.415651912s |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 03:24:45 |400| 1.681332433s |        ::1 |POST   "/api/account/sendsms"
+
+--------- GoServer Start at 2020/10/30 03:25:37 ---------
+[GIN-debug] POST   /api/account/login        --> GoBackend/controller.LoginHandle (3 handlers)
+[GIN-debug] POST   /api/account/signup       --> GoBackend/controller.SignupHandle (3 handlers)
+[GIN-debug] POST   /api/account/sendsms      --> GoBackend/controller.ConfirmTelbySMS (3 handlers)
+[GIN-debug] GET    /                         --> GoBackend/route.RouteTest.func1 (3 handlers)
+[GIN-debug] Environment variable PORT="3001"
+[GIN-debug] Listening and serving HTTP on :3001
+2020/10/30 - 03:25:39 |200| 1.542425308s |        ::1 |POST   "/api/account/sendsms"
+
+--------- GoServer Start at 2020/10/30 03:26:36 ---------
+[GIN-debug] POST   /api/account/login        --> GoBackend/controller.LoginHandle (3 handlers)
+[GIN-debug] POST   /api/account/signup       --> GoBackend/controller.SignupHandle (3 handlers)
+[GIN-debug] POST   /api/account/sendsms      --> GoBackend/controller.ConfirmTelbySMS (3 handlers)
+[GIN-debug] GET    /                         --> GoBackend/route.RouteTest.func1 (3 handlers)
+[GIN-debug] Environment variable PORT="3001"
+[GIN-debug] Listening and serving HTTP on :3001
+2020/10/30 - 03:26:36 |400| 86.331839ms |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 03:26:42 |200| 1.544185201s |        ::1 |POST   "/api/account/sendsms"
+
+--------- GoServer Start at 2020/10/30 03:29:07 ---------
+[GIN-debug] POST   /api/account/login        --> GoBackend/controller.LoginHandle (3 handlers)
+[GIN-debug] POST   /api/account/signup       --> GoBackend/controller.SignupHandle (3 handlers)
+[GIN-debug] POST   /api/account/sendsms      --> GoBackend/controller.ConfirmTelbySMS (3 handlers)
+[GIN-debug] GET    /                         --> GoBackend/route.RouteTest.func1 (3 handlers)
+[GIN-debug] Environment variable PORT="3001"
+[GIN-debug] Listening and serving HTTP on :3001
+2020/10/30 - 03:29:07 |400| 113.041767ms |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 03:29:13 |400| 35.465653ms |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 03:29:16 |400| 14.834343ms |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 03:29:19 |400| 70.617414ms |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 03:29:24 |400| 105.604735ms |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 03:29:26 |400| 31.596088ms |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 03:29:28 |200| 1.362101325s |        ::1 |POST   "/api/account/sendsms"
+
+--------- GoServer Start at 2020/10/30 03:32:26 ---------
+[GIN-debug] POST   /api/account/login        --> GoBackend/controller.LoginHandle (3 handlers)
+[GIN-debug] POST   /api/account/signup       --> GoBackend/controller.SignupHandle (3 handlers)
+[GIN-debug] POST   /api/account/sendsms      --> GoBackend/controller.ConfirmTelbySMS (3 handlers)
+[GIN-debug] GET    /                         --> GoBackend/route.RouteTest.func1 (3 handlers)
+[GIN-debug] Environment variable PORT="3001"
+[GIN-debug] Listening and serving HTTP on :3001
+2020/10/30 - 03:32:26 |400| 60.129845ms |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 03:32:32 |400| 102.048542ms |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 03:32:33 |400| 32.984871ms |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 03:32:34 |400| 53.292044ms |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 03:32:36 |200| 1.397349586s |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 03:34:54 |200| 1.851349722s |        ::1 |POST   "/api/account/sendsms"
+
+--------- GoServer Start at 2020/10/30 03:38:46 ---------
+[GIN-debug] POST   /api/account/login        --> GoBackend/controller.LoginHandle (3 handlers)
+[GIN-debug] POST   /api/account/signup       --> GoBackend/controller.SignupHandle (3 handlers)
+[GIN-debug] POST   /api/account/sendsms      --> GoBackend/controller.ConfirmTelbySMS (3 handlers)
+[GIN-debug] GET    /                         --> GoBackend/route.RouteTest.func1 (3 handlers)
+[GIN-debug] Environment variable PORT="3001"
+[GIN-debug] Listening and serving HTTP on :3001
+2020/10/30 - 03:38:48 |200| 1.490871173s |        ::1 |POST   "/api/account/sendsms"
+
+--------- GoServer Start at 2020/10/30 03:38:59 ---------
+[GIN-debug] POST   /api/account/login        --> GoBackend/controller.LoginHandle (3 handlers)
+[GIN-debug] POST   /api/account/signup       --> GoBackend/controller.SignupHandle (3 handlers)
+[GIN-debug] POST   /api/account/sendsms      --> GoBackend/controller.ConfirmTelbySMS (3 handlers)
+[GIN-debug] GET    /                         --> GoBackend/route.RouteTest.func1 (3 handlers)
+[GIN-debug] Environment variable PORT="3001"
+[GIN-debug] Listening and serving HTTP on :3001
+2020/10/30 - 03:39:01 |200| 1.428132793s |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 03:39:04 |200| 1.374805128s |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 03:39:07 |200| 2.420058226s |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 03:39:09 |200| 1.50436495s |        ::1 |POST   "/api/account/sendsms"
+
+--------- GoServer Start at 2020/10/30 03:40:49 ---------
+[GIN-debug] POST   /api/account/login        --> GoBackend/controller.LoginHandle (3 handlers)
+[GIN-debug] POST   /api/account/signup       --> GoBackend/controller.SignupHandle (3 handlers)
+[GIN-debug] POST   /api/account/sendsms      --> GoBackend/controller.ConfirmTelbySMS (3 handlers)
+[GIN-debug] POST   /api/account/checkkeycode --> GoBackend/controller.CheckTelbySMS (3 handlers)
+[GIN-debug] GET    /                         --> GoBackend/route.RouteTest.func1 (3 handlers)
+[GIN-debug] Environment variable PORT="3001"
+[GIN-debug] Listening and serving HTTP on :3001
+2020/10/30 - 03:40:49 |400| 4.218807ms |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 03:41:14 |401| 1.914286ms |        ::1 |POST   "/api/account/checkkeycode"
+2020/10/30 - 03:41:29 |401| 1.386491ms |        ::1 |POST   "/api/account/checkkeycode"
+2020/10/30 - 03:41:30 |401|  1.46391ms |        ::1 |POST   "/api/account/checkkeycode"
+2020/10/30 - 03:41:31 |401| 1.314393ms |        ::1 |POST   "/api/account/checkkeycode"
+2020/10/30 - 03:41:51 |401| 1.762634ms |        ::1 |POST   "/api/account/checkkeycode"
+
+--------- GoServer Start at 2020/10/30 03:51:19 ---------
+[GIN-debug] POST   /api/account/login        --> GoBackend/controller.LoginHandle (3 handlers)
+[GIN-debug] POST   /api/account/signup       --> GoBackend/controller.SignupHandle (3 handlers)
+[GIN-debug] POST   /api/account/sendsms      --> GoBackend/controller.ConfirmTelbySMS (3 handlers)
+[GIN-debug] POST   /api/account/checkkeycode --> GoBackend/controller.CheckTelbySMS (3 handlers)
+[GIN-debug] GET    /                         --> GoBackend/route.RouteTest.func1 (3 handlers)
+[GIN-debug] Environment variable PORT="3001"
+[GIN-debug] Listening and serving HTTP on :3001
+2020/10/30 - 03:51:19 |401| 8.415894ms |        ::1 |POST   "/api/account/checkkeycode"
+
+--------- GoServer Start at 2020/10/30 03:52:17 ---------
+[GIN-debug] POST   /api/account/login        --> GoBackend/controller.LoginHandle (3 handlers)
+[GIN-debug] POST   /api/account/signup       --> GoBackend/controller.SignupHandle (3 handlers)
+[GIN-debug] POST   /api/account/sendsms      --> GoBackend/controller.ConfirmTelbySMS (3 handlers)
+[GIN-debug] POST   /api/account/checkkeycode --> GoBackend/controller.CheckTelbySMS (3 handlers)
+[GIN-debug] GET    /                         --> GoBackend/route.RouteTest.func1 (3 handlers)
+[GIN-debug] Environment variable PORT="3001"
+[GIN-debug] Listening and serving HTTP on :3001
+2020/10/30 - 03:52:18 |401| 6.053465ms |        ::1 |POST   "/api/account/checkkeycode"
+2020/10/30 - 03:52:20 |401| 1.207552ms |        ::1 |POST   "/api/account/checkkeycode"
+
+--------- GoServer Start at 2020/10/30 03:53:53 ---------
+[GIN-debug] POST   /api/account/login        --> GoBackend/controller.LoginHandle (3 handlers)
+[GIN-debug] POST   /api/account/signup       --> GoBackend/controller.SignupHandle (3 handlers)
+[GIN-debug] POST   /api/account/sendsms      --> GoBackend/controller.ConfirmTelbySMS (3 handlers)
+[GIN-debug] POST   /api/account/checkkeycode --> GoBackend/controller.CheckTelbySMS (3 handlers)
+[GIN-debug] GET    /                         --> GoBackend/route.RouteTest.func1 (3 handlers)
+[GIN-debug] Environment variable PORT="3001"
+[GIN-debug] Listening and serving HTTP on :3001
+2020/10/30 - 03:53:53 |401| 6.525385ms |        ::1 |POST   "/api/account/checkkeycode"
+2020/10/30 - 03:53:55 |401| 1.781001ms |        ::1 |POST   "/api/account/checkkeycode"
+
+--------- GoServer Start at 2020/10/30 03:54:32 ---------
+[GIN-debug] POST   /api/account/login        --> GoBackend/controller.LoginHandle (3 handlers)
+[GIN-debug] POST   /api/account/signup       --> GoBackend/controller.SignupHandle (3 handlers)
+[GIN-debug] POST   /api/account/sendsms      --> GoBackend/controller.ConfirmTelbySMS (3 handlers)
+[GIN-debug] POST   /api/account/checkkeycode --> GoBackend/controller.CheckTelbySMS (3 handlers)
+[GIN-debug] GET    /                         --> GoBackend/route.RouteTest.func1 (3 handlers)
+[GIN-debug] Environment variable PORT="3001"
+[GIN-debug] Listening and serving HTTP on :3001
+2020/10/30 - 03:54:32 |401| 4.648665ms |        ::1 |POST   "/api/account/checkkeycode"
+
+--------- GoServer Start at 2020/10/30 03:55:07 ---------
+[GIN-debug] POST   /api/account/login        --> GoBackend/controller.LoginHandle (3 handlers)
+[GIN-debug] POST   /api/account/signup       --> GoBackend/controller.SignupHandle (3 handlers)
+[GIN-debug] POST   /api/account/sendsms      --> GoBackend/controller.ConfirmTelbySMS (3 handlers)
+[GIN-debug] POST   /api/account/checkkeycode --> GoBackend/controller.CheckTelbySMS (3 handlers)
+[GIN-debug] GET    /                         --> GoBackend/route.RouteTest.func1 (3 handlers)
+[GIN-debug] Environment variable PORT="3001"
+[GIN-debug] Listening and serving HTTP on :3001
+2020/10/30 - 03:55:07 |401| 5.249796ms |        ::1 |POST   "/api/account/checkkeycode"
+2020/10/30 - 03:55:11 |401|   1.5778ms |        ::1 |POST   "/api/account/checkkeycode"
+2020/10/30 - 03:55:12 |401| 1.537913ms |        ::1 |POST   "/api/account/checkkeycode"
+2020/10/30 - 03:55:13 |401| 1.398741ms |        ::1 |POST   "/api/account/checkkeycode"
+2020/10/30 - 03:55:14 |401|  1.67264ms |        ::1 |POST   "/api/account/checkkeycode"
+2020/10/30 - 03:55:14 |401| 1.660023ms |        ::1 |POST   "/api/account/checkkeycode"
+2020/10/30 - 03:55:24 |200| 1.518020745s |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 03:55:36 |200| 1.937684ms |        ::1 |POST   "/api/account/checkkeycode"
+2020/10/30 - 03:55:37 |401| 1.712223ms |        ::1 |POST   "/api/account/checkkeycode"
+2020/10/30 - 03:55:38 |401| 1.600462ms |        ::1 |POST   "/api/account/checkkeycode"
+2020/10/30 - 03:55:39 |401| 1.392085ms |        ::1 |POST   "/api/account/checkkeycode"
+2020/10/30 - 03:55:39 |401| 1.660772ms |        ::1 |POST   "/api/account/checkkeycode"
+2020/10/30 - 03:55:40 |401| 1.343388ms |        ::1 |POST   "/api/account/checkkeycode"
+2020/10/30 - 03:55:40 |401| 1.364915ms |        ::1 |POST   "/api/account/checkkeycode"
+2020/10/30 - 04:00:07 |400| 10.501895046s |        ::1 |POST   "/api/account/checkkeycode"
+2020/10/30 - 04:00:34 |401| 1.591537ms |        ::1 |POST   "/api/account/checkkeycode"
+2020/10/30 - 04:00:35 |401| 2.201951ms |        ::1 |POST   "/api/account/checkkeycode"
+2020/10/30 - 04:00:36 |401| 1.624925ms |        ::1 |POST   "/api/account/checkkeycode"
+2020/10/30 - 04:00:36 |401| 1.598951ms |        ::1 |POST   "/api/account/checkkeycode"
+2020/10/30 - 04:00:37 |401| 1.430832ms |        ::1 |POST   "/api/account/checkkeycode"
+2020/10/30 - 04:00:38 |401| 1.782087ms |        ::1 |POST   "/api/account/checkkeycode"
+2020/10/30 - 04:00:38 |401| 19.790269ms |        ::1 |POST   "/api/account/checkkeycode"
+2020/10/30 - 04:00:39 |401| 1.771324ms |        ::1 |POST   "/api/account/checkkeycode"
+2020/10/30 - 04:00:39 |401| 1.308797ms |        ::1 |POST   "/api/account/checkkeycode"
+2020/10/30 - 04:00:40 |401| 1.722433ms |        ::1 |POST   "/api/account/checkkeycode"
+2020/10/30 - 04:00:40 |401| 1.468675ms |        ::1 |POST   "/api/account/checkkeycode"
+2020/10/30 - 04:00:41 |401| 1.453803ms |        ::1 |POST   "/api/account/checkkeycode"
+2020/10/30 - 04:00:41 |401| 1.677682ms |        ::1 |POST   "/api/account/checkkeycode"
+
+--------- GoServer Start at 2020/10/30 04:03:24 ---------
+[GIN-debug] POST   /api/account/login        --> GoBackend/controller.LoginHandle (3 handlers)
+[GIN-debug] POST   /api/account/signup       --> GoBackend/controller.SignupHandle (3 handlers)
+[GIN-debug] POST   /api/account/sendsms      --> GoBackend/controller.ConfirmTelbySMS (3 handlers)
+[GIN-debug] POST   /api/account/checkkeycode --> GoBackend/controller.CheckTelbySMS (3 handlers)
+[GIN-debug] GET    /                         --> GoBackend/route.RouteTest.func1 (3 handlers)
+[GIN-debug] Environment variable PORT="3001"
+[GIN-debug] Listening and serving HTTP on :3001
+2020/10/30 - 04:03:26 |200| 1.889037509s |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 04:03:32 |200| 1.347562702s |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 04:03:36 |200| 3.357650156s |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 04:03:38 |200| 1.424683816s |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 04:03:41 |200| 1.458527655s |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 04:03:43 |200| 1.450684115s |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 04:03:45 |200| 1.476653372s |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 04:03:47 |200| 1.697093664s |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 04:04:00 |200| 1.453296003s |        ::1 |POST   "/api/account/sendsms"
+
+--------- GoServer Start at 2020/10/30 04:04:05 ---------
+[GIN-debug] POST   /api/account/login        --> GoBackend/controller.LoginHandle (3 handlers)
+[GIN-debug] POST   /api/account/signup       --> GoBackend/controller.SignupHandle (3 handlers)
+[GIN-debug] POST   /api/account/sendsms      --> GoBackend/controller.ConfirmTelbySMS (3 handlers)
+[GIN-debug] POST   /api/account/checkkeycode --> GoBackend/controller.CheckTelbySMS (3 handlers)
+[GIN-debug] GET    /                         --> GoBackend/route.RouteTest.func1 (3 handlers)
+[GIN-debug] Environment variable PORT="3001"
+[GIN-debug] Listening and serving HTTP on :3001
+2020/10/30 - 04:04:06 |400| 4.061051ms |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 04:04:07 |400|  2.33785ms |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 04:04:07 |400|  2.09612ms |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 04:04:08 |400| 1.688973ms |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 04:04:08 |400| 2.096856ms |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 04:04:09 |400| 1.648261ms |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 04:04:09 |400| 2.220469ms |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 04:04:09 |400| 1.496972ms |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 04:04:10 |400| 2.282841ms |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 04:04:10 |400| 1.753971ms |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 04:04:10 |400| 2.153475ms |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 04:04:11 |400|  1.74035ms |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 04:04:11 |400| 1.900638ms |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 04:04:12 |400| 2.019282ms |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 04:04:12 |400| 1.940607ms |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 04:04:13 |400| 2.321626ms |        ::1 |POST   "/api/account/sendsms"
+
+--------- GoServer Start at 2020/10/30 04:08:28 ---------
+[GIN-debug] POST   /api/account/login        --> GoBackend/controller.LoginHandle (3 handlers)
+[GIN-debug] POST   /api/account/signup       --> GoBackend/controller.SignupHandle (3 handlers)
+[GIN-debug] POST   /api/account/sendsms      --> GoBackend/controller.ConfirmTelbySMS (3 handlers)
+[GIN-debug] POST   /api/account/checkkeycode --> GoBackend/controller.CheckTelbySMS (3 handlers)
+[GIN-debug] GET    /                         --> GoBackend/route.RouteTest.func1 (3 handlers)
+[GIN-debug] Environment variable PORT="3001"
+[GIN-debug] Listening and serving HTTP on :3001
+2020/10/30 - 04:08:28 |400| 7.660965ms |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 04:08:29 |400| 1.991091ms |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 04:08:30 |400| 1.868979ms |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 04:08:30 |400| 1.789008ms |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 04:08:31 |400| 1.647126ms |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 04:08:31 |400|  1.55563ms |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 04:08:53 |200| 1.67676087s |        ::1 |POST   "/api/account/sendsms"
+
+--------- GoServer Start at 2020/10/30 04:09:39 ---------
+[GIN-debug] POST   /api/account/login        --> GoBackend/controller.LoginHandle (3 handlers)
+[GIN-debug] POST   /api/account/signup       --> GoBackend/controller.SignupHandle (3 handlers)
+[GIN-debug] POST   /api/account/sendsms      --> GoBackend/controller.ConfirmTelbySMS (3 handlers)
+[GIN-debug] POST   /api/account/checkkeycode --> GoBackend/controller.CheckTelbySMS (3 handlers)
+[GIN-debug] GET    /                         --> GoBackend/route.RouteTest.func1 (3 handlers)
+[GIN-debug] Environment variable PORT="3001"
+[GIN-debug] Listening and serving HTTP on :3001
+2020/10/30 - 04:09:40 |200| 1.429160184s |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 04:12:59 |200| 1.537829763s |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 04:13:44 |200| 2.613190976s |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 04:14:53 |200| 1.567837795s |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 04:14:55 |200| 1.521089854s |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 04:15:15 |200| 1.124162145s |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 04:15:32 |200|  2.61919ms |        ::1 |POST   "/api/account/checkkeycode"
+2020/10/30 - 04:15:43 |200| 2.187985ms |        ::1 |POST   "/api/account/checkkeycode"
+2020/10/30 - 04:15:50 |200| 1.781388ms |        ::1 |POST   "/api/account/checkkeycode"
+2020/10/30 - 04:15:56 |401| 1.348022ms |        ::1 |POST   "/api/account/checkkeycode"
+
+--------- GoServer Start at 2020/10/30 04:18:14 ---------
+[GIN-debug] POST   /api/account/login        --> GoBackend/controller.LoginHandle (3 handlers)
+[GIN-debug] POST   /api/account/signup       --> GoBackend/controller.SignupHandle (3 handlers)
+[GIN-debug] POST   /api/account/sendsms      --> GoBackend/controller.ConfirmTelbySMS (3 handlers)
+[GIN-debug] POST   /api/account/checkkeycode --> GoBackend/controller.CheckTelbySMS (3 handlers)
+[GIN-debug] GET    /                         --> GoBackend/route.RouteTest.func1 (3 handlers)
+[GIN-debug] Environment variable PORT="3001"
+[GIN-debug] Listening and serving HTTP on :3001
+2020/10/30 - 04:18:15 |401| 6.229266ms |        ::1 |POST   "/api/account/checkkeycode"
+2020/10/30 - 04:18:16 |401| 1.616351ms |        ::1 |POST   "/api/account/checkkeycode"
+2020/10/30 - 04:18:16 |401| 1.768607ms |        ::1 |POST   "/api/account/checkkeycode"
+2020/10/30 - 04:18:17 |401|  1.06828ms |        ::1 |POST   "/api/account/checkkeycode"
+2020/10/30 - 04:18:18 |401| 1.681997ms |        ::1 |POST   "/api/account/checkkeycode"
+2020/10/30 - 04:18:19 |401| 2.157972ms |        ::1 |POST   "/api/account/checkkeycode"
+2020/10/30 - 04:18:19 |401| 1.404449ms |        ::1 |POST   "/api/account/checkkeycode"
+2020/10/30 - 04:18:20 |401| 1.357772ms |        ::1 |POST   "/api/account/checkkeycode"
+
+--------- GoServer Start at 2020/10/30 08:34:31 ---------
+[GIN-debug] POST   /api/account/login        --> GoBackend/controller.LoginHandle (3 handlers)
+[GIN-debug] POST   /api/account/signup       --> GoBackend/controller.SignupHandle (3 handlers)
+[GIN-debug] POST   /api/account/sendsms      --> GoBackend/controller.ConfirmTelbySMS (3 handlers)
+[GIN-debug] POST   /api/account/checkkeycode --> GoBackend/controller.CheckTelbySMS (3 handlers)
+[GIN-debug] GET    /                         --> GoBackend/route.RouteTest.func1 (3 handlers)
+[GIN-debug] Environment variable PORT="3001"
+[GIN-debug] Listening and serving HTTP on :3001
+2020/10/30 - 08:34:31 |401| 12.58953ms |        ::1 |POST   "/api/account/checkkeycode"
+2020/10/30 - 08:34:41 |200| 1.75225538s |        ::1 |POST   "/api/account/sendsms"
+
+--------- GoServer Start at 2020/10/30 10:23:24 ---------
+[GIN-debug] POST   /api/account/login        --> GoBackend/controller.LoginHandle (3 handlers)
+[GIN-debug] POST   /api/account/signup       --> GoBackend/controller.SignupHandle (3 handlers)
+[GIN-debug] POST   /api/account/sendsms      --> GoBackend/controller.ConfirmTelbySMS (3 handlers)
+[GIN-debug] POST   /api/account/checkkeycode --> GoBackend/controller.CheckTelbySMS (3 handlers)
+[GIN-debug] GET    /                         --> GoBackend/route.RouteTest.func1 (3 handlers)
+[GIN-debug] Environment variable PORT is undefined. Using port :8080 by default
+[GIN-debug] Listening and serving HTTP on :8080
+
+--------- GoServer Start at 2020/10/30 12:58:14 ---------
+[GIN-debug] POST   /api/account/login        --> GoBackend/controller.LoginHandle (3 handlers)
+[GIN-debug] POST   /api/account/signup       --> GoBackend/controller.SignupHandle (3 handlers)
+[GIN-debug] POST   /api/account/sendsms      --> GoBackend/controller.ConfirmTelbySMS (3 handlers)
+[GIN-debug] POST   /api/account/checkkeycode --> GoBackend/controller.CheckTelbySMS (3 handlers)
+[GIN-debug] GET    /                         --> GoBackend/route.RouteTest.func1 (3 handlers)
+[GIN-debug] Environment variable PORT="3001"
+[GIN-debug] Listening and serving HTTP on :3001
+2020/10/30 - 12:58:14 |400|  259.031µs |        ::1 |POST   "/api/account/sendsms"
+
+--------- GoServer Start at 2020/10/30 12:58:51 ---------
+[GIN-debug] POST   /api/account/login        --> GoBackend/controller.LoginHandle (3 handlers)
+[GIN-debug] POST   /api/account/signup       --> GoBackend/controller.SignupHandle (3 handlers)
+[GIN-debug] POST   /api/account/sendsms      --> GoBackend/controller.ConfirmTelbySMS (3 handlers)
+[GIN-debug] POST   /api/account/checkkeycode --> GoBackend/controller.CheckTelbySMS (3 handlers)
+[GIN-debug] GET    /                         --> GoBackend/route.RouteTest.func1 (3 handlers)
+[GIN-debug] Environment variable PORT="3001"
+[GIN-debug] Listening and serving HTTP on :3001
+2020/10/30 - 12:58:52 |200| 1.48035444s |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 12:59:47 |200| 2.404669901s |        ::1 |POST   "/api/account/sendsms"
+
+--------- GoServer Start at 2020/10/30 13:03:39 ---------
+[GIN-debug] POST   /api/account/login        --> GoBackend/controller.LoginHandle (3 handlers)
+[GIN-debug] POST   /api/account/signup       --> GoBackend/controller.SignupHandle (3 handlers)
+[GIN-debug] POST   /api/account/sendsms      --> GoBackend/controller.ConfirmTelbySMS (3 handlers)
+[GIN-debug] POST   /api/account/checkkeycode --> GoBackend/controller.CheckTelbySMS (3 handlers)
+[GIN-debug] GET    /                         --> GoBackend/route.RouteTest.func1 (3 handlers)
+[GIN-debug] Environment variable PORT="3001"
+[GIN-debug] Listening and serving HTTP on :3001
+2020/10/30 - 13:03:41 |200| 1.584325919s |        ::1 |POST   "/api/account/sendsms"
+
+--------- GoServer Start at 2020/10/30 13:04:31 ---------
+[GIN-debug] POST   /api/account/login        --> GoBackend/controller.LoginHandle (3 handlers)
+[GIN-debug] POST   /api/account/signup       --> GoBackend/controller.SignupHandle (3 handlers)
+[GIN-debug] POST   /api/account/sendsms      --> GoBackend/controller.ConfirmTelbySMS (3 handlers)
+[GIN-debug] POST   /api/account/checkkeycode --> GoBackend/controller.CheckTelbySMS (3 handlers)
+[GIN-debug] GET    /                         --> GoBackend/route.RouteTest.func1 (3 handlers)
+[GIN-debug] Environment variable PORT="3001"
+[GIN-debug] Listening and serving HTTP on :3001
+2020/10/30 - 13:04:33 |200| 1.714121846s |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 13:05:26 |401| 6.590143ms |        ::1 |POST   "/api/account/checkkeycode"
+2020/10/30 - 13:05:49 |200| 7.333292ms |        ::1 |POST   "/api/account/checkkeycode"
+2020/10/30 - 13:06:54 |401| 6.307612ms |        ::1 |POST   "/api/account/checkkeycode"
+2020/10/30 - 13:07:02 |200| 1.526610979s |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 13:07:18 |401| 7.256345ms |        ::1 |POST   "/api/account/checkkeycode"
+2020/10/30 - 13:07:22 |200| 7.235424ms |        ::1 |POST   "/api/account/checkkeycode"
+2020/10/30 - 13:07:24 |401| 9.322689ms |        ::1 |POST   "/api/account/checkkeycode"
+2020/10/30 - 13:09:18 |400| 1.819681208s |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 13:09:21 |400| 374.876559ms |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 13:09:22 |400| 360.113726ms |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 13:09:24 |400| 337.524221ms |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 13:09:42 |400| 355.216771ms |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 13:09:43 |400| 350.660112ms |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 13:09:44 |400| 343.33903ms |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 13:09:46 |400| 349.668569ms |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 13:09:47 |400| 350.508218ms |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 13:13:54 |400| 1.309589562s |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 13:13:56 |400| 347.746687ms |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 13:17:24 |200| 1.353391635s |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 13:17:43 |401| 29.367053ms |        ::1 |POST   "/api/account/checkkeycode"
+2020/10/30 - 13:17:56 |200| 8.638062ms |        ::1 |POST   "/api/account/checkkeycode"
+2020/10/30 - 13:17:59 |401| 7.524243ms |        ::1 |POST   "/api/account/checkkeycode"
+2020/10/30 - 13:18:11 |200| 1.4649069s |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 15:00:58 |200|  150.843µs |        ::1 |GET    "/"
+2020/10/30 - 15:00:58 |404|      591ns |        ::1 |GET    "/favicon.ico"
+
+--------- GoServer Start at 2020/10/30 15:15:30 ---------
+[GIN-debug] POST   /api/account/login        --> GoBackend/controller.LoginHandle (3 handlers)
+[GIN-debug] POST   /api/account/signup       --> GoBackend/controller.SignupHandle (3 handlers)
+[GIN-debug] POST   /api/account/sendsms      --> GoBackend/controller.ConfirmTelbySMS (3 handlers)
+[GIN-debug] POST   /api/account/checkkeycode --> GoBackend/controller.CheckTelbySMS (3 handlers)
+[GIN-debug] GET    /                         --> GoBackend/route.RouteTest.func1 (3 handlers)
+[GIN-debug] Environment variable PORT="3001"
+[GIN-debug] Listening and serving HTTP on :3001
+2020/10/30 - 15:15:41 |400| 11.508008951s |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 15:43:50 |400| 11.50708211s |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 15:44:24 |400| 11.508161993s |        ::1 |POST   "/api/account/sendsms"
+2020/10/30 - 15:49:36 |200| 1.691949385s |        ::1 |POST   "/api/account/sendsms"
+
+--------- GoServer Start at 2020/11/01 20:40:49 ---------
+[GIN-debug] POST   /api/account/login        --> GoBackend/controller.LoginHandle (3 handlers)
+[GIN-debug] POST   /api/account/signup       --> GoBackend/controller.SignupHandle (3 handlers)
+[GIN-debug] POST   /api/account/sendsms      --> GoBackend/controller.ConfirmTelbySMS (3 handlers)
+[GIN-debug] POST   /api/account/checkkeycode --> GoBackend/controller.CheckTelbySMS (3 handlers)
+[GIN-debug] GET    /                         --> GoBackend/route.RouteTest.func1 (3 handlers)
+[GIN-debug] Environment variable PORT is undefined. Using port :8080 by default
+[GIN-debug] Listening and serving HTTP on :8080

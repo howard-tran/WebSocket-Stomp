@@ -1,0 +1,28 @@
+FROM golang:alpine AS build-env
+WORKDIR /CDNServer
+ADD . /CDNServer
+RUN cd /CDNServer && go build && go get github.com/codegangsta/gin
+ENV PATH=$PATH:/root/go/bin/
+ENV GIN_MODE=release
+
+# RUN apt-get update \
+#     && apt-get install -y --no-install-recommends mysql-client \
+#     && rm -rf /var/lib/apt/lists/*
+
+FROM alpine
+RUN apk update && \
+   apk add ca-certificates && \
+   update-ca-certificates && \
+   rm -rf /var/cache/apk/*
+WORKDIR /CDNServer
+COPY --from=build-env /CDNServer .
+#COPY . .
+
+# RUN wget https://golang.org/dl/go1.15.3.linux-amd64.tar.gz
+# RUN tar -C /usr/local -xzf go1.15.3.linux-amd64.tar.gz
+# RUN rm go1.15.3.linux-amd64.tar.gz
+# RUN ls /usr/local/go/bin
+# ENV PATH=$PATH:/usr/local/go/bin
+
+EXPOSE 8888
+ENTRYPOINT ["./CDNServer"]

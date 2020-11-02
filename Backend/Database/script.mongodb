@@ -1,0 +1,18 @@
+db.getCollection('Account').ensureIndex({username:1},{unique: true});
+db.KeyCodeTel.createIndex( { "time": 1 }, { expireAfterSeconds: 300 } );
+  0375119131
+    curl -XPOST "https://api.authy.com/protected/json/users/new" \
+    -H "X-Authy-API-Key: da4969467118adc13f71028343dadf4f" \
+    --data-urlencode 'user[cellphone]=375119131' \
+    --data-urlencode 'user[country_code]=84'
+
+
+
+    AC8ccbba8fc9b9b05ead8ac831f6ed5945
+
+EXCLAMATION_MARK='!'
+curl -X POST https://api.twilio.com/2010-04-01/Accounts/AC8ccbba8fc9b9b05ead8ac831f6ed5945/Messages.json \
+--data-urlencode "Body=halo Minh day" \
+--data-urlencode "From=+12053862330" \
+--data-urlencode "To=+84375119131" \
+-u AC8ccbba8fc9b9b05ead8ac831f6ed5945:da4969467118adc13f71028343dadf4f````

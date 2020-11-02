@@ -1,0 +1,15 @@
+#Config Database
+[Database]
+Stringconnection = "mongodb://root:root@localhost:27017/"
+NAME_DATABASE = "bet_store"
+
+#Config secretkey auth 
+[Auth]
+Secretkey = "TWluaCAoxJBvw6BuLCBLaMO0aSwgVGnhur9uKQ=="
+Issuer = "localhost"
+
+#Config tel auth server
+[TelAuthServer]
+AUTH_KEY = "QUM4Y2NiYmE4ZmM5YjliMDVlYWQ4YWM4MzFmNmVkNTk0NTpkYTQ5Njk0NjcxMThhZGMxM2Y3MTAyODM0M2RhZGY0Zg=="
+TEL_HOST = "+12053862330"
+URL_HOST = "https://api.twilio.com/2010-04-01/Accounts/AC8ccbba8fc9b9b05ead8ac831f6ed5945/Messages.json"

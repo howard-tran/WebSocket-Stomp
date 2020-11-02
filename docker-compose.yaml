@@ -1,0 +1,40 @@
+version: "2"
+
+services: 
+    # Gobackend:
+    #     build: 
+    #         context: ./Backend/GoBackend
+    #         dockerfile: dockerfile.godev
+    #     ports:
+    #         - '8080:8080'
+    #     volumes:
+    #         - ./Backend/Gobackend:/App/Backend/GoBackend
+    #     networks:
+    #         - backend
+    cdnserver:
+        build: 
+            context: ./Backend/CDNServer
+            dockerfile: dockerfile.cdn
+        ports:
+            - '8888:8888'
+        volumes:
+            - ./Backend/CDNServer:/App/Backend/CDNServer
+        networks:
+            - backend
+    database:
+        image: 'mongo'
+        container_name: 'mongodtb'
+        ports:
+            - '27017:27017'
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: root
+            MONGO_INITDB_ROOT_PASSWORD: root
+            MONGO_INITDB_DATABASE: BetStore
+        volumes:
+            #- ./Backend/Database/mongodata:/data/db
+            - ./Backend/Database/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+        networks: 
+            - backend
+networks: 
+    backend:
+        driver: bridge
