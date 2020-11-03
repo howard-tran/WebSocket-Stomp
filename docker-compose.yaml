@@ -18,23 +18,24 @@ services:
         ports:
             - '8888:8888'
         volumes:
-            - ./Backend/CDNServer:/App/Backend/CDNServer
+            - ./Backend/CDNServer:/app/Backend/CDNServer
+            - ./Backend/CDNServer/go.mod:/app/Backend/CDNServer/go.mod
         networks:
             - backend
-    database:
-        image: 'mongo'
-        container_name: 'mongodtb'
-        ports:
-            - '27017:27017'
-        environment:
-            MONGO_INITDB_ROOT_USERNAME: root
-            MONGO_INITDB_ROOT_PASSWORD: root
-            MONGO_INITDB_DATABASE: BetStore
-        volumes:
-            #- ./Backend/Database/mongodata:/data/db
-            - ./Backend/Database/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
-        networks: 
-            - backend
+    # database:
+    #     image: 'mongo'
+    #     container_name: 'mongodtb'
+    #     ports:
+    #         - '27017:27017'
+    #     environment:
+    #         MONGO_INITDB_ROOT_USERNAME: root
+    #         MONGO_INITDB_ROOT_PASSWORD: root
+    #         MONGO_INITDB_DATABASE: BetStore
+    #     volumes:
+    #         #- ./Backend/Database/mongodata:/data/db
+    #         - ./Backend/Database/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    #     networks: 
+    #         - backend
 networks: 
     backend:
         driver: bridge

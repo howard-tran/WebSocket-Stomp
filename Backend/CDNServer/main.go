@@ -7,12 +7,12 @@ import (
 	"io"
 	"os"
 	"time"
-
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
 	app := gin.New()
+	
 	gin.SetMode(gin.ReleaseMode)
 	//mutilogger
 	SetupWriteLogFile()
@@ -23,7 +23,7 @@ func main() {
 	app.MaxMultipartMemory = 8 << 20 // 8 MiB
 	api.SetRoute(app)
 
-	app.Run(":8888")
+	app.Run()
 }
 
 func SetupWriteLogFile() {
