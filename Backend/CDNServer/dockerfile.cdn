@@ -14,6 +14,10 @@ RUN go get github.com/codegangsta/gin
 #RUN chmod +x /go/bin/gin
 
 EXPOSE 8888
+
+RUN ["go", "version"]
+RUN ["gin", "-v"]
+
 ENTRYPOINT ["gin", "-p", "8888"]
 
 # FROM golang:alpine AS build-env
