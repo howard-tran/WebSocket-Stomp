@@ -1,2 +1,3 @@
-Backend/CDNServer/log
+#ignore CDNServer
+Backend/CDNServer/log/*
 Backend/CDNServer/database/*
