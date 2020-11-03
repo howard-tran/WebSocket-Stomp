@@ -1,3 +1,7 @@
 #ignore CDNServer
 Backend/CDNServer/log/*
 Backend/CDNServer/database/*
+
+#golang
+gin-bin
+go.sum
