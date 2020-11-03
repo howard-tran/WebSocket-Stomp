@@ -27,6 +27,11 @@ func main() {
 }
 
 func SetupWriteLogFile() {
+	if _, err := os.Stat("log"); os.IsNotExist(err) {
+		if err := os.MkdirAll("log", os.ModePerm); err != nil {
+			fmt.Printf("[CreateFile] Create dir failed: %s\n", err.Error())
+		}
+	}
 	f, err := os.OpenFile("log/server.log", os.O_APPEND|os.O_CREATE|os.O_RDWR, 0777)
 	if err != nil {
 		fmt.Printf("[SetupWriteLogger] %s\n", err.Error())

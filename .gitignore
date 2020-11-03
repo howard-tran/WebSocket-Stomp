@@ -1,2 +1,2 @@
-*.log
+Backend/CDNServer/log
 Backend/CDNServer/database/*
