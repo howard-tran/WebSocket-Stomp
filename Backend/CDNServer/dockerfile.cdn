@@ -1,5 +1,9 @@
 FROM minhdoan1510/alpinegolang
 
+ARG TZ='Asia/Ho_Chi_Minh'
+
+ENV TZ ${TZ}
+
 RUN apk add --no-cache git
 #ENV PATH=$PATH:Backend/CDNServer/vendor/github.com/codegangsta/gin/bin/gin
 ENV GIN_MODE=release
