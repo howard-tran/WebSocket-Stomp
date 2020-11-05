@@ -52,12 +52,26 @@
       <version>2.3.4.RELEASE</version>
     </dependency>
 
+    <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-security</artifactId>
+        <version>2.3.4.RELEASE</version>
+    </dependency>
+
 
     <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-websocket -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-websocket</artifactId>
       <version>2.3.4.RELEASE</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-thymeleaf -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        <version>2.3.4.RELEASE</version>
     </dependency>
 
     <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
@@ -105,10 +119,22 @@
         <filtering>false</filtering>
         <directory>${basedir}/src/main</directory>
         <excludes> 
-          <exclude>**/java/</exclude>
+          <exclude>**/java/**</exclude>
           <exclude>**/*.java</exclude>
           <exclude>**/*.js</exclude>
         </excludes>
+      </resource>
+      <resource>
+        <filtering>false</filtering>
+        <directory>${basedir}</directory>
+        <includes>
+          <include>application.yml</include>
+          <include>src/log4j.properties</include>
+        </includes>
+      </resource>
+      <resource>
+        <filtering>false</filtering>
+        <directory>${basedir}/src/main/resources</directory>
       </resource>
     </resources>
 
