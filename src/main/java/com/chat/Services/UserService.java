@@ -18,7 +18,9 @@ public class UserService {
   private static UserService _instance;
 
   @Autowired
-  UserService(@Qualifier(DatabaseSupplier.MongoDB.Chat.User) IUserDAO userImpl) {
+  UserService(
+    @Qualifier(DatabaseSupplier.MongoDB.Chat.User) IUserDAO userImpl
+  ) {
     this.userDao = userImpl;
     _instance = this;
   }

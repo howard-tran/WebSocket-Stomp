@@ -10,15 +10,15 @@ import { Message } from "./Message";
 
 // server http://larryjason.com:8081/api/
 // local http://localhost:8002/api/
-export const mainUrlPrefix = "http://localhost:8002/api/";
+export const mainUrlPrefix = "http://larryjason.com:8081/api/";
 
 // server http://larryjason.com:8081/
 // local http://localhost:8002/
-export const messageSocketPrefix = "http://localhost:8002/";
+export const messageSocketPrefix = "http://larryjason.com:8081/";
 
 // server http://larryjason.com/chat-app/login/
-// local http://localhost:8002/
-export const loginPageUrl = "http://localhost:8002/login";
+// local http://localhost:3001/
+export const loginPageUrl = "http://larryjason.com/chat-app/login/";
 
 export let UserInstance: User;
 export let ConversationInstance: Conversation;

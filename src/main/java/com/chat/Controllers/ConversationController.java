@@ -42,8 +42,12 @@ public class ConversationController {
   }
 
   @PostMapping("/add")
-  public Response<Object> SignUpConversation(@RequestBody Conversation conversation) {
-    Optional<Boolean> res = conversationService.CheckAvailableConversation(conversation);
+  public Response<Object> SignUpConversation(
+    @RequestBody Conversation conversation
+  ) {
+    Optional<Boolean> res = conversationService.CheckAvailableConversation(
+      conversation
+    );
 
     if (res.isEmpty()) {
       return new Response<Object>("", ErrorType.INTERNAL_SERVER_ERROR);
@@ -63,7 +67,9 @@ public class ConversationController {
     otherConversation.setReceiver(conversation.getSender());
     otherConversation.setSender(conversation.getReceiver());
 
-    Optional<Boolean> condition1 = conversationService.CheckAvailableConversation(conversation);
+    Optional<Boolean> condition1 = conversationService.CheckAvailableConversation(
+      conversation
+    );
     Optional<Boolean> condition2 = conversationService.CheckAvailableConversation(
       otherConversation
     );
@@ -91,8 +97,12 @@ public class ConversationController {
   }
 
   @PostMapping("/check")
-  public Response<Object> CheckConversation(@RequestBody Conversation conversation) {
-    Optional<Boolean> res = conversationService.CheckAvailableConversation(conversation);
+  public Response<Object> CheckConversation(
+    @RequestBody Conversation conversation
+  ) {
+    Optional<Boolean> res = conversationService.CheckAvailableConversation(
+      conversation
+    );
 
     if (res.isEmpty()) {
       return new Response<Object>("", ErrorType.INTERNAL_SERVER_ERROR);

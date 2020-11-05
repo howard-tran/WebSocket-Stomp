@@ -1,1 +1,11 @@
-{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_"}],"uuid":"4305151a8cf84b219026aaf556640f41","collectionName":"message"}
+{
+  "indexes": [
+    {
+      "v": { "$numberInt": "2" },
+      "key": { "_id": { "$numberInt": "1" } },
+      "name": "_id_"
+    }
+  ],
+  "uuid": "4305151a8cf84b219026aaf556640f41",
+  "collectionName": "message"
+}

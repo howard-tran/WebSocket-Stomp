@@ -14,6 +14,6 @@ public class WebConfig implements WebMvcConfigurer {
     // server: http://larryjason.com
     // local: http://localhost:8002
 
-    registry.addMapping("/**");
+    registry.addMapping("/**").allowedOrigins("http://larryjason.com");
   }
 }

@@ -12,7 +12,8 @@ public class MongoClientIns {
     HashMap<String, String> database = PropUtils.GetMongoDBChat();
 
     if (MongoClientIns._mongoClientIns == null) {
-      MongoClientIns._mongoClientIns = MongoClients.create(database.get("connection"));
+      MongoClientIns._mongoClientIns =
+        MongoClients.create(database.get("connection"));
     }
     return MongoClientIns._mongoClientIns;
   }

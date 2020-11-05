@@ -22,7 +22,8 @@ public class ConversationImpl implements IConversationDAO {
   }
 
   @Override
-  public List<Conversation> GetConversation(String sender, String receiver) throws Exception {
+  public List<Conversation> GetConversation(String sender, String receiver)
+    throws Exception {
     // TODO Auto-generated method stub
     return null;
   }

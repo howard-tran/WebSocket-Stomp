@@ -33,7 +33,8 @@ public class ConversationImpl implements IConversationDAO {
   }
 
   @Override
-  public List<Conversation> GetConversation(String sender, String receiver) throws Exception {
+  public List<Conversation> GetConversation(String sender, String receiver)
+    throws Exception {
     HashMap<String, String> database = PropUtils.GetMongoDBChat();
 
     MongoClient client = MongoClientIns.GetMongoClient();
@@ -42,10 +43,16 @@ public class ConversationImpl implements IConversationDAO {
     Document condition1 = new Document("sender", sender);
     Document condition2 = new Document("receiver", receiver);
     Document filter = Document.parse(
-      String.format("{$and: [%s, %s]}", condition1.toJson(), condition2.toJson())
+      String.format(
+        "{$and: [%s, %s]}",
+        condition1.toJson(),
+        condition2.toJson()
+      )
     );
 
-    FindIterable<Document> cursor = dtb.getCollection("conversation").find(filter);
+    FindIterable<Document> cursor = dtb
+      .getCollection("conversation")
+      .find(filter);
 
     List<Conversation> result = new ArrayList<>();
     for (Document doc : cursor) {

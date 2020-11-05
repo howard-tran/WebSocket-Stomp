@@ -8,8 +8,6 @@ services:
   chat-dtb:
     image: mongo
     restart: always
-    ports:
-      - 27017
     volumes:
       - /app/chat-app/data:/data/db/backup
     # command: DbEntry.sh
@@ -20,7 +18,7 @@ services:
     image: mingkhoi/alpine-jre11:latest
     restart: always
     ports:
-      - "8081:8080"
+      - "8081:8002"
     volumes:
       - /app/chat-app/backend:/app
     entrypoint: ["java", "-jar", "/app/spring-1.0-SNAPSHOT.jar"]

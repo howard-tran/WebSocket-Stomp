@@ -78,7 +78,10 @@ public class UserImpl implements IUserDAO {
       String.format("{userName: {$regex: /^%s/, $options: 'i'}}", searchKey)
     );
 
-    FindIterable<Document> cursor = dtb.getCollection("user").find(filter).limit(15);
+    FindIterable<Document> cursor = dtb
+      .getCollection("user")
+      .find(filter)
+      .limit(15);
 
     List<User> result = new ArrayList<>();
     for (Document doc : cursor) {

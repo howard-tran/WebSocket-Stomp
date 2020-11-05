@@ -23,7 +23,13 @@ public class Message {
     this.content = content;
   }
 
-  public Message(UUID id, String orderId, String sender, String receiver, String content) {
+  public Message(
+    UUID id,
+    String orderId,
+    String sender,
+    String receiver,
+    String content
+  ) {
     this.id = id;
     this.orderId = orderId;
     this.sender = sender;

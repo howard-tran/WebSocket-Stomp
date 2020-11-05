@@ -29,6 +29,8 @@ db.messageCounter.insertOne({
 db.messageCounter.find();
 
 // aggregate = query and return a new collection
-db.messageCounter.aggregate([{ $project: { item: 1, seq: { $add: ["$seq", 1] } } }]);
+db.messageCounter.aggregate([
+  { $project: { item: 1, seq: { $add: ["$seq", 1] } } },
+]);
 
 db.messageCounter.updateOne({}, { $inc: { seq: -1 } });

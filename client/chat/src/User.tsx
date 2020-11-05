@@ -49,12 +49,24 @@ export class User extends Component<{}, IUser> {
     return null;
   };
 
+  private checkUsername = (username: String) => {
+    let cookie = JSON.parse(this.readCookie("userName")) as {data: String[]}; 
+    if (cookie == null) {
+      return false;
+    }
+
+    for (let i = 0; i < cookie.data.length; i++) {
+      if (cookie.data[i] == username) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   private loadUserData = async () => {
-    let userName = this.readCookie("userName");
+    let userName = window.location.search.slice(1).split("&")[0].split("=")[1];
 
-    console.log(userName);
-
-    if (userName == null) {
+    if (this.checkUsername(userName) == false) {
       window.location.href = loginPageUrl;
     } else {
       const response = await axios.get<APIResponse<IUser>>(

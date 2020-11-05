@@ -26,7 +26,9 @@ public class ConversationService {
 
   @Autowired
   ConversationService(
-    @Qualifier(DatabaseSupplier.MongoDB.Chat.Conversation) IConversationDAO conversationDao
+    @Qualifier(
+      DatabaseSupplier.MongoDB.Chat.Conversation
+    ) IConversationDAO conversationDao
   ) {
     this.conversationDao = conversationDao;
   }
@@ -36,7 +38,9 @@ public class ConversationService {
       ZoneId zoneId = ZoneId.systemDefault();
 
       conversation.setId(UUID.randomUUID());
-      conversation.setUnixTime(String.valueOf(LocalDateTime.now().atZone(zoneId).toEpochSecond()));
+      conversation.setUnixTime(
+        String.valueOf(LocalDateTime.now().atZone(zoneId).toEpochSecond())
+      );
       conversationDao.InsertConversation(conversation);
 
       return Optional.of(true);
@@ -50,13 +54,17 @@ public class ConversationService {
     }
   }
 
-  public Optional<Boolean> CheckAvailableConversation(Conversation conversation) {
+  public Optional<Boolean> CheckAvailableConversation(
+    Conversation conversation
+  ) {
     try {
       UserService userServiceIns = UserService.GetInstance();
 
       if (
         userServiceIns.CheckAvailableUserName(conversation.getSender()).get() ||
-        userServiceIns.CheckAvailableUserName(conversation.getReceiver()).get() ||
+        userServiceIns
+          .CheckAvailableUserName(conversation.getReceiver())
+          .get() ||
         conversation.getSender().equals(conversation.getReceiver())
       ) {
         return Optional.of(false);
@@ -87,17 +95,23 @@ public class ConversationService {
   public Optional<List<Conversation>> GetConversation(User user, int index) {
     final int conversationCountEach = 15;
     try {
-      List<Conversation> conversations = conversationDao.GetUserConversation(user);
+      List<Conversation> conversations = conversationDao.GetUserConversation(
+        user
+      );
 
       if (index >= conversations.size()) {
         return Optional.of(new ArrayList<Conversation>());
         //
       } else {
         if (index + conversationCountEach >= conversations.size()) {
-          return Optional.of(conversations.subList(index, conversations.size()));
+          return Optional.of(
+            conversations.subList(index, conversations.size())
+          );
           //
         } else {
-          return Optional.of(conversations.subList(index, index + conversationCountEach));
+          return Optional.of(
+            conversations.subList(index, index + conversationCountEach)
+          );
         }
       }
       //

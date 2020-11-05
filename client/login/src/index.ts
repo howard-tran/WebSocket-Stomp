@@ -16,7 +16,7 @@ export const mainUrlPrefix = "http://larryjason.com:8081/api/";
 
 // server http://larryjason.com/chat-app/chat
 // local http://localhost:3000/
-export const mainChatUrl = "http://larryjason.com/chat-app/chat/";
+export const mainChatUrl = "http://larryjason.com/chat-app/chat";
 
 const showHidePass = () => {
   let passwordbox = $("#password").get(0) as HTMLInputElement;
@@ -43,12 +43,43 @@ const checkData = () => {
   return true;
 };
 
+function readCookie(name: String) {
+  var nameEQ = name + "=";
+  var ca = document.cookie.split(";");
+  for (var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == " ") c = c.substring(1, c.length);
+    if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+  }
+  return null;
+};
+
 function setCookie(name, value) {
   let expires = "";
   let date = new Date();
   date.setTime(date.getTime() + 15 * 60 * 1000);
   expires = "; expires=" + date.toUTCString();
-  document.cookie = name + "=" + (value || "") + expires + "; path=/";
+
+  if (readCookie("userName") == null) {
+    let listUsername = [value];  
+
+    document.cookie = name + "=" + (JSON.stringify({data: listUsername}) || "") + expires + "; path=/";
+  } else {
+    let listUsername = JSON.parse(readCookie("userName")) as {data: String[]};
+    
+    let flag = false;
+    for (let i = 0; i < listUsername.data.length; i++) {
+      if (listUsername.data[i] == value) {
+        flag = true;
+        break;
+      }
+    }
+
+    if (flag == false) {
+      listUsername.data.push(value); 
+    }
+    document.cookie = name + "=" + (JSON.stringify({data: listUsername.data}) || "") + expires + "; path=/";
+  }
 }
 
 const sendData = () => {
@@ -83,11 +114,10 @@ const sendData = () => {
         //
       } else {
         setCookie("userName", dataSubmit.userName.valueOf());
-        setCookie("userName", dataSubmit.userName.valueOf());
 
         alert("ok");
 
-        window.location.href = mainChatUrl;
+        window.location.href = `${mainChatUrl}?username=${dataSubmit.userName.valueOf()}`;
       }
       submitBtn.disabled = false;
       createAccount.onclick = undefined;

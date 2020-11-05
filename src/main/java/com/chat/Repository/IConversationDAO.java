@@ -11,5 +11,6 @@ public interface IConversationDAO {
 
   List<Conversation> GetUserConversation(User user) throws Exception;
 
-  List<Conversation> GetConversation(String sender, String receiver) throws Exception;
+  List<Conversation> GetConversation(String sender, String receiver)
+    throws Exception;
 }
