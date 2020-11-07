@@ -5,3 +5,6 @@ Backend/CDNServer/database/*
 #golang
 gin-bin
 go.sum
+
+#datamongo
+Backend/Database/mongodata/*

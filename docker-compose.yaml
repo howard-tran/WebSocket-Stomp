@@ -1,17 +1,21 @@
 version: "2"
 
 services: 
-    # Gobackend:
-    #     build: 
-    #         context: ./Backend/GoBackend
-    #         dockerfile: dockerfile.godev
-    #     ports:
-    #         - '8080:8080'
-    #     volumes:
-    #         - ./Backend/Gobackend:/App/Backend/GoBackend
-    #     networks:
-    #         - backend
+    gobackend:
+        container_name: 'goserver'
+        build: 
+            context: ./Backend/GoBackend
+            dockerfile: dockerfile.godev
+        ports:
+            - '8080:8080'
+        volumes:
+            - ./Backend/GoBackend:/app/Backend/GoBackend
+            - ./Backend/GoBackend/go.mod:/app/Backend/GoBackend/go.mod
+        networks:
+            backend:
+                ipv4_address: '10.1.0.2'
     cdnserver:
+        container_name: 'cdnserver'
         build: 
             context: ./Backend/CDNServer
             dockerfile: dockerfile.cdn
@@ -21,21 +25,51 @@ services:
             - ./Backend/CDNServer:/app/Backend/CDNServer
             - ./Backend/CDNServer/go.mod:/app/Backend/CDNServer/go.mod
         networks:
-            - backend
-    # database:
-    #     image: 'mongo'
-    #     container_name: 'mongodtb'
-    #     ports:
-    #         - '27017:27017'
-    #     environment:
-    #         MONGO_INITDB_ROOT_USERNAME: root
-    #         MONGO_INITDB_ROOT_PASSWORD: root
-    #         MONGO_INITDB_DATABASE: BetStore
-    #     volumes:
-    #         #- ./Backend/Database/mongodata:/data/db
-    #         - ./Backend/Database/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
-    #     networks: 
-    #         - backend
-networks: 
-    backend:
-        driver: bridge
+            backend:
+                ipv4_address: '10.1.0.3'
+    database:
+        container_name: 'mongodtb'
+        image: mongo:3-xenial
+        restart: always
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: root
+            MONGO_INITDB_ROOT_PASSWORD: root
+            MONGO_INITDB_DATABASE: bet_store
+        # build: 
+        #     context: ./Backend/Database
+        #     dockerfile: dockerfile.mongodev
+        ports:
+            - '27017:27017'
+            - '28017:28017'
+        # # environment:
+        # #     MONGO_INITDB_ROOT_USERNAME: root
+        # #     MONGO_INITDB_ROOT_PASSWORD: password
+        # #     MONGO_INITDB_DATABASE: bet_store
+        volumes:
+            - ./Backend/Database/mongodata:/data/db
+            - ./Backend/Database/log:/var/log/mongodb
+            - ./Backend/Database/startup/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro 
+            #- ./Backend/Database/startup:/Backend/Database/startup:ro
+        networks:
+            backend:
+                ipv4_address: '10.1.0.4'
+        # command: echo "xong"
+        # entrypoint: echo "xong" \
+        # && mongo bet_store mongo-init.js
+networks:
+  backend:
+    ipam:
+      driver: default
+      config:
+        - subnet: "10.1.0.0/27"
+    # mongonet:
+    #     driver: bridge
+    #     ipam: 
+    #         config: 
+    #             - subnet: 172.19.0.32/22
+    #             #  gateway: 192.169.1.33
+    # gobackend:
+    #     driver: bridge
+    #     ipam: 
+    #         config: 
+    #             - subnet: 172.20.0.64/22

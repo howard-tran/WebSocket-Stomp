@@ -16,7 +16,6 @@ RUN go get github.com/codegangsta/gin
 
 #COPY gin /go/bin
 #RUN chmod +x /go/bin/gin
-
 EXPOSE 8888
 
 RUN ["go", "version"]

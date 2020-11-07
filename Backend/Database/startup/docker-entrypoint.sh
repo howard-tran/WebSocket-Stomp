@@ -1,44 +1,6 @@
-#!/bin/sh
-# Docker entrypoint (pid 1), run as root
-[ "$1" = "mongod" ] || exec "$@" || exit $?
-
-# Make sure that database is owned by user mongodb
-[ "$(stat -c %U /data/db)" = mongodb ] || chown -R mongodb /data/db
-
-# Drop root privilege (no way back), exec provided command as user mongodb
-cmd=exec; for i; do cmd="$cmd '$i'"; done
-exec su -s /bin/sh -c "$cmd" mongodb
-
-echo "Minh"
-mongo localhost:27017/bet_store startup/mongo-init.js
-
-# if [ "$originalArgOne" = 'mongod' ]; then
-# if [ "$MONGO_INITDB_ROOT_USERNAME" ] && [ "$MONGO_INITDB_ROOT_PASSWORD" ]; then
-#             rootAuthDatabase='admin'
-
-#             "${mongo[@]}" "$rootAuthDatabase" <<-EOJS
-#                 db.createUser({
-#                     user: $(_js_escape "$MONGO_INITDB_ROOT_USERNAME"),
-#                     pwd: $(_js_escape "$MONGO_INITDB_ROOT_PASSWORD"),
-#                     roles: [ { role: 'root', db: $(_js_escape "$rootAuthDatabase") } ]
-#                 })
-#             EOJS
-#         fi
-
-# echo
-#         for f in /docker-entrypoint-initdb.d/*; do
-#             case "$f" in
-#                 *.sh) echo "$0: running $f"; . "$f" ;;
-#                 *.js) echo "$0: running $f"; "${mongo[@]}" "$MONGO_INITDB_DATABASE" "$f"; echo ;;
-#                 *)    echo "$0: ignoring $f" ;;
-#             esac
-#             echo
-#         done
-# fi
-
-#tets
-
 #!/bin/bash
+mongod --bind_ip 0.0.0.0
+
 set -Eeuo pipefail
 
 if [ "${1:0:1}" = '-' ]; then
@@ -399,5 +361,7 @@ if [ "$originalArgOne" = 'mongod' ]; then
 fi
 
 rm -f "$jsonConfigFile" "$tempConfigFile"
+
+echo "hahahaha"
 
 exec "$@"
