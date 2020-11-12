@@ -8,3 +8,12 @@ go.sum
 
 #datamongo
 Backend/Database/mongodata/*
+
+#javabackend
+Backend/JavaBackend/.mvn/*
+Backend/JavaBackend/.settings/*
+Backend/JavaBackend/.vscode/*
+Backend/JavaBackend/target/*
+
+#frontend
+Frontend/**/node_modules/*

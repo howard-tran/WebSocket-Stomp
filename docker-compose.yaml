@@ -1,61 +1,64 @@
-version: "2"
+version: "3.5"
 
-services: 
-    gobackend:
-        container_name: 'goserver'
-        build: 
-            context: ./Backend/GoBackend
-            dockerfile: dockerfile.godev
-        ports:
-            - '8080:8080'
-        volumes:
-            - ./Backend/GoBackend:/app/Backend/GoBackend
-            - ./Backend/GoBackend/go.mod:/app/Backend/GoBackend/go.mod
-        networks:
-            backend:
-                ipv4_address: '10.1.0.2'
-    cdnserver:
-        container_name: 'cdnserver'
-        build: 
-            context: ./Backend/CDNServer
-            dockerfile: dockerfile.cdn
-        ports:
-            - '8888:8888'
-        volumes:
-            - ./Backend/CDNServer:/app/Backend/CDNServer
-            - ./Backend/CDNServer/go.mod:/app/Backend/CDNServer/go.mod
-        networks:
-            backend:
-                ipv4_address: '10.1.0.3'
-    database:
-        container_name: 'mongodtb'
-        image: mongo:3-xenial
-        restart: always
-        environment:
-            MONGO_INITDB_ROOT_USERNAME: root
-            MONGO_INITDB_ROOT_PASSWORD: root
-            MONGO_INITDB_DATABASE: bet_store
-        # build: 
-        #     context: ./Backend/Database
-        #     dockerfile: dockerfile.mongodev
-        ports:
-            - '27017:27017'
-            - '28017:28017'
-        # # environment:
-        # #     MONGO_INITDB_ROOT_USERNAME: root
-        # #     MONGO_INITDB_ROOT_PASSWORD: password
-        # #     MONGO_INITDB_DATABASE: bet_store
-        volumes:
-            - ./Backend/Database/mongodata:/data/db
-            - ./Backend/Database/log:/var/log/mongodb
-            - ./Backend/Database/startup/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro 
-            #- ./Backend/Database/startup:/Backend/Database/startup:ro
-        networks:
-            backend:
-                ipv4_address: '10.1.0.4'
-        # command: echo "xong"
-        # entrypoint: echo "xong" \
-        # && mongo bet_store mongo-init.js
+services:
+  gobackend:
+    container_name: "goserver"
+    build:
+      context: ./Backend/GoBackend
+      dockerfile: dockerfile.godev
+    ports:
+      - "8081:8080"
+    volumes:
+      - ./Backend/GoBackend:/app/Backend/GoBackend
+      - ./Backend/GoBackend/go.mod:/app/Backend/GoBackend/go.mod
+    networks:
+      backend:
+        ipv4_address: "10.1.0.2"
+  cdnserver:
+    container_name: "cdnserver"
+    build:
+      context: ./Backend/CDNServer
+      dockerfile: dockerfile.cdn
+    ports:
+      - "8082:8888"
+    volumes:
+      - ./Backend/CDNServer:/app/Backend/CDNServer
+      - ./Backend/CDNServer/go.mod:/app/Backend/CDNServer/go.mod
+    networks:
+      backend:
+        ipv4_address: "10.1.0.3"
+  database:
+    container_name: "mongodtb"
+    image: mongo:3-xenial
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+      MONGO_INITDB_DATABASE: bet_store
+    ports:
+      - "8083:27017"
+      - "8084:28017"
+    volumes:
+      - ./Backend/Database/log:/var/log/mongodb
+      - ./Backend/Database/startup/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+      # - ./Backend/Database/mongodata:/data/db
+      # - ./Backend/Database/startup:/Backend/Database/startup:ro
+    networks:
+      backend:
+        ipv4_address: "10.1.0.4"
+  javabackend:
+    container_name: "javabackend"
+    build:
+      context: ./Backend/JavaBackend
+      dockerfile: dockerfile.javadev
+    ports:
+      - "8085:8081"
+    volumes:
+      - ./Backend/JavaBackend:/app
+    networks:
+      backend:
+        ipv4_address: "10.1.0.5"
+
 networks:
   backend:
     ipam:
@@ -64,12 +67,12 @@ networks:
         - subnet: "10.1.0.0/27"
     # mongonet:
     #     driver: bridge
-    #     ipam: 
-    #         config: 
+    #     ipam:
+    #         config:
     #             - subnet: 172.19.0.32/22
     #             #  gateway: 192.169.1.33
     # gobackend:
     #     driver: bridge
-    #     ipam: 
-    #         config: 
+    #     ipam:
+    #         config:
     #             - subnet: 172.20.0.64/22
