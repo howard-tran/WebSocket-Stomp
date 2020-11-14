@@ -41,7 +41,7 @@ services:
     volumes:
       - ./Backend/Database/log:/var/log/mongodb
       - ./Backend/Database/startup/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
-      # - ./Backend/Database/mongodata:/data/db
+      - ./Backend/Database/data:/data/db
       # - ./Backend/Database/startup:/Backend/Database/startup:ro
     networks:
       backend:
