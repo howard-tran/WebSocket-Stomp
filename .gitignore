@@ -7,7 +7,7 @@ gin-bin
 go.sum
 
 #datamongo
-Backend/Database/mongodata/*
+Backend/Database/data/*
 
 #javabackend
 Backend/JavaBackend/.vscode/*
