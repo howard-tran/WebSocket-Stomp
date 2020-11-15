@@ -8,6 +8,7 @@ import (
 	"os"
 	"time"
 	"github.com/gin-gonic/gin"
+	cors "github.com/rs/cors/wrapper/gin"
 )
 
 func main() {
@@ -16,6 +17,7 @@ func main() {
 	gin.SetMode(gin.ReleaseMode)
 	//mutilogger
 	SetupWriteLogFile()
+	app.Use(cors.Default())
 	app.Use(gin.Recovery())
 	app.Use(middlewares.Logger())
 
