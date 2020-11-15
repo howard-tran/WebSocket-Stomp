@@ -10,6 +10,6 @@ require (
 	github.com/google/uuid v1.1.2 // indirect
 	github.com/mattn/go-shellwords v1.0.10 // indirect
 	github.com/nfnt/resize v0.0.0-20180221191011-83c6a9932646
-	github.com/rs/cors v1.7.0 // indirect
+	github.com/rs/cors v1.7.0
 	gopkg.in/urfave/cli.v1 v1.20.0 // indirect
 )
