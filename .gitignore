@@ -15,3 +15,9 @@ Backend/JavaBackend/target/*
 
 #frontend
 Frontend/**/node_modules/*
+
+#nodejsbackend
+node_modules/
+.env
+seeder.js
+data/
