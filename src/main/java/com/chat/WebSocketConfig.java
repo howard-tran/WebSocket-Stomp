@@ -22,7 +22,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     registry
       .addEndpoint(App.MESSAGE_SERVICE_SOCKET)
-      .setAllowedOrigins("http://larryjason.com")
+      .setAllowedOrigins("http://larryjason.com", "http://www.larryjason.com")
       .withSockJS();
   }
 }

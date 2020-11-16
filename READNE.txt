@@ -1,0 +1,4 @@
+App url: http://larryjason.com/chat-app/login/
+
+To run on localhost: 
+mvn clean compile exec:java

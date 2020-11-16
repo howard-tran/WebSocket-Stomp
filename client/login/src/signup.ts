@@ -56,6 +56,8 @@ const sendData = () => {
       if (data.status != 200) {
         alert(`${data.status}: ${data.error}`);
         //
+      } else if ((data.data as String) == "username-not-available" ) {
+        alert(`${data.status}: ${data.data}`);
       } else {
         alert("ok");
         window.location.replace(signInUrl);
