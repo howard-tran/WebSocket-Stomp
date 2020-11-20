@@ -8,6 +8,9 @@ services:
       dockerfile: dockerfile.godev
     ports:
       - "8081:8080"
+    depends_on: 
+        - cdnserver
+        - database
     volumes:
       - ./Backend/GoBackend:/app/Backend/GoBackend
       - ./Backend/GoBackend/go.mod:/app/Backend/GoBackend/go.mod
@@ -53,26 +56,39 @@ services:
       dockerfile: dockerfile.javadev
     ports:
       - "8085:8081"
+    depends_on: 
+        - cdnserver
+        - database
     volumes:
       - ./Backend/JavaBackend:/app
     networks:
       backend:
         ipv4_address: "10.1.0.5"
-
+  nodebackend:
+    container_name: "nodebackend"
+    build:
+      context: ./Backend/NodeJSBackend
+      dockerfile: dockerfile.node
+    ports:
+      - "8086:5000"
+    depends_on: 
+        - cdnserver
+        - database
+    environment:
+      MONGO_URI: mongodb://root:root@10.1.0.4:27017/
+    volumes:
+      - ./Backend/NodeJSBackend/config:/app/config
+      - ./Backend/NodeJSBackend/controller:/app/controller
+      - ./Backend/NodeJSBackend/middleware:/app/middleware
+      - ./Backend/NodeJSBackend/models:/app/models
+      - ./Backend/NodeJSBackend/routers:/app/routers
+      - ./Backend/NodeJSBackend/server.js:/app/server.js
+    networks:
+      backend:
+        ipv4_address: "10.1.0.6"
 networks:
   backend:
     ipam:
       driver: default
       config:
         - subnet: "10.1.0.0/27"
-    # mongonet:
-    #     driver: bridge
-    #     ipam:
-    #         config:
-    #             - subnet: 172.19.0.32/22
-    #             #  gateway: 192.169.1.33
-    # gobackend:
-    #     driver: bridge
-    #     ipam:
-    #         config:
-    #             - subnet: 172.20.0.64/22

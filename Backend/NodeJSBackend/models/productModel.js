@@ -11,10 +11,12 @@ const productSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    image: {
-      type: String,
-      required: true,
-    },
+    image: [
+      {
+        link: { type: String, required: true },
+        alt: { type: String, required: true },
+      },
+    ],
     category: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
@@ -34,10 +36,12 @@ const productSchema = mongoose.Schema(
       required: true,
       default: 0,
     },
-    properties: {
-      type: [String],
-      required: true,
-    },
+    properties: [
+      {
+        key: { type: String, required: true },
+        value: { type: String, required: true },
+      },
+    ],
   },
   {
     timestamps: true,

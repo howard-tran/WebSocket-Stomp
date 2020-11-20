@@ -3,10 +3,8 @@ package api
 import (
 	"CDNServer/ImgHandle"
 	"CDNServer/StorageHandle"
-	"fmt"
 	"net/http"
 	"path/filepath"
-	"regexp"
 	"strconv"
 
 	"github.com/gin-gonic/gin"
@@ -53,9 +51,9 @@ func UploadFile(ctx *gin.Context) {
 func DownloadFile(ctx *gin.Context) {
 	filename := ctx.Param("filename")
 
-	re := regexp.MustCompile("(.+?)(\\.[^.]*$|$)")
-	match := re.FindStringSubmatch(filename)
-	ext := match[2]
+	//re := regexp.MustCompile("(.+?)(\\.[^.]*$|$)")
+	//match := re.FindStringSubmatch(filename)
+	//ext := match[2]
 
 	path := StorageHandle.FindFileinStorage(filename)
 	if path == "" {
@@ -71,12 +69,12 @@ func DownloadFile(ctx *gin.Context) {
 	height := uint(h)
 
 	if width == 0 && height == 0 {
-		if IsAttachment(ext) {
-			fmt.Println("test")
-			ctx.FileAttachment(path, path)
-		} else {
-			ctx.File(path)
-		}
+		// if !IsAttachment(ext) {
+		// 	//fmt.Println("test")
+		// 	ctx.File(path)
+		// } else {
+		ctx.File(path)
+		//}
 		return
 	} else {
 		patht, err := ImgHandle.Resize(path, width, height)

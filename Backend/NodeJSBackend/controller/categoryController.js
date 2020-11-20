@@ -4,8 +4,7 @@ import asyncHandler from "express-async-handler";
 export const createCategory = asyncHandler(async (req, res) => {
   const newCategory = new Category({
     _id: mongoose.Types.ObjectId(),
-    name: req.body.name,
-    properties: req.body.properties,
+    ...req.body,
   });
 
   try {
@@ -18,6 +17,4 @@ export const createCategory = asyncHandler(async (req, res) => {
   } catch (error) {
     console.error(`${error}`);
   }
-
-
 });
