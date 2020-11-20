@@ -7,13 +7,14 @@ import (
 	"io"
 	"os"
 	"time"
+
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
-	cors "github.com/rs/cors/wrapper/gin"
 )
 
 func main() {
 	app := gin.New()
-	
+
 	gin.SetMode(gin.ReleaseMode)
 	//mutilogger
 	SetupWriteLogFile()

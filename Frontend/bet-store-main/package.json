@@ -1,20 +1,36 @@
 {
-  "name": "bet-store-main",
+  "name": "frontend",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.11.5",
-    "@testing-library/react": "^11.1.2",
-    "@testing-library/user-event": "^12.2.2",
+    "@fortawesome/fontawesome-svg-core": "^1.2.32",
+    "@fortawesome/free-solid-svg-icons": "^5.15.1",
+    "@fortawesome/react-fontawesome": "^0.1.12",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
     "@types/jest": "^26.0.15",
-    "@types/node": "^12.19.4",
+    "@types/jquery": "^3.5.4",
+    "@types/node": "^12.0.0",
     "@types/react": "^16.9.56",
-    "@types/react-dom": "^16.9.9",
+    "@types/react-dom": "^16.9.8",
+    "@types/react-slick": "^0.23.4",
+    "axios": "^0.21.0",
+    "bootstrap": "^4.5.3",
+    "http-proxy-middleware": "^1.0.6",
+    "jquery": "^3.5.1",
+    "popper": "^1.0.1",
+    "popper.js": "^1.16.1",
     "react": "^17.0.1",
+    "react-bootstrap": "^1.4.0",
     "react-dom": "^17.0.1",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.0",
-    "typescript": "^4.0.5",
-    "web-vitals": "^0.2.4"
+    "react-slick": "^0.27.13",
+    "slick-carousel": "^1.8.1",
+    "typescript": "^4.0.3",
+    "web-vitals": "^0.2.4",
+    "yarn": "^1.22.10"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -39,5 +55,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/react-router": "^5.1.8",
+    "@types/react-router-dom": "^5.1.6",
+    "sass": "^1.29.0"
   }
 }
