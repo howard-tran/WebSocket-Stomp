@@ -7,6 +7,7 @@ import com.dao.ConversationDaoImpl;
 import com.dao.IConversationDao;
 import com.helper.DatabaseSupplier;
 import com.helper.PropertyHelper;
+import com.helper.helperTest;
 import com.model.Conversation;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -62,6 +63,27 @@ public class UnitTest {
 
     for (int i = 0; i < list.size(); i++) {
       this.conversationDao.insertConversation(list.get(i));
+    }
+  }
+
+  @Test
+  public void testCase5() throws Exception {
+    System.out.println("\n============== test case 5 ==============\n");
+
+    helperTest t = new helperTest();
+
+    t.helloworld();
+    t.helloworld2();
+  }
+
+  @Test
+  public void testCase6() throws Exception {
+    System.out.println("\n============== test case 6 ==============\n");
+
+    List<Conversation> list = this.conversationDao.getAllConversation();
+
+    for (int i = 0; i < list.size(); i++) {
+      System.out.println(list.get(i).toString());
     }
   }
 }

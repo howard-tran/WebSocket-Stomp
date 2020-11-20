@@ -6,7 +6,7 @@ db.Account.createIndex({ username: 1 }, { unique: true });
 
 print("###################### End Create MongoDB ######################");
 
-// create message collection
+// create message collection + index
 
 print("###################### Create Messagge Collection ######################");
 
@@ -16,7 +16,7 @@ db.Message.createIndex({ senderId: 1, receiverId: 1});
 print("###################### End Messagge Collection ######################");
 
 
-// create conversation collection
+// create conversation collection + index
 
 print("###################### Create Conversation Collection ######################");
 

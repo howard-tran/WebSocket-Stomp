@@ -39,4 +39,14 @@ public class Conversation {
   public void setReceiverId(String receiverId) {
     this.receiverId = receiverId;
   }
+  
+  @Override
+  public String toString() {
+    return "{" +
+      " _id='" + get_id() + "'" +
+      ", senderId='" + getSenderId() + "'" +
+      ", receiverId='" + getReceiverId() + "'" +
+      "}";
+  }
+
 }

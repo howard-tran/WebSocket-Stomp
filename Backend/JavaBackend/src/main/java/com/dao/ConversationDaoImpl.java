@@ -34,14 +34,24 @@ public class ConversationDaoImpl implements IConversationDao {
 
   @Override
   public List<Conversation> getConversation(String senderId) throws Exception {
-    // TODO Auto-generated method stub
-    return null;
+    HashMap<String, String> dtb = PropertyHelper.GetMongoDBChat();
+
+    MongoClient client = MongoClientIns.GetMongoClient();
+    MongoDatabase database = client.getDatabase(dtb.get("database"));
+
+    Document filder = new Document("senderId", senderId);
+    FindIterable<Document> cursor = database.getCollection("Conversation").find(filder);
+
+    List<Conversation> res = new ArrayList();
+    for (Document doc : cursor) {
+      res.add(new Gson().fromJson(doc.toJson(), Conversation.class));
+    }
+    return res;
   }
 
   @Override
   public List<Conversation> getConversationById(String _id) throws Exception {
-    // TODO Auto-generated method stub
-    return null;
+    return null; 
   }
 
   @Override
