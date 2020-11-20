@@ -4,6 +4,11 @@ import dotenv from "dotenv";
 dotenv.config();
 
 export default (req, res, next) => {
+  const authHeader = req.get("Authorization");
+  if (!authHeader) {
+    res.status(401);
+    throw new Error("Not authenticated");
+  }
   const token = req.get("Authorization").split(" ")[1];
   const secretString = process.env.SECRET;
   let decodedToken;
@@ -13,9 +18,8 @@ export default (req, res, next) => {
     throw new Error(error);
   }
   if (!decodedToken) {
-    const error = new Error("Not authenticated");
     res.status(401);
-    throw error;
+    throw new Error("Not authenticated");
   }
   next();
 };
