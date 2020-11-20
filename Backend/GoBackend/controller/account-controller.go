@@ -32,13 +32,17 @@ func LoginHandle(ctx *gin.Context) {
 		return
 	}
 
-	c := sec.GetSession().DB(utility.GetConfigServerbyKey(utility.Database).(utility.DatabaseStruct).NAME_DATABASE).C("Account")
-	if n, _ := c.Find(account).Count(); n == 1 {
+	c := sec.GetDatabase(utility.GetConfigServerbyKey(utility.Database).(utility.DatabaseStruct).NAME_DATABASE).C("Account")
+
+	query := c.Find(bson.M{"username": account.Username, "password": account.Password})
+
+	if n, _ := query.Count(); n == 1 {
 		serviceSecure := service.NewJwtService()
+
 		token := serviceSecure.GenerationToken(account.Username, account.Password)
-		ctx.JSON(200, gin.H{"token": token})
+		ctx.JSON(http.StatusOK, service.CreateMsgSuccessJsonResponse(gin.H{"token": token})) //gin.H{"token": token})
 	} else {
-		ctx.JSON(http.StatusUnauthorized, gin.H{"error": "Infomation login incorrect"})
+		ctx.JSON(http.StatusOK, service.CreateMsgErrorJsonResponse(http.StatusUnauthorized, "Infomation login incorrect"))
 	}
 }
 
@@ -53,14 +57,21 @@ func SignupHandle(ctx *gin.Context) {
 		return
 	}
 
-	c := sec.GetSession().DB(utility.GetConfigServerbyKey(utility.Database).(utility.DatabaseStruct).NAME_DATABASE).C("Account")
+	c := sec.GetDatabase(utility.GetConfigServerbyKey(utility.Database).(utility.DatabaseStruct).NAME_DATABASE).C("Account")
 
+	query := c.Find(bson.M{"username": account.Username})
+
+	if n, _ := query.Count(); n >= 1 {
+		ctx.JSON(http.StatusOK, service.CreateMsgErrorJsonResponse(http.StatusConflict, "Username already exists"))
+		return
+	}
+	account.ID = bson.NewObjectId()
 	err = c.Insert(&account)
 
 	if err != nil {
-		ctx.JSON(http.StatusBadRequest, gin.H{"msg": err})
+		ctx.JSON(http.StatusOK, service.CreateMsgErrorJsonResponse(http.StatusConflict, err.Error()))
 	} else {
-		ctx.JSON(200, gin.H{"msg": "Account created"})
+		ctx.JSON(http.StatusOK, service.CreateMsgSuccessJsonResponse(gin.H{"msg": "Account created"}))
 	}
 }
 

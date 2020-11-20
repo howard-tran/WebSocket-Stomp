@@ -1,6 +1,6 @@
 #Config Database
 [Database]
-Stringconnection = "mongodb://10.1.0.4:27017/"
+Stringconnection = "mongodb://root:root@10.1.0.4:27017/"
 NAME_DATABASE = "bet_store"
 
 #Config secretkey auth 
