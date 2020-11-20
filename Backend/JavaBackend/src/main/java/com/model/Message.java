@@ -1,7 +1,6 @@
 package com.model;
 
-public class Message {
-  private String _id;
+public class Message extends MongoIdModel {
   private String senderId;
   private String receiverId;
   private String textContent;
@@ -30,20 +29,11 @@ public class Message {
     String fileContent,
     MessageContentType contentType
   ) {
-    this._id = _id;
     this.senderId = senderId;
     this.receiverId = receiverId;
     this.textContent = textContent;
     this.fileContent = fileContent;
     this.fileContentType = contentType;
-  }
-
-  public String get_id() {
-    return this._id;
-  }
-
-  public void set_id(String _id) {
-    this._id = _id;
   }
 
   public String getSenderId() {

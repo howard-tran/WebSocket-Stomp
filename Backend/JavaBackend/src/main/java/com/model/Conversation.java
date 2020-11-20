@@ -1,27 +1,24 @@
 package com.model;
 
-public class Conversation {
-  private String _id;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.Expose;
+import org.bson.types.ObjectId;
+
+public class Conversation extends MongoIdModel {
   private String senderId;
   private String receiverId;
+
+  public Conversation() {}
 
   public Conversation(String senderId, String receiverId) {
     this.senderId = senderId;
     this.receiverId = receiverId;
   }
 
-  public Conversation(String _id, String senderId, String receiverId) {
+  public Conversation(ObjectId _id, String senderId, String receiverId) {
     this._id = _id;
     this.senderId = senderId;
     this.receiverId = receiverId;
-  }
-
-  public String get_id() {
-    return this._id;
-  }
-
-  public void set_id(String _id) {
-    this._id = _id;
   }
 
   public String getSenderId() {
@@ -39,14 +36,21 @@ public class Conversation {
   public void setReceiverId(String receiverId) {
     this.receiverId = receiverId;
   }
-  
+
   @Override
   public String toString() {
-    return "{" +
-      " _id='" + get_id() + "'" +
-      ", senderId='" + getSenderId() + "'" +
-      ", receiverId='" + getReceiverId() + "'" +
-      "}";
+    return (
+      "{" +
+      " _id='" +
+      get_id() +
+      "'" +
+      ", senderId='" +
+      getSenderId() +
+      "'" +
+      ", receiverId='" +
+      getReceiverId() +
+      "'" +
+      "}"
+    );
   }
-
 }

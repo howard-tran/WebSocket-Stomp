@@ -2,11 +2,10 @@ FROM mingkhoi/betstore-javabackend:latest
 
 EXPOSE 8081
 
-VOLUME /app
+ADD . /app
 
-COPY . .
+RUN chmod +x /app/mvnw
+RUN chmod +x /app/mvnw.cmd
 
-RUN chmod +x mvnw
-RUN chmod +x mvnw.cmd
-
-RUN ./mvnw spring-boot:run
+RUN /app/mvnw dependency:resolve
+RUN rm -rf /app/* /app/.*; exit 0

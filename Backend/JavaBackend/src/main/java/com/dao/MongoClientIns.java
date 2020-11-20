@@ -9,6 +9,9 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import java.util.Arrays;
 import java.util.HashMap;
+import org.bson.codecs.configuration.CodecRegistries;
+import org.bson.codecs.configuration.CodecRegistry;
+import org.bson.codecs.pojo.PojoCodecProvider;
 
 public class MongoClientIns {
   private static MongoClient _mongoClientIns;

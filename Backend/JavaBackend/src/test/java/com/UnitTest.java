@@ -53,6 +53,10 @@ public class UnitTest {
     assertTrue(this.conversationDao != null);
   }
 
+  /**
+   * insert conversation
+   * @throws Exception
+   */
   @Test
   public void testCase4() throws Exception {
     System.out.println("\n============== test case 4 ==============\n");
@@ -66,24 +70,20 @@ public class UnitTest {
     }
   }
 
+  /**
+   * get conversation + check mapping + check delete
+   * @throws Exception
+   */
   @Test
   public void testCase5() throws Exception {
     System.out.println("\n============== test case 5 ==============\n");
-
-    helperTest t = new helperTest();
-
-    t.helloworld();
-    t.helloworld2();
-  }
-
-  @Test
-  public void testCase6() throws Exception {
-    System.out.println("\n============== test case 6 ==============\n");
 
     List<Conversation> list = this.conversationDao.getAllConversation();
 
     for (int i = 0; i < list.size(); i++) {
       System.out.println(list.get(i).toString());
+
+      this.conversationDao.deleteConversation(list.get(i).get_id().toString());
     }
   }
 }

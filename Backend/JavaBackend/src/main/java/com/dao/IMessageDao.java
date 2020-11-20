@@ -4,7 +4,7 @@ import com.model.Conversation;
 import com.model.Message;
 import java.util.List;
 
-public interface IMessageDao {
+public interface IMessageDao extends IDbQueryLogic {
   public List<Message> getAllMessage() throws Exception;
 
   public void insertMessage(Message data) throws Exception;
