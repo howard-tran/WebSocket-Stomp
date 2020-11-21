@@ -6,6 +6,8 @@ import bodyParser from "body-parser";
 import productRoutes from "./routes/productRoute.js";
 import categoryRoutes from "./routes/categoryRoute.js";
 import auth from "./middleware/authMiddleware.js";
+import { serverLog, errorLog } from "./middleware/logMiddleware.js";
+
 dotenv.config();
 
 connectDB();
@@ -30,10 +32,13 @@ app.get("/", (req, res) => {
   res.send("API is running");
 });
 
+app.use(serverLog);
+
 app.use("/api/products", productRoutes);
 
 app.use("/api/categories", categoryRoutes);
 
+app.use(errorLog);
 app.use(notFound);
 
 app.use(errorHandler);

@@ -3,12 +3,11 @@ import Product from "../models/productModel.js";
 import asyncHandler from "express-async-handler";
 
 export const createProduct = asyncHandler(async (req, res) => {
-  const newProduct = new Product({
-    _id: mongoose.Types.ObjectId(),
-    ...req.body,
-  });
-
   try {
+    const newProduct = new Product({
+      _id: mongoose.Types.ObjectId(),
+      ...req.body,
+    });
     await Product.insertMany(newProduct);
 
     console.log("Added new product");
@@ -16,6 +15,6 @@ export const createProduct = asyncHandler(async (req, res) => {
       message: "product created successfully!",
     });
   } catch (error) {
-    console.error(`${error}`);
+    throw new Error(error);
   }
 });

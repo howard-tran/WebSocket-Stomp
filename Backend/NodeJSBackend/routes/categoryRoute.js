@@ -12,7 +12,7 @@ router.get(
   "/",
   asyncHandler(async (req, res) => {
     const categories = await Category.find({});
-    res.json(categories);
+    res.status(200).json(categories);
   })
 );
 
