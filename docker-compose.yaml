@@ -61,6 +61,7 @@ services:
         - database
     volumes:
       - ./Backend/JavaBackend:/app
+      - /home/larryjason/project/bet-store/Backend/JavaBackend/logs:/app/logs
     networks:
       backend:
         ipv4_address: "10.1.0.5"
