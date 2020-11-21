@@ -3,6 +3,8 @@ package com.service;
 import com.dao.IConversationDao;
 import com.helper.DatabaseSupplier;
 import com.model.Conversation;
+
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -33,5 +35,22 @@ public class ConversationService implements LogService {
           return Optional.of(true);
         }
       );
+  }
+
+  Optional<List<Conversation>> getConversation(String senderId) {
+    return (Optional<List<Conversation>>)this.run(
+      () -> {
+        return Optional.of(this.conversationDao.getConversation(senderId));
+      }
+    ); 
+  }
+  
+  Optional<Boolean> deleteConversation(String _id) {
+    return (Optional<Boolean>)this.run(
+      () -> {
+        this.conversationDao.deleteConversation(_id);
+        return Optional.of(true);
+      }
+    ); 
   }
 }
