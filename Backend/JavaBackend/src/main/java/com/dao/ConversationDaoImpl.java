@@ -53,6 +53,27 @@ public class ConversationDaoImpl implements IConversationDao {
   }
 
   @Override
+  public List<Conversation> getConversation(String senderId, String receiverId) throws Exception {
+    return (ArrayList<Conversation>) this.run(
+        PropertyHelper.GetMongoDBChat(),
+        "Conversation",
+        collection -> {
+          Document con1 = new Document("senderId", senderId);
+          Document con2 = new Document("receiverId", receiverId);
+          Document filter = Document.parse(
+            String.format("{$and: [%s, %s]}", con1.toJson(), con2.toJson())
+          );
+
+          List<Conversation> res = new ArrayList();
+          for (Document doc : collection.find(filter)) {
+            res.add((Conversation) this.parseWithId(doc, Conversation.class));
+          }
+          return res;
+        }
+      );
+  }
+
+  @Override
   public List<Conversation> getConversationById(String _id) throws Exception {
     return null;
   }

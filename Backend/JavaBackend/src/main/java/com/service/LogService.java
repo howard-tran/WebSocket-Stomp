@@ -1,9 +1,8 @@
 package com.service;
 
-import java.util.Optional;
-
 import com.helper.IFunction;
 import com.helper.LogUtils;
+import java.util.Optional;
 
 public interface LogService {
   public default Object run(IFunction<Object> func) {

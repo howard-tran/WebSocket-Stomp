@@ -101,7 +101,7 @@ public class MessageDaoImpl implements IMessageDao {
         PropertyHelper.GetMongoDBChat(),
         "Message",
         collection -> {
-          String json = new Gson().toJson(data); 
+          String json = new Gson().toJson(data);
           collection.insertOne(Document.parse(json));
 
           return null;

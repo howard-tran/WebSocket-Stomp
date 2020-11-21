@@ -1,5 +1,5 @@
 package com.helper;
 
 public interface IFunction<returnType> {
-  public returnType run();
+  public returnType run() throws Exception;
 }

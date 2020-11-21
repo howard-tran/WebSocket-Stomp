@@ -12,5 +12,7 @@ public interface IConversationDao extends IDbQueryLogic {
 
   public List<Conversation> getConversation(String senderId) throws Exception;
 
+  public List<Conversation> getConversation(String senderId, String receiverId) throws Exception;
+
   public List<Conversation> getConversationById(String _id) throws Exception;
 }
