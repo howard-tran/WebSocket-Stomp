@@ -22,11 +22,13 @@ print("###################### End Conversation Collection ######################
 db.Conversation.find();
 db.Conversation.find({ _id: ObjectId("5fb8083ccda5c41790c0b067") });
 db.Conversation.deleteMany({});
-db.Conversation.deleteOne({_id: ObjectId("5fb7ffdfed6e86392ceab1d6")})
+db.Conversation.deleteOne({ _id: ObjectId("5fb7ffdfed6e86392ceab1d6") });
 
-db.Message.find({'$or': [
-  {'$and': [{senderId: "a"}, {receiverId: "b"}]}, 
-  {'$and': [{senderId: "b"}, {receiverId: "a"}]}
-]}).sort({_id: 1})
+db.Message.find();
+db.Message.deleteMany({});
+db.Conversation.deleteMany({});
+db.Message.find({
+  $or: [{ $and: [{ senderId: "a" }, { receiverId: "b" }] }, { $and: [{ senderId: "b" }, { receiverId: "a" }] }],
+}).sort({ _id: 1 });
 
-db.Message.find({senderId: "a"}).explain()
+db.Message.find({ _id: ObjectId("5fb9362e1279553053ca4ed9") });

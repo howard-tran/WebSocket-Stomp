@@ -24,18 +24,13 @@ public class MavenWrapperDownloader {
    * Default URL to download the maven-wrapper.jar from, if no 'downloadUrl' is provided.
    */
   private static final String DEFAULT_DOWNLOAD_URL =
-    "https://repo.maven.apache.org/maven2/io/takari/maven-wrapper/" +
-    WRAPPER_VERSION +
-    "/maven-wrapper-" +
-    WRAPPER_VERSION +
-    ".jar";
+    "https://repo.maven.apache.org/maven2/io/takari/maven-wrapper/" + WRAPPER_VERSION + "/maven-wrapper-" + WRAPPER_VERSION + ".jar";
 
   /**
    * Path to the maven-wrapper.properties file, which might contain a downloadUrl property to
    * use instead of the default one.
    */
-  private static final String MAVEN_WRAPPER_PROPERTIES_PATH =
-    ".mvn/wrapper/maven-wrapper.properties";
+  private static final String MAVEN_WRAPPER_PROPERTIES_PATH = ".mvn/wrapper/maven-wrapper.properties";
 
   /**
    * Path where the maven-wrapper.jar will be saved to.
@@ -80,9 +75,7 @@ public class MavenWrapperDownloader {
     File outputFile = new File(baseDirectory.getAbsolutePath(), MAVEN_WRAPPER_JAR_PATH);
     if (!outputFile.getParentFile().exists()) {
       if (!outputFile.getParentFile().mkdirs()) {
-        System.out.println(
-          "- ERROR creating output directory '" + outputFile.getParentFile().getAbsolutePath() + "'"
-        );
+        System.out.println("- ERROR creating output directory '" + outputFile.getParentFile().getAbsolutePath() + "'");
       }
     }
     System.out.println("- Downloading to: " + outputFile.getAbsolutePath());

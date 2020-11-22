@@ -14,14 +14,14 @@ import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
 
 public class MongoClientIns {
-  private static MongoClient _mongoClientIns;
+	private static MongoClient _mongoClientIns;
 
-  public static MongoClient GetMongoClient() throws Exception {
-    HashMap<String, String> dtb = PropertyHelper.GetMongoDBChat();
+	public static MongoClient GetMongoClient() throws Exception {
+		HashMap<String, String> dtb = PropertyHelper.GetMongoDBChat();
 
-    if (MongoClientIns._mongoClientIns == null) {
-      MongoClientIns._mongoClientIns = MongoClients.create(dtb.get("connection"));
-    }
-    return MongoClientIns._mongoClientIns;
-  }
+		if (MongoClientIns._mongoClientIns == null) {
+			MongoClientIns._mongoClientIns = MongoClients.create(dtb.get("connection"));
+		}
+		return MongoClientIns._mongoClientIns;
+	}
 }

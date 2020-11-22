@@ -11,10 +11,11 @@ import org.springframework.test.web.servlet.MockMvc;
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
 @AutoConfigureMockMvc
-public class IntergrationTest {
-  @Autowired
-  MockMvc mockMvc;
+public class IntergrationTest1 {
+	@Autowired
+	MockMvc mockMvc;
 
-  @Test
-  void testCase1() throws Exception {}
+	@Test
+	void testCase1() throws Exception {
+	}
 }

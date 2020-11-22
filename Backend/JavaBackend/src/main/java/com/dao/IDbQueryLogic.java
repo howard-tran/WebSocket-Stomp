@@ -10,23 +10,19 @@ import java.util.HashMap;
 import org.bson.Document;
 
 public interface IDbQueryLogic {
-  public default Object run(
-    HashMap<String, String> dtb,
-    String collectionName,
-    IFunction2<MongoCollection<Document>, Object> func
-  )
-    throws Exception {
-    //
-    MongoClient client = MongoClientIns.GetMongoClient();
-    MongoDatabase database = client.getDatabase(dtb.get("database"));
-    MongoCollection<Document> collection = database.getCollection(collectionName);
+	public default Object run(HashMap<String, String> dtb, String collectionName,
+			IFunction2<MongoCollection<Document>, Object> func) throws Exception {
+		//
+		MongoClient client = MongoClientIns.GetMongoClient();
+		MongoDatabase database = client.getDatabase(dtb.get("database"));
+		MongoCollection<Document> collection = database.getCollection(collectionName);
 
-    return func.run(collection);
-  }
+		return func.run(collection);
+	}
 
-  public default Object parseWithId(Document doc, Class classOf) {
-    Object obj = new Gson().fromJson(doc.toJson(), classOf);
-    ((MongoIdModel) obj).set_id(doc.getObjectId("_id"));
-    return obj;
-  }
+	public default Object parseWithId(Document doc, Class classOf) {
+		Object obj = new Gson().fromJson(doc.toJson(), classOf);
+		((MongoIdModel) obj).set_id(doc.getObjectId("_id"));
+		return obj;
+	}
 }

@@ -9,22 +9,16 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
   @Override
   public void configureMessageBroker(MessageBrokerRegistry registry) {
-    registry.setApplicationDestinationPrefixes(
-      SocketService.ChatSupplier.appPrefix,
-      SocketService.NotificationSupplier.appPrefix
-    );
-    registry.enableSimpleBroker(
-      SocketService.ChatSupplier.messageService,
-      SocketService.ChatSupplier.roomService,
-      SocketService.NotificationSupplier.messageService
-    );
+    registry.setApplicationDestinationPrefixes(SocketService.ChatSupplier.appPrefix,
+        SocketService.NotificationSupplier.appPrefix);
+
+    registry.enableSimpleBroker(SocketService.ChatSupplier.messageService, SocketService.ChatSupplier.roomService,
+        SocketService.NotificationSupplier.messageService);
   }
 
   @Override
   public void registerStompEndpoints(StompEndpointRegistry registry) {
-    registry
-      .addEndpoint(SocketService.ChatSupplier.prefix, SocketService.NotificationSupplier.prefix)
-      .setAllowedOrigins("*")
-      .withSockJS();
+    registry.addEndpoint(SocketService.ChatSupplier.prefix, SocketService.NotificationSupplier.prefix)
+        .setAllowedOrigins("*").withSockJS();
   }
 }
