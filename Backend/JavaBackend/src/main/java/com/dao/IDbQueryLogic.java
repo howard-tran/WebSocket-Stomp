@@ -6,15 +6,23 @@ import com.model.MongoIdModel;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+
+import java.nio.channels.ConnectionPendingException;
 import java.util.HashMap;
 import org.bson.Document;
 
 public interface IDbQueryLogic {
 	public default Object run(HashMap<String, String> dtb, String collectionName,
 			IFunction2<MongoCollection<Document>, Object> func) throws Exception {
-		//
-		MongoClient client = MongoClientIns.GetMongoClient();
-		MongoDatabase database = client.getDatabase(dtb.get("database"));
+    //
+    MongoClient client = MongoClientIns.GetMongoClient();
+    MongoDatabase database = null; 
+
+    try {
+      database = client.getDatabase(dtb.get("database"));
+    } catch (Exception e) {
+      throw new ConnectionPendingException(); 
+    }
 		MongoCollection<Document> collection = database.getCollection(collectionName);
 
 		return func.run(collection);
