@@ -38,35 +38,56 @@ public class MessageService implements LogService {
       }
       return Optional.empty();
     });
-    return Optional.of((Optional<String>)funcObj);
+    return Optional.of((Optional<String>) funcObj);
   }
 
-  public Optional<VoidObject> deleteMessage(String _id) {
+  private Optional<VoidObject> deleteMessage(String _id) {
     var funcObj = this.run(() -> {
       this.messageDao.deleteMessage(_id);
-      
+
+      return VoidObject.create();
+    });
+    return Optional.of((VoidObject) funcObj);
+  }
+
+  public Optional<VoidObject> deleteConversationMessage(Conversation conversation) {
+    var funcObj = this.run(() -> {
+      var listMessage = this.getMessage(conversation).get();
+
+      for (int i = 0; i < listMessage.size(); i++) {
+        this.deleteMessage(listMessage.get(i).get_id().toString()); 
+      }
       return VoidObject.create();
     });
     return Optional.of((VoidObject)funcObj);
   }
 
+  private Optional<List<Message>> getMessage(Conversation conversation) {
+    var funcObj = this.run(() -> {
+      return this.messageDao.getMessageByConversation(conversation); 
+    }); 
+    return Optional.of((List<Message>)funcObj);
+  }
+
   /**
    * get 15 message each
+   * 
    * @param conversation
    * @return
    */
   public Optional<List<Message>> getMessage(Conversation conversation, int index) {
     var funcObj = this.run(() -> {
-      List<Message> list = this.messageDao.getMessageByConversation(conversation);
+      var list = this.messageDao.getMessageByConversation(conversation);
 
       if (index < list.size()) {
 
         if (index + 15 <= list.size()) {
           return list.subList(index, index + 15);
-        } else return list.subList(index, list.size()); 
+        } else
+          return list.subList(index, list.size());
       }
-      return new ArrayList<Conversation>();
+      return new ArrayList<Message>();
     });
-    return Optional.of((List<Message>)funcObj);
+    return Optional.of((List<Message>) funcObj);
   }
 }

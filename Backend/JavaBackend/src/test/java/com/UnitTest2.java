@@ -5,12 +5,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import com.dao.IConversationDao;
-import com.dao.IMessageDao;
 import com.model.Conversation;
 import com.service.ConversationService;
 import com.service.MessageService;
-import com.helper.DatabaseSupplier;
 import com.helper.Tuple2;
 import com.model.Message;
 import com.model.MessageContentType;
@@ -18,7 +15,6 @@ import com.model.MessageContentType;
 import org.bson.types.ObjectId;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
@@ -49,7 +45,8 @@ public class UnitTest2 extends testCasePrint {
     }, "test java subList");
   }
 
-  @Test void testCase2() throws Exception {
+  @Test 
+  public void testCase2() throws Exception {
     this.run(() -> {
       List<Conversation> list = new ArrayList<>(); 
       for (int i = 0; i < 100; i++) {
@@ -109,7 +106,7 @@ public class UnitTest2 extends testCasePrint {
       return null;
     }, 
     "test service add + delete conversation",
-    "test service add + get message from conversation"
+    "test service add + get message from deleted conversation"
     );
   }
 
@@ -121,8 +118,15 @@ public class UnitTest2 extends testCasePrint {
       Tuple2<String, String> tuple = this.conversationService.addConversation(con).get();
 
       List<Message> mList = new ArrayList<>();
-      for (int i = 0; i < 100; i++) {
+      for (int i = 0; i < 50; i++) {
         mList.add(new Message("abcd1234", "abcd123", UUID.randomUUID().toString(), "", 
+          MessageContentType.CONTENT_NONE));
+        
+        String messId = this.messageService.addMessage(mList.get(i)).get().get(); 
+        mList.get(i).set_id(new ObjectId(messId));
+      }
+      for (int i = 50; i < 60; i++) {
+        mList.add(new Message("abcd123", "abcd1234", UUID.randomUUID().toString(), "", 
           MessageContentType.CONTENT_NONE));
         
         String messId = this.messageService.addMessage(mList.get(i)).get().get(); 
@@ -137,14 +141,12 @@ public class UnitTest2 extends testCasePrint {
       }
       System.out.println(count);
 
-      this.conversationService.deleteConversation(con); 
-      for (int i = 0; i < mList.size(); i++) {
-        this.messageService.deleteMessage(mList.get(i).get_id().toString()); 
-      }
+      this.messageService.deleteConversationMessage(con);
+      this.conversationService.deleteConversation(con);
 
       return null;
     }, 
-    "test service get message with index"
+    "test service get message with index + delete conversation message"
     );
   }
 

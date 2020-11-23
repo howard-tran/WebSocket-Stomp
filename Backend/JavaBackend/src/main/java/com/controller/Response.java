@@ -3,7 +3,7 @@ package com.controller;
 public class Response<T> {
 	private int status;
 	private String message;
-	private T data;
+  private T data;
 
 	public Response(int status, String message, T data) {
 		this.status = status;
