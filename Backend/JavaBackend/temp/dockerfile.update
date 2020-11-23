@@ -1,0 +1,11 @@
+FROM mingkhoi/betstore-javabackend:latest
+
+EXPOSE 8081
+
+ADD . /app
+
+RUN chmod +x /app/mvnw
+RUN chmod +x /app/mvnw.cmd
+
+RUN /app/mvnw dependency:resolve
+RUN rm -rf /app/* /app/.*; exit 0

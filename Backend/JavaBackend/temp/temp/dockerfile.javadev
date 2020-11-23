@@ -1,0 +1,13 @@
+FROM mingkhoi/betstore-javabackend:latest
+
+EXPOSE 8081
+
+VOLUME /app
+WORKDIR /app
+
+COPY mvnw .
+COPY mvnw.cmd .
+RUN chmod +x mvnw
+RUN chmod +x mvnw.cmd
+  
+ENTRYPOINT ["./mvnw", "spring-boot:run"]
