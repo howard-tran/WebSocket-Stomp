@@ -38,7 +38,7 @@ public class UnitTest1 extends testCasePrint {
 	@Test
 	public void testCase1() throws Exception {
 		this.run(() -> {
-			HashMap<String, String> hash = PropertyHelper.GetMongoDBChat();
+			HashMap<String, String> hash = PropertyHelper.getMongoDBChat();
 
 			System.out.println(hash.get("connection"));
 			System.out.println(hash.get("database"));

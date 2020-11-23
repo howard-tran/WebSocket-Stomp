@@ -2,27 +2,19 @@ package com.dao;
 
 import com.helper.PropertyHelper;
 import com.mongodb.ConnectionString;
-import com.mongodb.MongoClientOptions;
 import com.mongodb.MongoClientSettings;
-import com.mongodb.MongoCredential;
-import com.mongodb.ServerAddress;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
-import com.mongodb.connection.ClusterSettings;
 
-import java.util.Arrays;
+
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
-
-import org.bson.codecs.configuration.CodecRegistries;
-import org.bson.codecs.configuration.CodecRegistry;
-import org.bson.codecs.pojo.PojoCodecProvider;
 
 public class MongoClientIns {
   private static MongoClient _mongoClientIns;
 
   public static MongoClient GetMongoClient() throws Exception {
-    HashMap<String, String> dtb = PropertyHelper.GetMongoDBChat();
+    HashMap<String, String> dtb = PropertyHelper.getMongoDBChat();
 
     if (MongoClientIns._mongoClientIns == null) {
 

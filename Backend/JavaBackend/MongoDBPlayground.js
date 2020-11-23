@@ -20,8 +20,8 @@ print("###################### End Conversation Collection ######################
 
 // test
 db.Conversation.find();
-db.Conversation.find({ _id: ObjectId("5fb8083ccda5c41790c0b067") });
 db.Conversation.deleteMany({});
+db.Conversation.find({ _id: ObjectId("5fb8083ccda5c41790c0b067") });
 db.Conversation.deleteOne({ _id: ObjectId("5fb7ffdfed6e86392ceab1d6") });
 
 db.Message.find();

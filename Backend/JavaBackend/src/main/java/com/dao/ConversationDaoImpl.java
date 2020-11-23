@@ -22,10 +22,11 @@ public class ConversationDaoImpl implements IConversationDao {
 
   @Override
   public List<Conversation> getAllConversation() throws Exception {
-    return (ArrayList<Conversation>) this.run(PropertyHelper.GetMongoDBChat(), "Conversation", collection -> {
-      var res = new ArrayList();
+    return this.run(PropertyHelper.getMongoDBChat(), "Conversation", collection -> {
+      var res = new ArrayList<Conversation>();
+
       for (var doc : collection.find()) {
-        res.add((Conversation) this.parseWithId(doc, Conversation.class));
+        res.add(this.parseWithId(doc, Conversation.class));
       }
       return res;
     });
@@ -33,12 +34,12 @@ public class ConversationDaoImpl implements IConversationDao {
 
   @Override
   public List<Conversation> getConversation(String senderId) throws Exception {
-    return (ArrayList<Conversation>) this.run(PropertyHelper.GetMongoDBChat(), "Conversation", collection -> {
+    return this.run(PropertyHelper.getMongoDBChat(), "Conversation", collection -> {
       var filter = new Document("senderId", senderId);
-      var res = new ArrayList();
+      var res = new ArrayList<Conversation>();
 
       for (var doc : collection.find(filter)) {
-        res.add((Conversation) this.parseWithId(doc, Conversation.class));
+        res.add(this.parseWithId(doc, Conversation.class));
       }
       return res;
     });
@@ -46,14 +47,14 @@ public class ConversationDaoImpl implements IConversationDao {
 
   @Override
   public List<Conversation> getConversation(String senderId, String receiverId) throws Exception {
-    return (ArrayList<Conversation>) this.run(PropertyHelper.GetMongoDBChat(), "Conversation", collection -> {
+    return (ArrayList<Conversation>) this.run(PropertyHelper.getMongoDBChat(), "Conversation", collection -> {
       var con1 = new Document("senderId", senderId);
       var con2 = new Document("receiverId", receiverId);
       var filter = Document.parse(String.format("{$and: [%s, %s]}", con1.toJson(), con2.toJson()));
 
-      var res = new ArrayList();
+      var res = new ArrayList<Conversation>();
       for (var doc : collection.find(filter).sort(new Document("_id", -1))) {
-        res.add((Conversation) this.parseWithId(doc, Conversation.class));
+        res.add(this.parseWithId(doc, Conversation.class));
       }
       return res;
     });
@@ -66,7 +67,7 @@ public class ConversationDaoImpl implements IConversationDao {
 
   @Override
   public String insertConversation(Conversation data) throws Exception {
-    return (String) this.run(PropertyHelper.GetMongoDBChat(), "Conversation", collection -> {
+    return (String) this.run(PropertyHelper.getMongoDBChat(), "Conversation", collection -> {
       var json = new Gson().toJson(data);
       var doc = Document.parse(json);
 
@@ -78,7 +79,7 @@ public class ConversationDaoImpl implements IConversationDao {
 
   @Override
   public void deleteConversation(String _id) throws Exception {
-    this.run(PropertyHelper.GetMongoDBChat(), "Conversation", collection -> {
+    this.run(PropertyHelper.getMongoDBChat(), "Conversation", collection -> {
       collection.deleteOne(new Document("_id", new ObjectId(_id)));
 
       return null;

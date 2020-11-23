@@ -16,10 +16,10 @@ public class MessageDaoImpl implements IMessageDao {
 
   @Override
   public List<Message> getAllMessage() throws Exception {
-    return (ArrayList<Message>) this.run(PropertyHelper.GetMongoDBChat(), "Message", collection -> {
-      var res = new ArrayList<>();
+    return this.run(PropertyHelper.getMongoDBChat(), "Message", collection -> {
+      var res = new ArrayList<Message>();
       for (var doc : collection.find()) {
-        res.add((Message) this.parseWithId(doc, Message.class));
+        res.add(this.parseWithId(doc, Message.class));
       }
       return res;
     });
@@ -27,12 +27,12 @@ public class MessageDaoImpl implements IMessageDao {
 
   @Override
   public List<Message> getMessage(String senderId, String receiverId) throws Exception {
-    return (ArrayList<Message>) this.run(PropertyHelper.GetMongoDBChat(), "Message", collection -> {
+    return this.run(PropertyHelper.getMongoDBChat(), "Message", collection -> {
       var filter = Document
           .parse(String.format("{$and: [{senderId: \"%s\"}, {receiverId: \"%s\"}]}", senderId, receiverId));
-      var res = new ArrayList<>();
+      var res = new ArrayList<Message>();
       for (var doc : collection.find(filter)) {
-        res.add((Message) this.parseWithId(doc, Message.class));
+        res.add(this.parseWithId(doc, Message.class));
       }
       return res;
     });
@@ -44,14 +44,14 @@ public class MessageDaoImpl implements IMessageDao {
 
   @Override
   public List<Message> getMessageByConversation(Conversation conversation) throws Exception {
-    return (ArrayList<Message>) this.run(PropertyHelper.GetMongoDBChat(), "Message", collection -> {
+    return this.run(PropertyHelper.getMongoDBChat(), "Message", collection -> {
       var con1 = this.createFilterConversation(conversation.getSenderId(), conversation.getReceiverId());
       var con2 = this.createFilterConversation(conversation.getReceiverId(), conversation.getSenderId());
       var filter = Document.parse(String.format("{$or: [%s, %s]}", con1.toJson(), con2.toJson()));
 
-      var res = new ArrayList<>();
+      var res = new ArrayList<Message>();
       for (var doc : collection.find(filter).sort(new Document("_id", -1))) {
-        res.add((Message) this.parseWithId(doc, Message.class));
+        res.add(this.parseWithId(doc, Message.class));
       }
       return res;
     });
@@ -59,10 +59,10 @@ public class MessageDaoImpl implements IMessageDao {
 
   @Override
   public List<Message> getMessageById(String _id) throws Exception {
-    return (ArrayList<Message>) this.run(PropertyHelper.GetMongoDBChat(), "Message", collection -> {
-      var res = new ArrayList<>();
+    return this.run(PropertyHelper.getMongoDBChat(), "Message", collection -> {
+      var res = new ArrayList<Message>();
       for (var doc : collection.find(new Document("_id", new ObjectId(_id)))) {
-        res.add((Message) this.parseWithId(doc, Message.class));
+        res.add(this.parseWithId(doc, Message.class));
       }
       return res;
     });
@@ -70,7 +70,7 @@ public class MessageDaoImpl implements IMessageDao {
 
   @Override
   public String insertMessage(Message data) throws Exception {
-    return (String) this.run(PropertyHelper.GetMongoDBChat(), "Message", collection -> {
+    return (String) this.run(PropertyHelper.getMongoDBChat(), "Message", collection -> {
       var json = new Gson().toJson(data);
       var doc = Document.parse(json);
 
@@ -82,7 +82,7 @@ public class MessageDaoImpl implements IMessageDao {
 
   @Override
   public void deleteMessage(String _id) throws Exception {
-    this.run(PropertyHelper.GetMongoDBChat(), "Message", collection -> {
+    this.run(PropertyHelper.getMongoDBChat(), "Message", collection -> {
       collection.deleteOne(new Document("_id", new ObjectId(_id)));
       return null;
     });

@@ -81,27 +81,27 @@ public class UnitTest2 extends testCasePrint {
     this.run(() -> {
       Conversation con = new Conversation("abcd1234", "abcd123");
 
-      Tuple2<String, String> tuple = this.conversationService.addConversation(con).get();
+      // Tuple2<String, String> tuple = this.conversationService.addConversation(con).get();
 
       if (this.conversationService.deleteConversation(con).isEmpty()) {
         this.logErrorToTerminal("delete conversation is empty");
       }
 
-      List<Message> mList = new ArrayList<>();
-      for (int i = 0; i < 100; i++) {
-        mList.add(new Message("abcd1234", "abcd123", UUID.randomUUID().toString(), "", 
-          MessageContentType.CONTENT_NONE));
+      // List<Message> mList = new ArrayList<>();
+      // for (int i = 0; i < 100; i++) {
+      //   mList.add(new Message("abcd1234", "abcd123", UUID.randomUUID().toString(), "", 
+      //     MessageContentType.CONTENT_NONE));
         
-        this.messageService.addMessage(mList.get(i)); 
-      }
+      //   this.messageService.addMessage(mList.get(i)); 
+      // }
 
-      List<Message> messGet = this.messageService.getMessage(con, 0).get();
-      int count = 0;
-      for (int i = 0; i < messGet.size(); i++) {
-        System.out.println(messGet.get(i).toString());
-        count++;
-      }
-      System.out.println(count);
+      // List<Message> messGet = this.messageService.getMessage(con, 0).get();
+      // int count = 0;
+      // for (int i = 0; i < messGet.size(); i++) {
+      //   System.out.println(messGet.get(i).toString());
+      //   count++;
+      // }
+      // System.out.println(count);
 
       return null;
     }, 

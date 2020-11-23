@@ -32,26 +32,24 @@ public class MessageService implements LogService {
   }
 
   public Optional<Optional<String>> addMessage(Message message) {
-    var funcObj = this.run(() -> {
+    return this.run(() -> {
       if (checkConversation(message.getSenderId(), message.getReceiverId())) {
         return Optional.of(this.messageDao.insertMessage(message));
       }
       return Optional.empty();
     });
-    return Optional.of((Optional<String>) funcObj);
   }
 
   private Optional<VoidObject> deleteMessage(String _id) {
-    var funcObj = this.run(() -> {
+    return this.run(() -> {
       this.messageDao.deleteMessage(_id);
 
       return VoidObject.create();
     });
-    return Optional.of((VoidObject) funcObj);
   }
 
   public Optional<VoidObject> deleteConversationMessage(Conversation conversation) {
-    var funcObj = this.run(() -> {
+    return this.run(() -> {
       var listMessage = this.getMessage(conversation).get();
 
       for (int i = 0; i < listMessage.size(); i++) {
@@ -59,14 +57,12 @@ public class MessageService implements LogService {
       }
       return VoidObject.create();
     });
-    return Optional.of((VoidObject)funcObj);
   }
 
   private Optional<List<Message>> getMessage(Conversation conversation) {
-    var funcObj = this.run(() -> {
+    return this.run(() -> {
       return this.messageDao.getMessageByConversation(conversation); 
     }); 
-    return Optional.of((List<Message>)funcObj);
   }
 
   /**
@@ -76,7 +72,7 @@ public class MessageService implements LogService {
    * @return
    */
   public Optional<List<Message>> getMessage(Conversation conversation, int index) {
-    var funcObj = this.run(() -> {
+    return this.run(() -> {
       var list = this.messageDao.getMessageByConversation(conversation);
 
       if (index < list.size()) {
@@ -88,6 +84,5 @@ public class MessageService implements LogService {
       }
       return new ArrayList<Message>();
     });
-    return Optional.of((List<Message>) funcObj);
   }
 }

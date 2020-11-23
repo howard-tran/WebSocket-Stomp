@@ -8,7 +8,7 @@ public class LogUtils {
 	public static void LogError(Object message, Exception error) {
 		if (logger == null) {
 			logger = Logger.getLogger(LogUtils.class);
-		}
+    }
 		logger.error(message, error);
 	}
 

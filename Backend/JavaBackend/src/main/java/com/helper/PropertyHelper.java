@@ -8,7 +8,7 @@ import java.util.Properties;
 
 public class PropertyHelper {
 
-	public static Optional<String> GetProperty(String property) throws Exception {
+	public static Optional<String> getProperty(String property) throws Exception {
 		Properties prop = new Properties();
 
 		InputStream inputStream = App.class.getResourceAsStream("/project.properties");
@@ -39,13 +39,21 @@ public class PropertyHelper {
 	 *         </div>
 	 * @throws Exception
 	 */
-	public static HashMap<String, String> GetMongoDBChat() throws Exception {
+	public static HashMap<String, String> getMongoDBChat() throws Exception {
 		HashMap<String, String> res = new HashMap<String, String>();
-		res.put("connection", GetProperty("mongodb-connection").get());
-		res.put("database", GetProperty("mongodb-database").get());
-		res.put("host", GetProperty("mongodb-host").get());
-		res.put("port", GetProperty("mongodb-port").get());
+		res.put("connection", getProperty("mongodb-connection").get());
+		res.put("database", getProperty("mongodb-database").get());
+		res.put("host", getProperty("mongodb-host").get());
+		res.put("port", getProperty("mongodb-port").get());
 
-		return res;
-	}
+    return res;
+  }
+  
+  public static String getJWTKey() throws Exception {
+    return getProperty("jwt-secret-key").get();
+  }
+
+  public static String getProjectState() throws Exception {
+    return getProperty("project-state").get();
+  } 
 }
