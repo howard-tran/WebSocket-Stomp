@@ -197,6 +197,7 @@
           </executions>
           <configuration>
             <mainClass>com.chat.App</mainClass>
+            <cleanupDaemonThreads>true</cleanupDaemonThreads>
           </configuration>
         </plugin>
 
